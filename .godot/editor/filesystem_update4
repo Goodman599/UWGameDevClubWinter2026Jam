@@ -5,3 +5,4 @@ res://Scripts/visitor_instance.gd
 res://Scenes/jimmy_jones.tscn
 res://Scripts/keywords.gd
 res://Scripts/night_visitor.gd
+res://Scripts/base_night_visitor.gd
