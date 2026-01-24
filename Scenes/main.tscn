@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://jop1da2n63nx"]
+
+[ext_resource type="PackedScene" uid="uid://c08jn70lnn2bm" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
+[ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="2_43rbr"]
+
+[node name="Main" type="Node2D"]
+
+[node name="JimmyJones" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("1_1k0k3")]
+dialogue_box = NodePath("../DialogueBox")
+
+[node name="DialogueBox" parent="." instance=ExtResource("2_43rbr")]
