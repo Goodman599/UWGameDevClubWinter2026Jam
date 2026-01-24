@@ -45,5 +45,3 @@ func next_dialogue():
 func prev_dialogue():
 	current_dialogue_index -= 1
 	show_text(dialogues[current_dialogue_branch][current_dialogue_index])
-
-

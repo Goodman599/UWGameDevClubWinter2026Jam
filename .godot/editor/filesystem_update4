@@ -1,0 +1,3 @@
+res://Scenes/dialogue_box.tscn
+res://Scripts/base_visitor.gd
+res://Scripts/keywords.gd
