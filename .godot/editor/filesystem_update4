@@ -1,3 +1,7 @@
-res://Scenes/dialogue_box.tscn
-res://Scripts/base_visitor.gd
+res://Scripts/jimmy_jones.gd
+res://Scripts/temp.gd
+res://Scenes/node_2d.tscn
+res://Scripts/visitor_instance.gd
+res://Scenes/jimmy_jones.tscn
 res://Scripts/keywords.gd
+res://Scripts/night_visitor.gd
