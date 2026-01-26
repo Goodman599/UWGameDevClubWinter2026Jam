@@ -5,6 +5,7 @@ class_name DialogueBox
 # Visitors will store a reference to this scene
 # Contains methods to change the text being shown and detect clicks on keywords
 
+signal keyword_clicked(keyword_text: String)
 
 # Takes a String and puts it into the Text node
 func set_text(text : String):
@@ -18,4 +19,4 @@ func _on_text_meta_clicked(meta):
 	
 	var dictKey : String = meta.capitalize()
 	Keywords.keywords[dictKey] += 1
-	print(Keywords.keywords)
+	emit_signal("keyword_clicked", meta)
