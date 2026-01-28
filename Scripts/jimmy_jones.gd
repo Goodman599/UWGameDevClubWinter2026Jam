@@ -13,7 +13,7 @@ func _init():
 				"third" : ["blah2"],}
 
 
-func _ready():
+func _ready(): 
 	# Connect the 2 buttons. Please tell me there's a better way to do this...
 	super()
 	

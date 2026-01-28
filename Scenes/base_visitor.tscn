@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bv6h2ywm61wba"]
 
-[ext_resource type="Script" path="res://Scripts/base_visitor.gd" id="1_4d2ct"]
+[ext_resource type="Script" uid="uid://c760kqjdets52" path="res://Scripts/base_visitor.gd" id="1_4d2ct"]
 
-[node name="BaseVisitor" type="Node2D"]
+[node name="BaseVisitor" type="Node2D" node_paths=PackedStringArray("dialogue_box")]
 script = ExtResource("1_4d2ct")
+dialogue_box = NodePath("")
