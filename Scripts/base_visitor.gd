@@ -32,7 +32,6 @@ func plain_to_clickable(text : String) -> String:
 	text = text.replace("}", "[/url][/b]")
 	return text
 
-
 # Switch to the next dialogue in the current branch
 # TODO: No index out of bounds detections
 func next_dialogue():

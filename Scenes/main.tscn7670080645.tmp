@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://jop1da2n63nx"]
+
+[ext_resource type="PackedScene" uid="uid://c08jn70lnn2bm" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
+[ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cawextt8su2ct" path="res://Scenes/submission_box.tscn" id="4_kry3j"]
+[ext_resource type="Script" uid="uid://dbgj5ghkjfm3k" path="res://Scenes/submission_box.gd" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
+
+[node name="JimmyJones" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("1_1k0k3")]
+dialogue_box = NodePath("../DialogueBox")
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+
+[node name="SubmissionEventBox" parent="." instance=ExtResource("4_kry3j")]
+position = Vector2(67, 119)
+script = ExtResource("5_21xkr")
+max_cards = null
+highlight_color = null
+normal_color = null
+border_color = null
+border_width = null
+
+[node name="Event" type="RichTextLabel" parent="SubmissionEventBox"]
+offset_left = -7.940649
+offset_top = -4.527629
+offset_right = 32.05935
+offset_bottom = 41.47237
+scale = Vector2(0.48216546, 0.47186735)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Event"
+
+[node name="SubmissionPersonBox" parent="." instance=ExtResource("4_kry3j")]
+position = Vector2(215.00002, 119.99999)
+scale = Vector2(0.9007645, 0.67072505)
+script = ExtResource("5_21xkr")
+max_cards = null
+highlight_color = null
+normal_color = null
+border_color = null
+border_width = null
+
+[node name="Person" type="RichTextLabel" parent="SubmissionPersonBox"]
+offset_left = -9.9915285
+offset_top = -4.4727597
+offset_right = 30.008472
+offset_bottom = 35.52724
+scale = Vector2(0.64804953, 0.6867669)
+theme_override_font_sizes/normal_font_size = 8
+text = "Person"
+
+[node name="UI" parent="." instance=ExtResource("3_8gbba")]

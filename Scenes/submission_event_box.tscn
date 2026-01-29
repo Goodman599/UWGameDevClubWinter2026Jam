@@ -1,0 +1,4 @@
+[gd_scene load_steps=0 format=3 uid="uid://cawextt8su2ct"]
+
+[node name="Submission Event Box" type="Node2D"]
+scale = Vector2(0.88154024, 0.66259885)
