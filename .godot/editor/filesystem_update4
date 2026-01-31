@@ -1,2 +1,10 @@
-res://Scripts/david_doyle.gd
+res://Scripts/base_visitor.gd
+res://Scripts/dialogue_box.gd
+res://Scripts/jimmy_jones.gd
+res://Dialogues/David_Doyle.json
+res://Scenes/base_visitor.tscn
+res://Scripts/visitor_instance.gd
+res://Scripts/visitor_manager.gd
 res://Scenes/main.tscn
+res://Scenes/jimmy_jones.tscn
+res://Dialogues/david_doyle.json

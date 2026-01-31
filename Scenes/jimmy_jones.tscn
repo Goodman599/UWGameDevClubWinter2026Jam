@@ -4,3 +4,4 @@
 
 [node name="jimmy_jones" type="Node2D"]
 script = ExtResource("1_2iket")
+visitor_name = "jimmy_jones"
