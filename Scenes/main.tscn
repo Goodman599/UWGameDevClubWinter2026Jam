@@ -1,11 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=7 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://c08jn70lnn2bm" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
-[ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="2_43rbr"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="PackedScene" path="res://Scenes/ui.tscn" id="3_8gbba"]
+[ext_resource type="Script" path="res://Scripts/david_doyle.gd" id="3_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cawextt8su2ct" path="res://Scenes/submission_box.tscn" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
 
 [node name="JimmyJones" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("1_1k0k3")]
+script = ExtResource("3_21xkr")
 dialogue_box = NodePath("../DialogueBox")
 
-[node name="DialogueBox" parent="." instance=ExtResource("2_43rbr")]
+[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
+unique_name_in_owner = true
+position = Vector2(0, 9)
+
+[node name="Submission Box" parent="." instance=ExtResource("4_kry3j")]
+position = Vector2(1036.0001, 90.99999)
+
+[node name="Event" type="RichTextLabel" parent="Submission Box"]
+offset_left = -43.106358
+offset_top = -19.619736
+offset_right = 145.10754
+offset_bottom = 220.2584
+scale = Vector2(0.48216546, 0.47186735)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Event"
+
+[node name="Submission Box2" parent="." instance=ExtResource("4_kry3j")]
+position = Vector2(1035, 259)
+
+[node name="Event" type="RichTextLabel" parent="Submission Box2"]
+offset_left = -46.50949
+offset_top = -27.165794
+offset_right = 240.51663
+offset_bottom = 212.71234
+scale = Vector2(0.48216546, 0.47186735)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Person
+"
+
+[node name="UI" parent="." instance=ExtResource("3_8gbba")]

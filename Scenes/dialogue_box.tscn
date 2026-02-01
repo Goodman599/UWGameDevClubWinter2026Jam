@@ -1,9 +1,32 @@
 [gd_scene load_steps=2 format=3 uid="uid://osdop6onyqxw"]
 
-[ext_resource type="Script" uid="uid://b8egxdag8vmdx" path="res://Scripts/dialogue_box.gd" id="1_aetfs"]
+[sub_resource type="GDScript" id="GDScript_vo4xn"]
+script/source = "extends Node2D
+class_name DialogueBox
+
+# There will only be one instance of the dialogue box scene in the main scene.
+# Visitors will store a reference to this scene
+# Contains methods to change the text being shown and detect clicks on keywords
+
+signal keyword_clicked(keyword_text: String)
+
+# Takes a String and puts it into the Text node
+func set_text(text : String):
+	$Text.text = text
+
+
+# Called automatically when a keyword is clicked.
+# @param meta is the text clicked on, saved as a String
+func _on_text_meta_clicked(meta):
+	assert (meta is String, \"Meta wasn't a string, was: \" + meta)
+	
+	var dictKey : String = meta.capitalize()
+	Keywords.keywords[dictKey] += 1
+	emit_signal(\"keyword_clicked\", meta)
+"
 
 [node name="DialogueBox" type="Node2D"]
-script = ExtResource("1_aetfs")
+script = SubResource("GDScript_vo4xn")
 
 [node name="Text" type="RichTextLabel" parent="."]
 offset_right = 1152.0
@@ -12,17 +35,24 @@ bbcode_enabled = true
 text = "If I got some text it would look like this"
 
 [node name="Back" type="Button" parent="."]
-offset_left = 30.0
-offset_top = 88.0
-offset_right = 38.0
-offset_bottom = 96.0
+offset_left = 168.0
+offset_top = 447.0
+offset_right = 213.0
+offset_bottom = 478.0
 text = "Back"
 
 [node name="Next" type="Button" parent="."]
-offset_left = 1049.0
-offset_top = 92.0
-offset_right = 1094.0
-offset_bottom = 123.0
+offset_left = 1011.0
+offset_top = 446.0
+offset_right = 1056.0
+offset_bottom = 477.0
 text = "Next"
+
+[node name="Confirm" type="Button" parent="."]
+offset_left = 1001.0
+offset_top = 340.0
+offset_right = 1072.0
+offset_bottom = 371.0
+text = "Confirm"
 
 [connection signal="meta_clicked" from="Text" to="." method="_on_text_meta_clicked"]
