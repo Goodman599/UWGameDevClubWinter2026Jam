@@ -27,10 +27,12 @@ func _ready():
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):
+		push_error("aw")
 		return
 		
 	var data = MemoryDB.get_memory(key)
 	if data == null: 
+		push_error("man")
 		return
 	
 	var new_card = card_scene.instantiate()

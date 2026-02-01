@@ -27,8 +27,6 @@ func _ready():
 	
 	# Load dialogue from json
 	dialogues = load_json_as_dict("res://Dialogues/" + visitor_name + ".json")
-	print(dialogues)
-	print("res://Dialogues/" + visitor_name + ".json")
 
 
 # Takes a String, formats it, and puts it into the dialogue box
@@ -38,8 +36,15 @@ func show_text(text : String):
 
 # Method that converts "{}" in dialogue to appropriate BBCodes
 func plain_to_clickable(text : String) -> String:
+	# remove keyword data []
+	var regex := RegEx.new()
+	regex.compile("\\[[^\\]]*\\]")
+	text = regex.sub(text, "", true)
+	
+	# highlight keywords {}
 	text = text.replace("{", "[b][url]")
 	text = text.replace("}", "[/url][/b]")
+	
 	return text
 
 # Switch to the next dialogue in the current branch
@@ -56,7 +61,6 @@ func next_dialogue():
 		# Show any input boxes
 		if current_dialogue_index == current_dialogue_line_count - 1:
 			for requirement : String in dialogues[current_visit_branch][current_dialogue_branch]["accepts"]:
-				dialogue_box.get_node("Next").text = "Submit"
 				create_submission_box(requirement)
 
 
@@ -68,7 +72,7 @@ func prev_dialogue():
 		
 		# Exiting out of submission line
 		if current_dialogue_index == current_dialogue_line_count - 2:
-			dialogue_box.get_node("Next").text = "Next"
+			pass
 
 
 # Sets the visit branch to the given string
@@ -77,13 +81,45 @@ func set_visit_branch(branch_name : String) -> void:
 	current_visit_branch = branch_name
 	set_dialogue_branch("dialogue0")
 
+
 # Sets the dialogue branch to the given string
 # Also initializes the line count
 # Also display's the dialogue as text
+# Also adds the keywords to the memory database
 func set_dialogue_branch(branch_name : String):
 	current_dialogue_branch = branch_name
+	current_dialogue_index = 0
 	current_dialogue_line_count = dialogues[current_visit_branch][current_dialogue_branch]["lines"].size()
 	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+	register_keywords(dialogues[current_visit_branch][current_dialogue_branch]["lines"])
+
+
+func register_keywords(dialogue_array : Array):
+	var memory_key : String
+	var memory_type : int
+	var display_name : String
+	
+	for line in dialogue_array:
+		var search_index = 0
+		var next_keyword_occurence_index : int = line.find("{", search_index)
+		while next_keyword_occurence_index != -1:
+			var next_keyword_end_index : int = line.find("}", search_index)
+			memory_key = line.substr(next_keyword_occurence_index + 1, next_keyword_end_index - next_keyword_occurence_index - 1)
+			
+			# Find the end of the specification
+			var memory_data_end_index : int = line.find("]", search_index)
+			var memory_data = line.substr(next_keyword_end_index + 1, memory_data_end_index - next_keyword_end_index).trim_prefix("[").trim_suffix("]").split(", ")
+			
+			memory_type = MemoryData.MemoryType.get(memory_data[0].capitalize())
+			
+			display_name = memory_data[1] if memory_data.size() == 2 else memory_key
+			
+			MemoryDB._register(memory_key, memory_type, display_name)
+			
+			# Search for the next keyword
+			search_index = memory_data_end_index
+			next_keyword_occurence_index = line.find("{", search_index)
+
 
 # Takes a file path and returns a json as a dictionary
 func load_json_as_dict(path: String) -> Dictionary:
