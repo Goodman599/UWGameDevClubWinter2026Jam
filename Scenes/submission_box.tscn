@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cawextt8su2ct"]
+
+[ext_resource type="Script" uid="uid://xmtn1gevl0mo" path="res://Scripts/submission_box.gd" id="1_rql5e"]
+[ext_resource type="Texture2D" uid="uid://8elgd0uumsaa" path="res://Assets/CardSlot.png" id="1_ysex3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rql5e"]
+size = Vector2(124.78159, 217.3259)
+
+[node name="Submission Box" type="Node2D"]
+scale = Vector2(0.88154024, 0.66259885)
+script = ExtResource("1_rql5e")
+
+[node name="Card Slot" type="Sprite2D" parent="."]
+scale = Vector2(0.7152456, 0.8439179)
+texture = ExtResource("1_ysex3")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-3.7863956e-06, 3.5982348e-06)
+scale = Vector2(1, 1.000001)
+shape = SubResource("RectangleShape2D_rql5e")
+
+[node name="CardContainer" type="Node2D" parent="."]
+
+[node name="Label" type="RichTextLabel" parent="."]
+offset_left = -63.52517
+offset_top = -108.66303
+offset_right = 199.97427
+offset_bottom = 351.90295
+scale = Vector2(0.48216546, 0.47186735)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Event"
+horizontal_alignment = 1
+vertical_alignment = 1

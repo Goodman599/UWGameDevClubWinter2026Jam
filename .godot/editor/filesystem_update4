@@ -1,2 +1,16 @@
-res://Scripts/david_doyle.gd
 res://Scenes/main.tscn
+res://Scenes/submission_person_box.tscn
+res://Scripts/jimmy_jones.gd
+res://Scenes/submission_event_box.tscn
+res://Scripts/base_visitor.gd
+res://Scripts/dialogue_box.gd
+res://Scripts/main.gd
+res://Scripts/memory_database.gd
+res://Scripts/submission_box.gd
+res://Scripts/visitor_instance.gd
+res://Scripts/visitor_manager.gd
+res://Scenes/submission_box.tscn
+res://Scripts/david_doyle.gd
+res://Dialogues/David_Doyle.json
+res://Scenes/base_visitor.tscn
+res://Scenes/dialogue_box.tscn

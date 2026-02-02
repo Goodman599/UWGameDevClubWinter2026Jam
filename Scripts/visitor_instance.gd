@@ -2,6 +2,9 @@ extends Node
 class_name VisitorInstance
 
 var person : BaseVisitor
-var dialogue_branch : String
-var date : int
-var isDay : bool
+var visit_branch : String
+var visit_time : int
+
+
+func get_visit_time() -> int:
+	return visit_time

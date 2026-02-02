@@ -8,15 +8,17 @@ extends Node2D
 var card_scene = preload("res://Scenes/card_view.tscn")
 var cards_to_forget: Array = []
 var current_submission_cards: Array = []
+var max_memories = 6
 
 func _ready():
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
+		forget_button.hide()
 		forget_button.pressed.connect(_on_forget_pressed)
 		
-	var person_box = get_node("submission_person_box")
-	var event_box = get_node("submission_event_box")
+	var person_box = get_node("Submission Box")
+	var event_box = get_node("Submission Box2")
 	
 	for box in [person_box, event_box]:
 		if box:
@@ -30,6 +32,7 @@ func _on_keyword_received(key: String):
 		return
 		
 	var data = MemoryDB.get_memory(key)
+	
 	if data == null: 
 		return
 	
@@ -49,12 +52,21 @@ func _on_keyword_received(key: String):
 		new_card.card_dropped_in_area.connect(_on_card_dropped_in_area)
 	
 	update_ui_text()
+	update_forget_button_visibility()
 
 func update_ui_text():
 	if count_label:
 		var count = MemoryManager.get_count()
 		var max_count = MemoryManager.max_memories
 		count_label.text = "Memories: %s/%s" % [count, max_count]
+		
+func update_forget_button_visibility():
+	if forget_button:
+		var card_count = MemoryManager.get_count()
+		if card_count > max_memories:
+			forget_button.show()
+		else:
+			forget_button.hide()
 
 func _on_card_toggle(card_node, is_selected):
 	if is_selected:
@@ -75,6 +87,7 @@ func _on_forget_pressed():
 	cards_to_forget.clear()
 	
 	update_ui_text()
+	update_forget_button_visibility()
 
 
 func _on_card_drag_started(card_node):
@@ -101,9 +114,11 @@ func get_submission_areas():
 
 func _on_card_stuck(card, box):
 	print("Card stuck: ", card.memory_key, " to ", box.name)
+	update_forget_button_visibility()
 
 func _on_card_unstuck(card, box):
 	print("Card removed: ", card.memory_key, " from ", box.name)
+	update_forget_button_visibility()
 
 func _on_wrong_card_type(card, box):
 	print("WRONG TYPE! ", card.get_card_type(), " card in ", box.name)

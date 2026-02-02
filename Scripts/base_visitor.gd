@@ -8,17 +8,38 @@ class_name BaseVisitor
 #	The keys are the "names of the branch" and the value is an array of dialogues.
 var dialogues : Dictionary
 
+# Name of the visitor; Used to load dialogue file
+@export var visitor_name : String
+
 # Visitors need a reference to the dialogue box to show their text
-@export var dialogue_box : DialogueBox
+@onready var dialogue_box : DialogueBox = get_node("%DialogueBox")
 
 # Variables to keep track of which dialogue is currently being shown
+var current_visit_branch : String
 var current_dialogue_branch : String
 var current_dialogue_index : int = 0
+var current_dialogue_line_count : int
 
-# Connect the 2 buttons on the dialogue_box scene to the dialogue managers
+var current_dialogue_takes_cards := false
+
+var box_scene = preload("res://Scenes/submission_box.tscn")
+var instantiated_submission_box_count : int = 0
+const SUBMISSION_BOX_POSITIONS = [Vector2(1000, 100), Vector2(1000, 300)]
+
+# Dictionary to store various visitor states. An example state could be "ritual stage"
+var visitor_states := {}
+
+
 func _ready():
+	# Connect the 2 buttons on the dialogue_box scene to the dialogue managers
 	dialogue_box.get_node("Next").pressed.connect(next_dialogue)
 	dialogue_box.get_node("Back").pressed.connect(prev_dialogue)
+	
+	# Connect the confirm button to check cards
+	dialogue_box.get_node("Confirm").pressed.connect(dialogue_concluded)
+	
+	# Load dialogue from json
+	dialogues = load_json_as_dict("res://Dialogues/" + visitor_name + ".json")
 
 
 # Takes a String, formats it, and puts it into the dialogue box
@@ -28,19 +49,223 @@ func show_text(text : String):
 
 # Method that converts "{}" in dialogue to appropriate BBCodes
 func plain_to_clickable(text : String) -> String:
+	# remove keyword data []
+	var regex := RegEx.new()
+	regex.compile("\\[[^\\]]*\\]")
+	text = regex.sub(text, "", true)
+	
+	# highlight keywords {}
 	text = text.replace("{", "[b][url]")
 	text = text.replace("}", "[/url][/b]")
+	
 	return text
 
 # Switch to the next dialogue in the current branch
-# TODO: No index out of bounds detections
 func next_dialogue():
-	current_dialogue_index += 1
-	show_text(dialogues[current_dialogue_branch][current_dialogue_index])
+	if current_dialogue_index < current_dialogue_line_count:
+		# If just submitted ---- We have a submit button now, dont let go next if at end
+		if current_dialogue_index == current_dialogue_line_count - 1:
+			#check_submissions()
+			return
+		
+		current_dialogue_index += 1
+		show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+		
+		if current_dialogue_index == current_dialogue_line_count - 1:
+			show_inputs()
 
 
 # Switch to the previous dialogue in the current branch
-# TODO: No index out of bounds detections
 func prev_dialogue():
-	current_dialogue_index -= 1
-	show_text(dialogues[current_dialogue_branch][current_dialogue_index])
+	if current_dialogue_index > 0:
+		current_dialogue_index -= 1
+		show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+		
+		# Hide confirm button if not at the end
+		if current_dialogue_index < current_dialogue_line_count - 1:
+			hide_inputs()
+
+
+func show_inputs():
+	dialogue_box.show_confirm()
+	for child in get_children():
+		if child is SubmissionBox:
+			child.show()
+
+
+func hide_inputs():
+	dialogue_box.hide_confirm()
+	for child in get_children():
+		if child is SubmissionBox:
+			child.clear_cards()
+			child.hide()
+
+# Sets the visit branch to the given string
+# Also sets the dialogue branch to dialogue0
+func set_visit_branch(branch_name : String) -> void:
+	current_visit_branch = branch_name
+	set_dialogue_branch("dialogue0")
+
+
+# Sets the dialogue branch to the given string
+# Also initializes the line count
+# Also display's the dialogue as text
+# Also adds the keywords to the memory database
+func set_dialogue_branch(branch_name : String):
+	current_dialogue_branch = branch_name
+	current_dialogue_index = 0
+	current_dialogue_line_count = dialogues[current_visit_branch][current_dialogue_branch]["lines"].size()
+	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+	register_keywords(dialogues[current_visit_branch][current_dialogue_branch]["lines"])
+	
+	
+	instantiated_submission_box_count = 0
+	delete_submission_boxes()
+	
+	# The new dialogue is a submission dialogue line
+	if dialogues[current_visit_branch][current_dialogue_branch].has("accepts"):
+		current_dialogue_takes_cards = true
+		for requirement : String in dialogues[current_visit_branch][current_dialogue_branch]["accepts"]:
+			create_submission_box(requirement)
+	else: # The new dialogue is a redirect dialogue line
+		current_dialogue_takes_cards = false
+		queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]))
+	
+	if current_dialogue_line_count == 1:
+		show_inputs()
+	else:
+		hide_inputs()
+
+# Register keywords into the database.
+func register_keywords(dialogue_array : Array):
+	var memory_key : String
+	var memory_type : int
+	var display_name : String
+	
+	for line in dialogue_array:
+		var search_index = 0
+		var next_keyword_occurence_index : int = line.find("{", search_index)
+		while next_keyword_occurence_index != -1:
+			var next_keyword_end_index : int = line.find("}", search_index)
+			memory_key = line.substr(next_keyword_occurence_index + 1, next_keyword_end_index - next_keyword_occurence_index - 1)
+			
+			# Find the end of the specification
+			var memory_data_end_index : int = line.find("]", search_index)
+			var memory_data = line.substr(next_keyword_end_index + 1, memory_data_end_index - next_keyword_end_index).trim_prefix("[").trim_suffix("]").split(", ")
+			
+			memory_type = MemoryData.MemoryType.get(memory_data[0].capitalize())
+			
+			display_name = memory_data[1] if memory_data.size() == 2 else memory_key
+			
+			MemoryDB._register(memory_key, memory_type, display_name)
+			
+			# Search for the next keyword
+			search_index = memory_data_end_index + 1
+			next_keyword_occurence_index = line.find("{", search_index)
+
+
+# Takes a file path and returns a json as a dictionary
+func load_json_as_dict(path: String) -> Dictionary:
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("Failed to open file: " + path + ". Make sure the name of the visitor is set correctly")
+		return {}
+	var json_text := file.get_as_text()
+	file.close()
+	var json := JSON.new()
+	var err := json.parse(json_text)
+	if err != OK:
+		push_error("JSON parse error: %s at line %d" % [json.get_error_message(), json.get_error_line()])
+		return {}
+	return json.data
+
+
+func queue_visit(visit_name : String, delay : int):
+	var next_visit = VisitorInstance.new()
+	next_visit.person = self
+	next_visit.visit_branch = visit_name
+	next_visit.visit_time = VisitorManager.time + delay
+	
+	VisitorManager.add_visitor_to_queue(next_visit)
+
+func dialogue_concluded():
+	# Update any visitor states
+	if dialogues[current_visit_branch][current_dialogue_branch].has("setState"):
+		for state in dialogues[current_visit_branch][current_dialogue_branch]["setState"]:
+			visitor_states[state] = str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["setState"][state])
+	
+	
+	if current_dialogue_takes_cards:
+		check_submissions()
+	else:
+		VisitorManager.send_next_visitor()
+
+
+func check_submissions():
+	var submissions := []
+	
+	for i in range(instantiated_submission_box_count):
+		submissions.append(null)
+	
+	# Get the card in each box
+	for child in get_children():
+		if child is SubmissionBox:
+			var submission_data = child.get_card_data()
+			if submission_data:
+				submissions[str_to_var(child.name)] = submission_data["content"]
+			else:
+				submissions[str_to_var(child.name)] = null
+				
+	for case_name : String in dialogues[current_visit_branch][current_dialogue_branch]["cases"]:
+		var case_data = dialogues[current_visit_branch][current_dialogue_branch]["cases"][case_name]
+		var case_match := true
+		
+		# Check card submissions
+		if case_data.has("submissions"):
+			for requirement_index in case_data["submissions"].size():
+				
+				if case_data["submissions"][requirement_index] == "ANY":
+					continue
+				elif case_data["submissions"][requirement_index] == "EMPTY" and submissions[requirement_index] == null:
+					continue
+				elif case_data["submissions"][requirement_index] == submissions[requirement_index]:
+					continue
+					
+				# If this code executes, there was a mismatched card
+				case_match = false
+		
+		# Check states
+		if case_data.has("stateChecks"):
+			for check in case_data["stateChecks"]:
+				if not visitor_states.has(check):
+					push_error("This visitor: " + self.name + ", does not have the state: ", check)
+					case_match = false
+				elif str_to_var(case_data["stateChecks"][check]) != visitor_states[check]:
+					case_match = false
+		
+		if case_match:
+			# Show response dialogue
+			set_dialogue_branch(case_data["result"])
+			
+			break
+
+func create_submission_box(type : String):
+	var box_instance = box_scene.instantiate()
+	if box_instance:
+		# Set the accepted card type based on the parameter
+		box_instance.initialize(type.capitalize())
+		
+		# Set the name of the submission box to it's "index" in the json
+		# I should probably set something other than name but its ok...
+		box_instance.name = str(instantiated_submission_box_count)
+		
+		box_instance.global_position = SUBMISSION_BOX_POSITIONS[instantiated_submission_box_count]
+		instantiated_submission_box_count += 1
+		add_child(box_instance)
+	else:
+		push_error("Failed to instantiate submission box")
+
+func delete_submission_boxes():
+	for child in get_children():
+		if child is SubmissionBox:
+			child.queue_free()

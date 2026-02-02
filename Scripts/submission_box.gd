@@ -1,9 +1,8 @@
 extends Node2D
-class_name SubmissionEventBox
+class_name SubmissionBox
 
-@export var max_cards: int = 3
-@export var target_text_node: RichTextLabel
-@export var accepted_card_type: String = "Event"
+@export var max_cards: int = 1
+@export var accepted_card_type: String
 @export var highlight_color: Color = Color(0.3, 0.8, 0.3, 0.3)
 @export var normal_color: Color = Color(0.2, 0.2, 0.2, 0.2)
 @export var wrong_type_color: Color = Color(1, 0.3, 0.3, 0.8)
@@ -14,19 +13,26 @@ var is_highlighted: bool = false
 
 @onready var detection_area = $DetectionArea
 @onready var card_container = $CardContainer
+@onready var target_text_node: RichTextLabel = $Label
 
-signal card_added(card: Control, box: SubmissionEventBox)
-signal card_removed(card: Control, box: SubmissionEventBox)
+signal card_added(card: Control, box: SubmissionBox)
+signal card_removed(card: Control, box: SubmissionBox)
 signal submission_ready(cards: Array)
-signal wrong_card_type(card: Control, box: SubmissionEventBox)
+signal wrong_card_type(card: Control, box: SubmissionBox)
 
 func _ready():
 	if detection_area:
 		detection_area.mouse_entered.connect(_on_mouse_entered)
 		detection_area.mouse_exited.connect(_on_mouse_exited)
 	
+	$Label.text = accepted_card_type
+
 	update_appearance()
 	add_to_group("submission_area")
+
+func initialize(card_type : String):
+	accepted_card_type = card_type
+	$Label.text = card_type
 
 func _on_mouse_entered():
 	if not is_highlighted:
@@ -37,6 +43,11 @@ func _on_mouse_exited():
 	if is_highlighted:
 		is_highlighted = false
 		update_appearance()
+
+func _input(event):
+	if is_highlighted and event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			clear_cards()
 
 func update_appearance():
 	if is_highlighted:
@@ -139,7 +150,7 @@ func position_sticky_card(card_2d: Sprite2D, index: int):
 	var start_x = text_pos.x + (text_size.x - total_width) / 2 + card_spacing / 2
 	
 	var target_x = start_x + index * card_spacing
-	var target_y = text_pos.y - 70
+	var target_y = text_pos.y
 
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(card_2d, "global_position", Vector2(target_x, target_y), 0.4)
@@ -162,12 +173,11 @@ func clear_cards():
 	for card in cards.duplicate():
 		remove_card(card)
 
-func get_card_data() -> Array:
-	var data = []
+func get_card_data():
 	for card in cards:
 		if card.has_method("get_memory_data"):
-			data.append(card.get_memory_data())
-	return data
+			return card.get_memory_data()
+	return null
 
 func set_highlight(should_highlight: bool):
 	if should_highlight and cards.size() < max_cards:
