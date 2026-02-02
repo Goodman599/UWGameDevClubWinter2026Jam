@@ -1,88 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=6 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://c08jn70lnn2bm" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://cawextt8su2ct" path="res://Scenes/submission_event_box.tscn" id="4_kry3j"]
-[ext_resource type="Script" path="res://Scripts/submission_event_box.gd" id="5_6bp64"]
-[ext_resource type="Script" path="res://Scripts/submission_person_box.gd" id="5_21xkr"]
+[ext_resource type="Script" uid="uid://ds2qmuynt38v6" path="res://Scripts/jimmy_jones.gd" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
-[ext_resource type="PackedScene" uid="uid://bqyinwgj2lkcn" path="res://Scenes/submission_person_box.tscn" id="6_6bp64"]
-[ext_resource type="Texture2D" uid="uid://8elgd0uumsaa" path="res://Assets/CardSlot.png" id="6_ynf5e"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hptm8"]
-size = Vector2(124.78159, 217.3259)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1ilt"]
-size = Vector2(124.78159, 217.3259)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
 
-[node name="JimmyJones" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("1_1k0k3")]
-dialogue_box = NodePath("../DialogueBox")
+[node name="JimmyJones" parent="." instance=ExtResource("1_1k0k3")]
+script = ExtResource("3_21xkr")
+visitor_name = "david_doyle"
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
 unique_name_in_owner = true
-position = Vector2(0, -1)
-
-[node name="Submission Event Box" parent="." node_paths=PackedStringArray("target_text_node") groups=["DialogueBox", "submission_area"] instance=ExtResource("4_kry3j")]
-position = Vector2(81, 129.00002)
-script = ExtResource("5_6bp64")
-target_text_node = NodePath("Event")
-
-[node name="Event" type="RichTextLabel" parent="Submission Event Box"]
-offset_left = -38.568855
-offset_top = -22.638126
-offset_right = 149.64505
-offset_bottom = 217.24002
-scale = Vector2(0.48216546, 0.47186735)
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "Event"
-
-[node name="Card Slot" type="Sprite2D" parent="Submission Event Box"]
-scale = Vector2(0.7152456, 0.8439179)
-texture = ExtResource("6_ynf5e")
-
-[node name="DetectionArea" type="Area2D" parent="Submission Event Box"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submission Event Box/DetectionArea"]
-position = Vector2(-3.7863956e-06, 3.5982348e-06)
-scale = Vector2(1, 1.000001)
-shape = SubResource("RectangleShape2D_hptm8")
-
-[node name="CardContainer" type="Node2D" parent="Submission Event Box"]
-
-[node name="Submission Person Box" parent="." node_paths=PackedStringArray("target_text_node") groups=["DialogueBox", "submission_area"] instance=ExtResource("6_6bp64")]
-position = Vector2(240, 131.00002)
-script = ExtResource("5_21xkr")
-target_text_node = NodePath("Person")
-
-[node name="Person" type="RichTextLabel" parent="Submission Person Box"]
-offset_left = -48.847404
-offset_top = -25.345692
-offset_right = 182.41992
-offset_bottom = 217.79863
-scale = Vector2(0.64804953, 0.6867669)
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "Person"
-
-[node name="Card Slot" type="Sprite2D" parent="Submission Person Box"]
-position = Vector2(-0.28745452, 1.6468513)
-scale = Vector2(0.7152456, 0.8439179)
-texture = ExtResource("6_ynf5e")
-
-[node name="DetectionArea" type="Area2D" parent="Submission Person Box"]
-position = Vector2(-0.28745452, 1.6468514)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Submission Person Box/DetectionArea"]
-position = Vector2(-3.7863956e-06, 3.5982348e-06)
-scale = Vector2(1, 1.000001)
-shape = SubResource("RectangleShape2D_d1ilt")
-
-[node name="CardContainer" type="Node2D" parent="Submission Person Box"]
-position = Vector2(-0.28745452, 1.6468514)
+position = Vector2(0, 9)
 
 [node name="UI" parent="." instance=ExtResource("3_8gbba")]

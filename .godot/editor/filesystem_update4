@@ -1,2 +1,7 @@
-res://Scripts/david_doyle.gd
+res://Scripts/base_visitor.gd
+res://Scenes/submission_box.tscn
+res://Scripts/main.gd
+res://Scripts/dialogue_box.gd
+res://Scripts/memory_database.gd
+res://Scripts/submission_box.gd
 res://Scenes/main.tscn

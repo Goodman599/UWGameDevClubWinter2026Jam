@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://c760kqjdets52" path="res://Scripts/base_visitor.gd" id="1_4d2ct"]
 
-[node name="BaseVisitor" type="Node2D" node_paths=PackedStringArray("dialogue_box")]
+[node name="BaseVisitor" type="Node2D"]
 script = ExtResource("1_4d2ct")
-dialogue_box = NodePath("")

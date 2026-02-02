@@ -1,9 +1,8 @@
 extends Node2D
-class_name SubmissionEventBox
+class_name SubmissionBox
 
-@export var max_cards: int = 3
-@export var target_text_node: RichTextLabel
-@export var accepted_card_type: String = "Event"
+@export var max_cards: int = 1
+@export var accepted_card_type: String
 @export var highlight_color: Color = Color(0.3, 0.8, 0.3, 0.3)
 @export var normal_color: Color = Color(0.2, 0.2, 0.2, 0.2)
 @export var wrong_type_color: Color = Color(1, 0.3, 0.3, 0.8)
@@ -14,19 +13,26 @@ var is_highlighted: bool = false
 
 @onready var detection_area = $DetectionArea
 @onready var card_container = $CardContainer
+@onready var target_text_node: RichTextLabel = $Label
 
-signal card_added(card: Control, box: SubmissionEventBox)
-signal card_removed(card: Control, box: SubmissionEventBox)
+signal card_added(card: Control, box: SubmissionBox)
+signal card_removed(card: Control, box: SubmissionBox)
 signal submission_ready(cards: Array)
-signal wrong_card_type(card: Control, box: SubmissionEventBox)
+signal wrong_card_type(card: Control, box: SubmissionBox)
 
 func _ready():
 	if detection_area:
 		detection_area.mouse_entered.connect(_on_mouse_entered)
 		detection_area.mouse_exited.connect(_on_mouse_exited)
 	
+	$Label.text = accepted_card_type
+
 	update_appearance()
 	add_to_group("submission_area")
+
+func initialize(card_type : String):
+	accepted_card_type = card_type
+	$Label.text = card_type
 
 func _on_mouse_entered():
 	if not is_highlighted:
@@ -162,12 +168,11 @@ func clear_cards():
 	for card in cards.duplicate():
 		remove_card(card)
 
-func get_card_data() -> Array:
-	var data = []
+func get_card_data():
 	for card in cards:
 		if card.has_method("get_memory_data"):
-			data.append(card.get_memory_data())
-	return data
+			return card.get_memory_data()
+	return null
 
 func set_highlight(should_highlight: bool):
 	if should_highlight and cards.size() < max_cards:
