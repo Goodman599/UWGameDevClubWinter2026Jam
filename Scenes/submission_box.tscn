@@ -24,11 +24,14 @@ shape = SubResource("RectangleShape2D_rql5e")
 [node name="CardContainer" type="Node2D" parent="."]
 
 [node name="Label" type="RichTextLabel" parent="."]
-offset_left = -44.240738
-offset_top = -19.61972
-offset_right = 143.97313
-offset_bottom = 220.25842
+offset_left = -63.52517
+offset_top = -108.66303
+offset_right = 199.97427
+offset_bottom = 351.90295
 scale = Vector2(0.48216546, 0.47186735)
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "Event"
+horizontal_alignment = 1
+vertical_alignment = 1

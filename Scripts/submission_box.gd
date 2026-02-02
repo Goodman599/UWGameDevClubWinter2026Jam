@@ -44,6 +44,11 @@ func _on_mouse_exited():
 		is_highlighted = false
 		update_appearance()
 
+func _input(event):
+	if is_highlighted and event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			clear_cards()
+
 func update_appearance():
 	if is_highlighted:
 		if target_text_node:
@@ -145,7 +150,7 @@ func position_sticky_card(card_2d: Sprite2D, index: int):
 	var start_x = text_pos.x + (text_size.x - total_width) / 2 + card_spacing / 2
 	
 	var target_x = start_x + index * card_spacing
-	var target_y = text_pos.y - 70
+	var target_y = text_pos.y
 
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(card_2d, "global_position", Vector2(target_x, target_y), 0.4)

@@ -1,5 +1,4 @@
 extends Node
-class_name VisitorManager
 
 var time = 0 # 0 - 41, one for each day and night
 
@@ -8,12 +7,24 @@ var visitor_queue : Array[VisitorInstance]
 # Takes and adds a VisitorInstance to the queue, and sorts the queue chronologically
 func add_visitor_to_queue(visitor : VisitorInstance):
 	visitor_queue.append(visitor)
-	visitor_queue.sort_custom(func(a, b): return a.get_visit_time < b.get_visit_time)
+	visitor_queue.sort_custom(func(a, b): return a.get_visit_time() < b.get_visit_time())
 
+func send_next_visitor():
+	var next_visit_instance : VisitorInstance = visitor_queue[0]
+	if next_visit_instance.visit_time == time:
+		next_visit_instance.person.set_visit_branch(next_visit_instance.visit_branch)
+		visitor_queue.pop_front()
+	else:
+		step_time()
 
-
-func on_day_change():
-	temp() # I Can't think of a good method name
+func step_time():
+	time += 1
+	print("The time is: ", time)
+	if time % 2 == 0:
+		print("It's day now!")
+	else:
+		print("It's night now!")
+	send_next_visitor()
 
 
 # Requires visitor_queue to be sorted chronologically

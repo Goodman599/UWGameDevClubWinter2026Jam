@@ -1,20 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=5 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://c08jn70lnn2bm" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
 [ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
-[ext_resource type="Script" uid="uid://ds2qmuynt38v6" path="res://Scripts/jimmy_jones.gd" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
-
-[node name="JimmyJones" parent="." instance=ExtResource("1_1k0k3")]
-script = ExtResource("3_21xkr")
-visitor_name = "david_doyle"
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
 unique_name_in_owner = true
 position = Vector2(0, 9)
 
 [node name="UI" parent="." instance=ExtResource("3_8gbba")]
+
+[node name="Visitors" type="Node2D" parent="."]
+
+[node name="JimmyJones" parent="Visitors" instance=ExtResource("1_1k0k3")]
+visitor_name = "david_doyle"

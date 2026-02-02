@@ -8,6 +8,7 @@ script = ExtResource("1_hygrc")
 [node name="Text" type="RichTextLabel" parent="."]
 offset_right = 1152.0
 offset_bottom = 249.0
+mouse_filter = 1
 bbcode_enabled = true
 text = "If I got some text it would look like this"
 
@@ -27,9 +28,10 @@ text = "Next"
 
 [node name="Confirm" type="Button" parent="."]
 offset_left = 1001.0
-offset_top = 340.0
+offset_top = 379.0
 offset_right = 1072.0
-offset_bottom = 371.0
+offset_bottom = 410.0
+mouse_filter = 1
 text = "Confirm"
 
 [connection signal="meta_clicked" from="Text" to="." method="_on_text_meta_clicked"]

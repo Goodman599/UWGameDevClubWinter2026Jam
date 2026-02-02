@@ -32,7 +32,7 @@ func _on_keyword_received(key: String):
 		return
 		
 	var data = MemoryDB.get_memory(key)
-	print(data.type)
+	
 	if data == null: 
 		return
 	
