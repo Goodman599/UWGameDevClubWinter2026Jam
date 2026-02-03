@@ -1,10 +1,12 @@
 extends Node
 
 var time = 0 # 0 - 41, one for each day and night
+signal time_changed(is_day : bool)
 
 var visitor_queue : Array[VisitorInstance]
 var current_visitor_name : String
 
+@onready var background : Sprite2D = $day_background
 #func _ready() -> void:
 	#send_next_visitor();
 
@@ -41,8 +43,10 @@ func send_next_visitor():
 func step_time():
 	time += 1
 	print("The time is: ", time)
-	if time % 2 == 1:
+	var is_day = (time % 2 == 1)
+	if is_day:
 		print("It's day now!")
 	else:
 		print("It's night now!")
+	time_changed.emit(is_day)
 	send_next_visitor()

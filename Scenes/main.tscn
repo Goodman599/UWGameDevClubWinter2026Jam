@@ -12,6 +12,11 @@
 [ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://cd556cexy6fo5" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://b0ah3vi4n7ged" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
+[ext_resource type="Script" uid="uid://blqccgtk7jc4s" path="res://Scripts/demon.gd" id="5_344ge"]
+[ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://cyyw0hnp0txc2" path="res://Scripts/detective.gd" id="6_ynf5e"]
+[ext_resource type="Script" uid="uid://ffodg6uf7ohb" path="res://Scripts/cultist.gd" id="7_hptm8"]
+[ext_resource type="Script" uid="uid://cbfuriar2ryas" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")

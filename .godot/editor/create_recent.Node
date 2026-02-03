@@ -3,5 +3,7 @@ ColorRect
 Panel
 Container
 TextureRect
+CanvasLayer
+ColorRect
 Sprite2D
 Button
