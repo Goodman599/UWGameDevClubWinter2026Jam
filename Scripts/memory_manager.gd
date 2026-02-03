@@ -4,7 +4,7 @@ signal memory_added(key: String)
 signal memory_removed(key: String)
 
 var collected_memories: Array[String] = []
-const max_memories = 6
+const max_memories = 7
 
 func add_memory(key: String) -> bool:
 	if key in collected_memories:
