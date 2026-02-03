@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://blahtm4hjo1cf"]
 
 [ext_resource type="Script" uid="uid://dxd3sxfj3hai0" path="res://Scripts/memory_card.gd" id="1_p1guq"]
-[ext_resource type="Texture2D" uid="uid://bq6ymux51jy00" path="res://Assets/CardView.png" id="1_sljx0"]
+[ext_resource type="Texture2D" uid="uid://b3lvuvwwmxwmr" path="res://Assets/card_view.png" id="2_p1guq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sljx0"]
 font_size = 11
@@ -21,19 +21,19 @@ script = ExtResource("1_p1guq")
 layout_mode = 0
 offset_left = 1.0000153
 offset_top = 1.0
-offset_right = 601.0
-offset_bottom = 721.0
+offset_right = 498.29724
+offset_bottom = 681.4878
 scale = Vector2(0.23125, 0.22777778)
-texture = ExtResource("1_sljx0")
+texture = ExtResource("2_p1guq")
 
 [node name="Content2" type="Sprite2D" parent="."]
 
 [node name="Type" type="Label" parent="."]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 30.0
-offset_right = 72.0
-offset_bottom = 47.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 55.0
+offset_bottom = 28.0
 text = "Person"
 label_settings = SubResource("LabelSettings_sljx0")
 horizontal_alignment = 1
@@ -41,10 +41,10 @@ vertical_alignment = 1
 
 [node name="Content" type="Label" parent="."]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 72.0
-offset_right = 117.0
-offset_bottom = 114.0
+offset_left = 14.0
+offset_top = 108.0
+offset_right = 106.0
+offset_bottom = 136.0
 text = "Jimmy Jones"
 label_settings = SubResource("LabelSettings_p1guq")
 horizontal_alignment = 1
