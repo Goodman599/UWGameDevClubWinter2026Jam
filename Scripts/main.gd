@@ -14,18 +14,18 @@ func _ready():
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
-		forget_button.hide()
+		#forget_button.hide()
 		forget_button.pressed.connect(_on_forget_pressed)
 		
-	var person_box = get_node("Submission Box")
-	var event_box = get_node("Submission Box2")
+	#var person_box = get_node("Submission Box")
+	#var event_box = get_node("Submission Box2")
 	
-	for box in [person_box, event_box]:
-		if box:
-			box.card_added.connect(_on_card_stuck)
-			box.card_removed.connect(_on_card_unstuck)
-			box.wrong_card_type.connect(_on_wrong_card_type)
-			box.submission_ready.connect(_on_submission_complete)
+	#for box in [person_box, event_box]:
+	#	if box:
+	#		box.card_added.connect(_on_card_stuck)
+	#		box.card_removed.connect(_on_card_unstuck)
+	#		box.wrong_card_type.connect(_on_wrong_card_type)
+	#		box.submission_ready.connect(_on_submission_complete)
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):
@@ -66,7 +66,8 @@ func update_forget_button_visibility():
 		if card_count > max_memories:
 			forget_button.show()
 		else:
-			forget_button.hide()
+			pass
+			#forget_button.hide()
 
 func _on_card_toggle(card_node, is_selected):
 	if is_selected:

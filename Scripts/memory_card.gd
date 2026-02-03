@@ -12,6 +12,8 @@ signal card_dropped_in_area(card_node, area)
 const COLOR_PERSON = Color("#29abe2")
 const COLOR_EVENT = Color("#22b14c")
 const COLOR_FEELING = Color("#a349a4")
+const COLOR_ITEM = Color("d36529ff")
+const COLOR_ACTION = Color("890029ff")
 
 var memory_key: String = ""
 var is_selected: bool = false
@@ -61,6 +63,14 @@ func setup(data:MemoryData):
 		MemoryData.MemoryType.Feeling:
 			type_label.text = "Feeling"
 			target_color = COLOR_FEELING
+			
+		MemoryData.MemoryType.Item:
+			type_label.text = "Item"
+			target_color = COLOR_ITEM
+			
+		MemoryData.MemoryType.Action:
+			type_label.text = "Action"
+			target_color = COLOR_ACTION
 			
 	type_label.modulate = target_color
 
