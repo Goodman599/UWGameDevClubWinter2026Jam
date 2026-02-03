@@ -15,6 +15,8 @@ var is_highlighted: bool = false
 @onready var card_container = $CardContainer
 @onready var target_text_node: RichTextLabel = $Label
 
+var box_index: int = 0
+
 signal card_added(card: Control, box: SubmissionBox)
 signal card_removed(card: Control, box: SubmissionBox)
 signal submission_ready(cards: Array)
@@ -30,9 +32,13 @@ func _ready():
 	update_appearance()
 	add_to_group("submission_area")
 
-func initialize(card_type : String):
+func initialize(card_type : String, index : int):
 	accepted_card_type = card_type
 	$Label.text = card_type
+	box_index = index
+
+func get_box_index() -> int:
+	return box_index
 
 func _on_mouse_entered():
 	if not is_highlighted:

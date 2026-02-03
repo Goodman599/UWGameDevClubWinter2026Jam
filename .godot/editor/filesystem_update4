@@ -1,5 +1,2 @@
-res://Scenes/main.tscn
-res://Scripts/demon.gd
-res://Scripts/visitor_manager.gd
-res://Scripts/main.gd
 res://Scripts/base_visitor.gd
+res://Scripts/submission_box.gd

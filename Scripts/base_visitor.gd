@@ -218,11 +218,12 @@ func check_submissions():
 		if child is SubmissionBox:
 			print("child: ", child)
 			print("name: ", child.name)
+			print("index: ", child.get_box_index())
 			var submission_data = child.get_card_data()
 			if submission_data:
-				submissions[str_to_var(child.name)] = submission_data["content"]
+				submissions[child.get_box_index()] = submission_data["content"]
 			else:
-				submissions[str_to_var(child.name)] = null
+				submissions[child.get_box_index()] = null
 				
 	for case_name : String in dialogues[current_visit_branch][current_dialogue_branch]["cases"]:
 		var case_data = dialogues[current_visit_branch][current_dialogue_branch]["cases"][case_name]
@@ -261,11 +262,8 @@ func create_submission_box(type : String):
 	var box_instance = box_scene.instantiate()
 	if box_instance:
 		# Set the accepted card type based on the parameter
-		box_instance.initialize(type.capitalize())
+		box_instance.initialize(type.capitalize(), instantiated_submission_box_count)
 		
-		# Set the name of the submission box to it's "index" in the json
-		# I should probably set something other than name but its ok...
-		box_instance.name = str(instantiated_submission_box_count)
 		
 		box_instance.global_position = SUBMISSION_BOX_POSITIONS[instantiated_submission_box_count]
 		instantiated_submission_box_count += 1
