@@ -7,7 +7,8 @@ func _init():
 		
 	}
 
-'''
+	
+	
 func _ready(): 
 	super()
 	# add first visit to queue
@@ -17,4 +18,3 @@ func _ready():
 	next_visit.visit_time = 3
 	
 	VisitorManager.add_visitor_to_queue(next_visit)
-'''

@@ -1,1 +1,47 @@
-{"visit0":{"dialogue0":{"accepts":["person","event"],"lines":["Hello this is {David Doyle}[person]'s first line of dialogue.","I love {crashing my car}[event, Car Crash]. \n There is a new line here.","Who is {Jimmy Jones}[person]?"],"cases":{"case0":{"submissions":["Jimmy Jones","ANY"],"result":"dialogue1"},"case1":{"submissions":["EMPTY","EMPTY"],"stateChecks":{"mentioned_JJ":"false"},"result":"dialogue2"},"case2":{"stateChecks":{"mentioned_JJ":"true"},"result":"dialogue1"}}},"dialogue1":{"lines":["Thanks for telling me! I {love}[feeling, glimpse of warmth] you! MUA!"],"setState":{"mentioned_JJ":"true"},"nextVisit":{"id":"visit0","delay":"1"}},"dialogue2":{"lines":["I {hate}[feeling] you, {Jimmy Jones}[person], whoever you are!"],"nextVisit":{"id":"visit0","delay":"1"}}}}
+{
+  "visit0": {
+    "dialogue0": {
+      "accepts": [
+        "action"
+      ],
+      "lines": [
+        "Greetings, child. It’s been a while, and a lot has happened. I’m {Father Neal}[person, Father Neal].",
+        "We’ve met before — a few times, but your {father}[person, Dad] is a very important person to me. He has been… indisposed since our Sunday service. As such, I am visiting in his place.",
+        "Child, I am so sorry that you have ended up in such a state. I didn’t think that things would go so… unexpectedly. I pray for your fast recovery, and I hope you can reclaim your rightful future.",
+        "Hmm. I know I have no right to ask anything of you, but my curiosity gets the better of me. Some say the presence of our lord can be felt the easiest when you are closest to him. I harbor no ill intent, but we must admit, you are walking a fine line between life and death. So tell me, have you felt anything… otherworldly, since you got here?"
+      ],
+      "cases": {
+        "case0": {
+          "submissions": [
+            "Blink Twice"
+          ],
+          "result": "dialogue1"
+        },
+        "case1": {
+          "submissions": [
+            "EMPTY"
+          ],
+          "result": "dialogue2"
+        }
+      }
+    },
+    "dialogue1": {
+      "lines": [
+        "Is that so? Perhaps I shouldn’t be surprised. We shall discuss this on another day.",
+        "In the meantime, I will pray for your swift recovery. Goodbye."
+      ],
+      "setState": {
+        "mentioned_supernatural": "true"
+      }
+    },
+    "dialogue2": {
+      "lines": [
+        "You haven’t? Worry not, for he always answers those who are most in need, and I would wager you fit that criteria.",
+        "We shall discuss this on another day. In the meantime, I will pray for your swift recovery. Goodbye."
+      ],
+      "setState": {
+        "mentioned_supernatural": "false"
+      }
+    }
+  }
+}

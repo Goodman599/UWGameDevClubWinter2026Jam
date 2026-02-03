@@ -1,7 +1,5 @@
-res://Scripts/base_visitor.gd
 res://Scenes/main.tscn
-res://Scripts/nurse.gd
-res://Scripts/cultist.gd
-res://Scripts/detective.gd
 res://Scripts/demon.gd
 res://Scripts/visitor_manager.gd
+res://Scripts/main.gd
+res://Scripts/base_visitor.gd

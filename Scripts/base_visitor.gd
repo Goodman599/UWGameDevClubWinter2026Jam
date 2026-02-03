@@ -127,9 +127,14 @@ func set_dialogue_branch(branch_name : String):
 		current_dialogue_takes_cards = true
 		for requirement : String in dialogues[current_visit_branch][current_dialogue_branch]["accepts"]:
 			create_submission_box(requirement)
-	else: # The new dialogue is a redirect dialogue line
+	# The new dialogue is a redirect dialogue line
+	elif dialogues[current_visit_branch][current_dialogue_branch].has("nextVisit"):
 		current_dialogue_takes_cards = false
 		queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]))
+	# The new dialogue links to some other dialogue without accepting cards
+	else:
+		current_dialogue_takes_cards = false
+		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	
 	if current_dialogue_line_count == 1:
 		show_inputs()
@@ -152,7 +157,6 @@ func register_keywords(dialogue_array : Array):
 			# Find the end of the specification
 			var memory_data_end_index : int = line.find("]", search_index)
 			var memory_data = line.substr(next_keyword_end_index + 1, memory_data_end_index - next_keyword_end_index).trim_prefix("[").trim_suffix("]").split(", ")
-			
 			memory_type = MemoryData.MemoryType.get(memory_data[0].capitalize())
 			
 			display_name = memory_data[1] if memory_data.size() == 2 else memory_key
@@ -189,8 +193,10 @@ func queue_visit(visit_name : String, delay : int):
 	VisitorManager.add_visitor_to_queue(next_visit)
 
 func dialogue_concluded():
+	if VisitorManager.current_visitor_name != visitor_name:
+		return
 	# Update any visitor states
-	if dialogues[current_visit_branch][current_dialogue_branch].has("setState"):
+	if (dialogues[current_visit_branch])[current_dialogue_branch].has("setState"):
 		for state in dialogues[current_visit_branch][current_dialogue_branch]["setState"]:
 			visitor_states[state] = str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["setState"][state])
 	
@@ -210,6 +216,8 @@ func check_submissions():
 	# Get the card in each box
 	for child in get_children():
 		if child is SubmissionBox:
+			print("child: ", child)
+			print("name: ", child.name)
 			var submission_data = child.get_card_data()
 			if submission_data:
 				submissions[str_to_var(child.name)] = submission_data["content"]
