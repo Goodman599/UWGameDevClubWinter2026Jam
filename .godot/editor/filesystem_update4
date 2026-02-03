@@ -1,7 +1,3 @@
-res://Scenes/base_visitor.tscn
-res://Scripts/base_visitor.gd
 res://Scenes/main.tscn
-res://Scripts/visitor_manager.gd
 res://Scripts/main.gd
-res://Scenes/dialogue_box.tscn
-res://Scripts/dialogue_box.gd
+res://Scripts/base_visitor.gd

@@ -12,6 +12,7 @@ var cards_to_forget: Array = []
 var current_submission_cards: Array = []
 var max_memories = 6
 
+#preload arts for changes
 var bg_texture_day = preload("res://Assets/day_background.png")
 var bg_texture_night = preload("res://Assets/night_background.png")
 var player_day = preload("res://Assets/day_player.png")
@@ -77,6 +78,7 @@ func update_forget_button_visibility():
 			pass
 			#forget_button.hide()
 
+#player and backgrounds changes func
 func _update_background(is_day : bool):
 	if is_day:
 		background_sprite.texture = bg_texture_day

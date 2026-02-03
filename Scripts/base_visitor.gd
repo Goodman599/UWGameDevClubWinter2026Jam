@@ -124,12 +124,14 @@ func hide_inputs():
 # Sets the visit branch to the given string
 # Also sets the dialogue branch to dialogue0
 func set_visit_branch(branch_name : String) -> void:
+	#dialogue_box change to demon style
 	if dialogue_box.has_method("switch_style"):
 		dialogue_box.switch_style(visitor_name)
 	
 	current_visit_branch = branch_name
 	set_dialogue_branch("dialogue0")
 	
+	#animation of character sprite changes
 	if has_node("CharacterSprite"):
 		var sprite = $CharacterSprite
 		sprite.visible = true
@@ -243,6 +245,7 @@ func dialogue_concluded():
 		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
 		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	else:
+		#character sprites change and animation
 		if has_node("CharacterSprite"):
 			var sprite = $CharacterSprite
 			
@@ -322,6 +325,7 @@ func delete_submission_boxes():
 		if child is SubmissionBox:
 			child.queue_free()
 
+#preload of character arts
 func load_character_sprite():
 	var sprite_path = "res://Assets/" + visitor_name + ".png"
 	print(sprite_path)
