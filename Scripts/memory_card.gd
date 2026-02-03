@@ -1,4 +1,5 @@
 extends Control
+class_name MemoryCard
 
 signal card_drag_started(card_node)
 signal card_drag_ended(card_node)
@@ -15,6 +16,7 @@ const COLOR_ITEM = Color("d36529ff")
 const COLOR_ACTION = Color("890029ff")
 
 var memory_key: String = ""
+var memory_type: int = 0
 var is_dragging: bool = false
 var is_click_started_on_card: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -46,6 +48,7 @@ func _ready():
 
 func setup(data:MemoryData):
 	memory_key = data.id
+	memory_type = data.type
 	content_label.text = data.display_text
 	var target_color = Color.WHITE
 	
@@ -78,6 +81,9 @@ func _gui_input(event):
 			is_click_started_on_card = true
 			drag_offset = get_local_mouse_position()
 			original_position = global_position
+			
+			if MemoryManager.in_forget_mode:
+				MemoryManager.add_card_to_forget(self)
 		else:
 			if is_click_started_on_card and not is_dragging:
 				pass
@@ -91,6 +97,14 @@ func _gui_input(event):
 		var mouse_move_distance = event.relative.length()
 		if mouse_move_distance > drag_threshold:
 			start_drag()
+
+# A method to make a card a copy of another card
+func copy_attributes(card : MemoryCard) -> void:
+	var memory_data = MemoryData.new()
+	memory_data.id = card.memory_key
+	memory_data.type = card.memory_type
+	memory_data.display_text = card.content_label.text
+	setup(memory_data)
 
 func _process(_delta):
 	if is_dragging:
@@ -193,7 +207,6 @@ func return_to_original():
 	
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "global_position", original_position, 0.3)
-
 
 func get_memory_data() -> Dictionary:
 	return {

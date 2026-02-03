@@ -4,7 +4,16 @@ signal memory_added(key: String)
 signal memory_removed(key: String)
 
 var collected_memories: Array[String] = []
+var cards_to_forget : Array[MemoryCard] = []
 const max_memories = 7
+
+@onready var forget_screen = get_tree().root.get_node("Main/ForgetScreen")
+var in_forget_mode := false
+
+
+func _ready():
+	print(get_tree().root.get_node("Main/ForgetScreen"))
+
 
 func add_memory(key: String) -> bool:
 	if key in collected_memories:
@@ -20,6 +29,10 @@ func add_memory(key: String) -> bool:
 	memory_added.emit(key)
 	return true
 
+func add_card_to_forget(card: MemoryCard):
+	cards_to_forget.append(card)
+	forget_screen.add_card_copy_to_container(card)
+
 func remove_memory(key: String):
 	if key in collected_memories:
 		collected_memories.erase(key)
@@ -28,3 +41,9 @@ func remove_memory(key: String):
 
 func get_count() -> int:
 	return collected_memories.size()
+
+func forget_cards():
+	for card in cards_to_forget:
+		remove_memory(card.memory_key)
+		card.queue_free()
+	cards_to_forget.clear()

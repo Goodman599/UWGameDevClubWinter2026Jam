@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://cd556cexy6fo5" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c1nkk5odx3lik" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
-[ext_resource type="PackedScene" uid="uid://dokmbuibnqqms" path="res://Scenes/forget_screen.tscn" id="13_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://dcggruw65h3do" path="res://Scenes/forget_screen.tscn" id="13_fdnlq"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
