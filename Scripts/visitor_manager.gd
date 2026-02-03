@@ -26,7 +26,7 @@ func send_next_visitor():
 	#for visitor in visitor_queue:
 		#print(visitor.person, " is visiting at ", visitor.get_visit_time(), " with priority ", visitor.get_visit_priority())
 	if visitor_queue.size() == 0:
-		print("You ended")
+		print("You somehow ran out of visitors")
 		return
 	
 	var next_visit_instance : VisitorInstance = visitor_queue[0]

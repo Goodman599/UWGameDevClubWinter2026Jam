@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0ah3vi4n7ged"]
+[gd_scene load_steps=3 format=3 uid="uid://c1nkk5odx3lik"]
 
 [ext_resource type="Script" uid="uid://cvnbju26164yl" path="res://black_screen.gd" id="1_q4laq"]
 [ext_resource type="FontVariation" uid="uid://d3osqbkfd4jv3" path="res://Fonts/base_font.tres" id="2_4rfk8"]

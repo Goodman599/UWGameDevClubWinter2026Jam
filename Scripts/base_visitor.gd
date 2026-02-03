@@ -230,7 +230,6 @@ func dialogue_concluded():
 	
 	# If there is an ending, do nothing else
 	if endingID != "":
-		print("loading ", endingID)
 		get_node("%BlackScreen").appear(endingID)
 		return
 	
@@ -245,7 +244,6 @@ func dialogue_concluded():
 		check_submissions()
 	elif dialogues[current_visit_branch][current_dialogue_branch].has("result"): 
 		# The new dialogue links to some other dialogue without accepting cards
-		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
 		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	else:
 		VisitorManager.send_next_visitor()

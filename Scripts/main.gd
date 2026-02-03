@@ -40,8 +40,6 @@ func _on_keyword_received(key: String):
 	card_container.add_child(new_card)
 	new_card.setup(data)
 	
-	new_card.selection_toggled.connect(_on_card_toggle)
-	
 	if new_card.has_signal("card_drag_started"):
 		new_card.card_drag_started.connect(_on_card_drag_started)
 	

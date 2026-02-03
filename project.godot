@@ -33,3 +33,7 @@ version_control/autoload_on_startup=true
 
 DialogueBox=""
 submission_area=""
+
+[gui]
+
+theme/custom_font="uid://d3osqbkfd4jv3"

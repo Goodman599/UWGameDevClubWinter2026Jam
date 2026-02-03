@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=14 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://cdr6auqdcg70j" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
 [ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
@@ -11,7 +11,8 @@
 [ext_resource type="Script" path="res://Scripts/cultist.gd" id="7_hptm8"]
 [ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://cd556cexy6fo5" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
-[ext_resource type="PackedScene" uid="uid://b0ah3vi4n7ged" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
+[ext_resource type="PackedScene" uid="uid://c1nkk5odx3lik" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
+[ext_resource type="PackedScene" uid="uid://dokmbuibnqqms" path="res://Scenes/forget_screen.tscn" id="13_fdnlq"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
@@ -63,3 +64,6 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 1152.0
 offset_bottom = 648.0
 metadata/_edit_lock_ = true
+
+[node name="ForgetScreen" parent="." instance=ExtResource("13_fdnlq")]
+visible = false
