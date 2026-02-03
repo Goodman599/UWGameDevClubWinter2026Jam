@@ -1,2 +1,11 @@
 res://Scripts/base_visitor.gd
 res://Scripts/submission_box.gd
+res://Scenes/card_view.tscn
+res://Scripts/visitor_manager.gd
+res://Dialogues/Demon.json
+res://Dialogues/Detective.json
+res://Scenes/base_visitor.tscn
+res://Scripts/visitor_instance.gd
+res://Scripts/nurse.gd
+res://Dialogues/Nurse.json
+res://Dialogues/Cultist.json

@@ -11,11 +11,24 @@ var current_visitor_name : String
 # Takes and adds a VisitorInstance to the queue, and sorts the queue chronologically
 func add_visitor_to_queue(visitor : VisitorInstance):
 	visitor_queue.append(visitor)
-	visitor_queue.sort_custom(func(a, b): return a.get_visit_time() < b.get_visit_time())
+	visitor_queue.sort_custom(compare)
+
+func compare(a, b):
+	if a.get_visit_time() != b.get_visit_time():
+		return a.get_visit_time() < b.get_visit_time()
+	else:
+		return a.get_visit_priority() > b.get_visit_priority()
 
 func send_next_visitor():
-	print("time: ", time)
-	print("queue: ", visitor_queue)
+	await get_tree().process_frame
+	#print("time: ", time)
+	#print("queue: ")
+	#for visitor in visitor_queue:
+		#print(visitor.person, " is visiting at ", visitor.get_visit_time(), " with priority ", visitor.get_visit_priority())
+	if visitor_queue.size() == 0:
+		print("You ended")
+		return
+	
 	var next_visit_instance : VisitorInstance = visitor_queue[0]
 	if next_visit_instance.visit_time == time:
 		next_visit_instance.person.set_visit_branch(next_visit_instance.visit_branch)
@@ -28,22 +41,8 @@ func send_next_visitor():
 func step_time():
 	time += 1
 	print("The time is: ", time)
-	if time % 2 == 0:
+	if time % 2 == 1:
 		print("It's day now!")
 	else:
 		print("It's night now!")
 	send_next_visitor()
-
-
-# Requires visitor_queue to be sorted chronologically
-# Summons visitors scheduled for the current time
-func temp():
-	for visitor in visitor_queue:
-		if visitor.get_visit_time() > time:
-			break
-		if visitor.get_visit_time() == time:
-			"Summon them"
-
-
-#func flag_changer(visitor_name : String, flag : String, state):
-	#visitor.info[flag] = state

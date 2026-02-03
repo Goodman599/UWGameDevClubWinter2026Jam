@@ -1,75 +1,76 @@
 {
   "visit0": {
-    "dialogue0": {
-      "lines": [
-        "Hey you, you’re finally awake. Judging by the scans, your mind must be a confused mess right now.",
-        "What I am about to say, I say with full sympathy. You’ve been diagnosed with LIS, Locked-In Syndrome. You can probably tell already, but you can only {move your eyes}[action, Blink Twice].\n\nClick on a highlighted keyword to save it as a memory.",
+	"dialogue0": {
+	  "lines": [
+		"Hey you, you’re finally awake. Judging by the scans, your mind must be a confused mess right now.",
+		"What I am about to say, I say with full sympathy. You’ve been diagnosed with LIS, Locked-In Syndrome. You can probably tell already, but you can only {move your eyes}[action, Blink Twice].\n\nClick on a highlighted keyword to save it as a memory.",
         "I need you to please blink twice if you can hear me."
-      ],
-      "accepts": [
+	  ],
+	  "accepts": [
         "action"
-      ],
-      "cases": {
-        "case0": {
-          "submissions": [
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
             "Blink Twice"
-          ],
-          "result": "dialogue1"
-        },
-        "case1": {
-          "submissions": [
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
             "EMPTY"
-          ],
-          "result": "dialogue0"
-        }
-      }
-    },
-    "dialogue1": {
-      "lines": [
-        "This is truly an unfortunate state to be in. I can only imagine the pain and shock you are experiencing. Recovery is difficult, but possible. You have {me and my team’s}[person, Nurse] full support until that happens. We are rooting for you.",
+		  ],
+		  "result": "dialogue0"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+		"This is truly an unfortunate state to be in. I can only imagine the pain and shock you are experiencing. Recovery is difficult, but possible. You have {me and my team’s}[person, Nurse] full support until that happens. We are rooting for you.",
         "Now, I’ll let you rest. We will talk tomorrow."
-      ],
-      "nextVisit": {
-        "id": "NurseDay2",
-        "delay": "3"
-      }
-    }
+	  ],
+	  "nextVisit": {
+		"id": "NurseDay2",
+		"delay": "2",
+		"priority": "1"
+	  }
+	}
   },
   "NurseDay2": {
-    "dialogue0": {
-      "lines": [
-        "Vitals looking good, I’ll just administer the routine medicine. I heard you got yourself into some crazy accident, huh. At least there’s some good news: you’ve got visitors! A bit of conversation might do you good, even if they must be one-sided.",
+	"dialogue0": {
+	  "lines": [
+		"Vitals looking good, I’ll just administer the routine medicine. I heard you got yourself into some crazy accident, huh. At least there’s some good news: you’ve got visitors! A bit of conversation might do you good, even if they must be one-sided.",
         "You’re gonna be here for a while, so let’s set up a routine. I’ll ask everybody to ask only yes or no questions, and you can just [blink twice] to say yes, how about that?"
-      ],
-      "accepts": [
+	  ],
+	  "accepts": [
         "action"
-      ],
-      "cases": {
-        "case0": {
-          "submissions": [
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
             "Blink Twice"
-          ],
-          "result": "dialogue1"
-        },
-        "case1": {
-          "submissions": [
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
             "EMPTY"
-          ],
-          "result": "dialogue2"
-        }
-      }
-    },
-    "dialogue1": {
-      "lines": [
-        "You blink twice, but the nurse isn’t looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}(Item, Nurse’s Writing). ",
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+		"You blink twice, but the nurse isn’t looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}(Item, Nurse’s Writing). ",
         "Aaand, you’re looking good. I’ll bring the guest in, but we should keep it short for today. Once you’re stable, we can set up longer visits. Goodbye!"
-      ]
-    },
-    "dialogue2": {
-      "lines": [
-        "You stare at the nurse, unblinking, but she isn’t even looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].",
+	  ]
+	},
+	"dialogue2": {
+	  "lines": [
+		"You stare at the nurse, unblinking, but she isn’t even looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].",
         "Aaand, you’re looking good. I’ll bring the guest in, but we should keep it short for today. Once you’re stable, we can set up longer visits. Goodbye!"
-      ]
-    }
+	  ]
+	}
   }
 }

@@ -121,6 +121,7 @@ func set_dialogue_branch(branch_name : String):
 	
 	instantiated_submission_box_count = 0
 	delete_submission_boxes()
+	current_dialogue_takes_cards = false
 	
 	# The new dialogue is a submission dialogue line
 	if dialogues[current_visit_branch][current_dialogue_branch].has("accepts"):
@@ -129,11 +130,14 @@ func set_dialogue_branch(branch_name : String):
 			create_submission_box(requirement)
 	# The new dialogue is a redirect dialogue line
 	elif dialogues[current_visit_branch][current_dialogue_branch].has("nextVisit"):
-		current_dialogue_takes_cards = false
-		queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]))
+		if dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"].has("priority"):
+			queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]), str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["priority"]))
+		else:
+			queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]))
+			
 	# The new dialogue links to some other dialogue without accepting cards
-	else:
-		current_dialogue_takes_cards = false
+	elif dialogues[current_visit_branch][current_dialogue_branch].has("result"):
+		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
 		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	
 	if current_dialogue_line_count == 1:
@@ -157,6 +161,7 @@ func register_keywords(dialogue_array : Array):
 			# Find the end of the specification
 			var memory_data_end_index : int = line.find("]", search_index)
 			var memory_data = line.substr(next_keyword_end_index + 1, memory_data_end_index - next_keyword_end_index).trim_prefix("[").trim_suffix("]").split(", ")
+			
 			memory_type = MemoryData.MemoryType.get(memory_data[0].capitalize())
 			
 			display_name = memory_data[1] if memory_data.size() == 2 else memory_key
@@ -184,11 +189,12 @@ func load_json_as_dict(path: String) -> Dictionary:
 	return json.data
 
 
-func queue_visit(visit_name : String, delay : int):
+func queue_visit(visit_name : String, delay : int, priority : int = 0):
 	var next_visit = VisitorInstance.new()
 	next_visit.person = self
 	next_visit.visit_branch = visit_name
 	next_visit.visit_time = VisitorManager.time + delay
+	next_visit.visit_priority = priority
 	
 	VisitorManager.add_visitor_to_queue(next_visit)
 
@@ -208,6 +214,7 @@ func dialogue_concluded():
 
 
 func check_submissions():
+	print("Checking cases on: ", dialogues[current_visit_branch][current_dialogue_branch])
 	var submissions := []
 	
 	for i in range(instantiated_submission_box_count):
@@ -216,9 +223,6 @@ func check_submissions():
 	# Get the card in each box
 	for child in get_children():
 		if child is SubmissionBox:
-			print("child: ", child)
-			print("name: ", child.name)
-			print("index: ", child.get_box_index())
 			var submission_data = child.get_card_data()
 			if submission_data:
 				submissions[child.get_box_index()] = submission_data["content"]
