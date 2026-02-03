@@ -258,7 +258,6 @@ func dialogue_concluded():
 	
 	# If there is an ending, do nothing else
 	if endingID != "":
-		print("loading ", endingID)
 		get_node("%BlackScreen").appear(endingID)
 		return
 	

@@ -1,9 +1,12 @@
 RichTextLabel
+TextureButton
+HBoxContainer
+CenterContainer
+PointLight2D
+TextureRect
 ColorRect
 Panel
-Container
-TextureRect
 CanvasLayer
-ColorRect
+Container
 Sprite2D
 Button

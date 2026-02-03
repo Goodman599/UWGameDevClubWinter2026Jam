@@ -16,7 +16,6 @@ func load_ending(newEndingID : String):
 	$Text.text = endings[endingID][0]
 
 func appear(newEndingID : String):
-	print("ads")
 	show()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 2)

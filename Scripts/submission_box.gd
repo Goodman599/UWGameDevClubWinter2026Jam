@@ -41,8 +41,6 @@ func get_box_index() -> int:
 	return box_index
 
 func _on_mouse_entered():
-	print("RAAH")
-	
 	if not is_highlighted:
 		is_highlighted = true
 		update_appearance()

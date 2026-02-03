@@ -1,6 +1,6 @@
 extends Control
+class_name MemoryCard
 
-signal selection_toggled(card_node, is_selected)
 signal card_drag_started(card_node)
 signal card_drag_ended(card_node)
 signal card_dropped_in_area(card_node, area)
@@ -16,7 +16,7 @@ const COLOR_ITEM = Color("d36529ff")
 const COLOR_ACTION = Color("890029ff")
 
 var memory_key: String = ""
-var is_selected: bool = false
+var memory_type: int = 0
 var is_dragging: bool = false
 var is_click_started_on_card: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -48,6 +48,7 @@ func _ready():
 
 func setup(data:MemoryData):
 	memory_key = data.id
+	memory_type = data.type
 	content_label.text = data.display_text
 	var target_color = Color.WHITE
 	
@@ -81,7 +82,8 @@ func _gui_input(event):
 			drag_offset = get_local_mouse_position()
 			original_position = global_position
 			
-			toggle_selection()
+			if MemoryManager.in_forget_mode:
+				MemoryManager.add_card_to_forget(self)
 		else:
 			if is_click_started_on_card and not is_dragging:
 				pass
@@ -96,6 +98,14 @@ func _gui_input(event):
 		if mouse_move_distance > drag_threshold:
 			start_drag()
 
+# A method to make a card a copy of another card
+func copy_attributes(card : MemoryCard) -> void:
+	var memory_data = MemoryData.new()
+	memory_data.id = card.memory_key
+	memory_data.type = card.memory_type
+	memory_data.display_text = card.content_label.text
+	setup(memory_data)
+
 func _process(_delta):
 	if is_dragging:
 		global_position = get_global_mouse_position() - drag_offset
@@ -103,9 +113,6 @@ func _process(_delta):
 		check_submission_areas()
 
 func start_drag():
-	if  not is_selected:
-		return
-	
 	is_dragging = true
 	original_parent = get_parent()
 	original_z_index = z_index
@@ -201,27 +208,6 @@ func return_to_original():
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "global_position", original_position, 0.3)
 
-func toggle_selection():
-	if is_dragging or current_submission_area:
-		return
-	
-	is_selected = not is_selected
-	selection_toggled.emit(self, is_selected)
-
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	var offset = Vector2(0, -15) if is_selected else Vector2.ZERO
-	
-	tween.tween_property(type_label, "position", default_pos_type + offset, 0.2)
-	tween.tween_property(content_label, "position", default_pos_content + offset, 0.2)
-	if bg:
-		tween.tween_property(bg, "position", default_pos_bg + offset, 0.2)
-		
-	var target_modulate = Color(0.6, 0.6, 0.6) if is_selected else Color(1, 1, 1)
-	tween.tween_property(self, "modulate", target_modulate, 0.2)
-	
-	var target_scale = Vector2(1.05, 1.05) if is_selected else Vector2.ONE
-	tween.tween_property(self, "scale", target_scale, 0.2)
-
 func get_memory_data() -> Dictionary:
 	return {
 		"key": memory_key,
@@ -246,7 +232,7 @@ func _on_mouse_entered():
 		tween.tween_property(self, "scale", original_scale * 1.05, 0.1)
 
 func _on_mouse_exited():
-	if not is_dragging and not is_selected:
+	if not is_dragging:
 		var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "scale", original_scale, 0.1)
 
@@ -258,7 +244,6 @@ func set_stuck_to_box(box: Node):
 	
 	if box:
 		is_dragging = false
-		is_selected = false
 
 		modulate = Color(1, 1, 1, 0.5)
 	else:

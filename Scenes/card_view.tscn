@@ -11,10 +11,11 @@ font_size = 11
 font_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
 
 [node name="card_view" type="Control"]
+custom_minimum_size = Vector2(120, 152)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 141.0
-offset_bottom = 181.0
+offset_right = 120.0
+offset_bottom = 152.0
 mouse_filter = 1
 script = ExtResource("1_p1guq")
 
