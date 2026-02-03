@@ -25,15 +25,6 @@ func _ready():
 		forget_button.pressed.connect(func(): get_node("ForgetScreen").appear())
 		
 	VisitorManager.time_changed.connect(_update_background)
-	#var person_box = get_node("Submission Box")
-	#var event_box = get_node("Submission Box2")
-	
-	#for box in [person_box, event_box]:
-	#	if box:
-	#		box.card_added.connect(_on_card_stuck)
-	#		box.card_removed.connect(_on_card_unstuck)
-	#		box.wrong_card_type.connect(_on_wrong_card_type)
-	#		box.submission_ready.connect(_on_submission_complete)
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):

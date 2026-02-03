@@ -38,5 +38,6 @@ func confirmed():
 
 func add_card_copy_to_container(card : MemoryCard):
 	var new_card = memory_card.instantiate()
+	new_card.is_copy_of_forgotten = true
 	$CardContainer.add_child(new_card)
 	new_card.copy_attributes(card)

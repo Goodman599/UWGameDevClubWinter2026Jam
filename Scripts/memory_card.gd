@@ -34,6 +34,9 @@ var default_pos_type: Vector2
 var default_pos_content: Vector2
 var default_pos_bg: Vector2
 
+var original: MemoryCard
+var is_copy_of_forgotten: bool = false
+
 func _ready():
 	default_pos_type = type_label.position
 	default_pos_content = content_label.position
@@ -82,7 +85,10 @@ func _gui_input(event):
 			drag_offset = get_local_mouse_position()
 			original_position = global_position
 			
-			if MemoryManager.in_forget_mode:
+			if is_copy_of_forgotten:
+				MemoryManager.cards_to_forget.erase(original)
+				queue_free()
+			elif MemoryManager.in_forget_mode:
 				MemoryManager.add_card_to_forget(self)
 		else:
 			if is_click_started_on_card and not is_dragging:
@@ -100,6 +106,8 @@ func _gui_input(event):
 
 # A method to make a card a copy of another card
 func copy_attributes(card : MemoryCard) -> void:
+	original = card
+	
 	var memory_data = MemoryData.new()
 	memory_data.id = card.memory_key
 	memory_data.type = card.memory_type
