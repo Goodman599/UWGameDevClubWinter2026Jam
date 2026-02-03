@@ -24,11 +24,13 @@ var current_dialogue_takes_cards := false
 
 var box_scene = preload("res://Scenes/submission_box.tscn")
 var instantiated_submission_box_count : int = 0
-const SUBMISSION_BOX_POSITIONS = [Vector2(1000, 100), Vector2(1000, 300)]
+const SUBMISSION_BOX_POSITIONS = [Vector2(670, 148), Vector2(670, 299)]
 
 # Dictionary to store various visitor states. An example state could be "ritual stage"
 var visitor_states := {}
 
+# Store which ending will be shown after the current dialogue.
+var endingID := ""
 
 func _ready():
 	# Connect the 2 buttons on the dialogue_box scene to the dialogue managers
@@ -67,7 +69,7 @@ func plain_to_clickable(text : String) -> String:
 func next_dialogue():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
-	
+		
 	if current_dialogue_index < current_dialogue_line_count:
 		# If just submitted ---- We have a submit button now, dont let go next if at end
 		if current_dialogue_index == current_dialogue_line_count - 1:
@@ -79,6 +81,8 @@ func next_dialogue():
 		
 		if current_dialogue_index == current_dialogue_line_count - 1:
 			show_inputs()
+		
+		dialogue_index_changed()
 
 
 # Switch to the previous dialogue in the current branch
@@ -86,7 +90,6 @@ func prev_dialogue():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
 	
-	print(current_dialogue_index)
 	if current_dialogue_index > 0:
 		current_dialogue_index -= 1
 		show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
@@ -94,7 +97,19 @@ func prev_dialogue():
 		# Hide confirm button if not at the end
 		if current_dialogue_index < current_dialogue_line_count - 1:
 			hide_inputs()
+		
+		dialogue_index_changed()
 
+# Shows/Hides the next/prev buttons
+func dialogue_index_changed():
+	if current_dialogue_index == 0:
+		dialogue_box.get_node("Back").hide()
+	else:
+		dialogue_box.get_node("Back").show()
+	if current_dialogue_index == current_dialogue_line_count - 1:
+		dialogue_box.get_node("Next").hide()
+	else:
+		dialogue_box.get_node("Next").show()
 
 func show_inputs():
 	dialogue_box.show_confirm()
@@ -128,13 +143,17 @@ func set_dialogue_branch(branch_name : String):
 	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
 	register_keywords(dialogues[current_visit_branch][current_dialogue_branch]["lines"])
 	
+	dialogue_index_changed()
 	
 	instantiated_submission_box_count = 0
 	delete_submission_boxes()
 	current_dialogue_takes_cards = false
 	
+	# If the dialogue leads to an ending:
+	if dialogues[current_visit_branch][current_dialogue_branch].has("ending"):
+		endingID = dialogues[current_visit_branch][current_dialogue_branch]["ending"]
 	# The new dialogue is a submission dialogue line
-	if dialogues[current_visit_branch][current_dialogue_branch].has("accepts"):
+	elif dialogues[current_visit_branch][current_dialogue_branch].has("accepts"):
 		current_dialogue_takes_cards = true
 		for requirement : String in dialogues[current_visit_branch][current_dialogue_branch]["accepts"]:
 			create_submission_box(requirement)
@@ -209,8 +228,11 @@ func dialogue_concluded():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
 	
-	print(visitor_name)
-	
+	# If there is an ending, do nothing else
+	if endingID != "":
+		print("loading ", endingID)
+		get_node("%BlackScreen").appear(endingID)
+		return
 	
 	
 	# Update any visitor states

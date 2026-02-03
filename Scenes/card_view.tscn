@@ -15,6 +15,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 141.0
 offset_bottom = 181.0
+mouse_filter = 1
 script = ExtResource("1_p1guq")
 
 [node name="Card" type="TextureRect" parent="."]

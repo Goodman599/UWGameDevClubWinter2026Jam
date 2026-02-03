@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=13 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://cdr6auqdcg70j" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
 [ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/detective.gd" id="6_ynf5e"]
 [ext_resource type="Script" path="res://Scripts/cultist.gd" id="7_hptm8"]
 [ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://cd556cexy6fo5" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://b0ah3vi4n7ged" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
@@ -19,13 +21,12 @@ position = Vector2(576, 324)
 scale = Vector2(0.5997396, 0.6013889)
 texture = ExtResource("2_6bp64")
 
-[node name="day_player" type="Sprite2D" parent="day_background"]
+[node name="day_player_ui" type="Sprite2D" parent="day_background"]
 scale = Vector2(0.99609196, 0.9990378)
 texture = ExtResource("3_344ge")
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
 unique_name_in_owner = true
-position = Vector2(0, 9)
 
 [node name="UI" parent="." instance=ExtResource("3_8gbba")]
 
@@ -46,3 +47,19 @@ visitor_name = "Cultist"
 [node name="Nurse" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("8_d1ilt")
 visitor_name = "Nurse"
+
+[node name="TutorialBox" parent="." instance=ExtResource("11_d1ilt")]
+visible = false
+self_modulate = Color(0.58431375, 1, 0.5921569, 1)
+offset_left = 826.99994
+offset_top = 71.000015
+offset_right = 3127.0
+offset_bottom = 1350.9998
+
+[node name="BlackScreen" parent="." instance=ExtResource("12_6iyac")]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+metadata/_edit_lock_ = true

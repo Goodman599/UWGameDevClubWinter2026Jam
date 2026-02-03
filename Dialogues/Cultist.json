@@ -32,7 +32,8 @@
 	  ],
 	  "setState": {
 		"mentioned_supernatural": "true"
-	  }
+	  },
+	  "ending": "ending1"
 	},
 	"dialogue2": {
 	  "lines": [

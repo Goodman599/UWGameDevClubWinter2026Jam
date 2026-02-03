@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://d3osqbkfd4jv3"]
+
+[ext_resource type="FontFile" uid="uid://e7200eiysibs" path="res://Fonts/nimbus-sans-l/NimbusSanL-Regu.ttf" id="1_ego6t"]
+
+[resource]
+base_font = ExtResource("1_ego6t")

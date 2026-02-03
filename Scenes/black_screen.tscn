@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0ah3vi4n7ged"]
+
+[ext_resource type="Script" uid="uid://cvnbju26164yl" path="res://black_screen.gd" id="1_q4laq"]
+[ext_resource type="FontVariation" uid="uid://d3osqbkfd4jv3" path="res://Fonts/base_font.tres" id="2_4rfk8"]
+
+[node name="BlackScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_q4laq")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_4rfk8")
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+text = "You Won!"
+horizontal_alignment = 1
+vertical_alignment = 1
