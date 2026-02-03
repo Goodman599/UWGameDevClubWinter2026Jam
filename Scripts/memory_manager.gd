@@ -22,6 +22,7 @@ func add_memory(key: String) -> bool:
 	
 	if collected_memories.size() >= max_memories:
 		print("Your brain is overwhelmed. Can't memorize more.")
+		forget_screen.appear()
 		return false
 	
 	collected_memories.append(key)

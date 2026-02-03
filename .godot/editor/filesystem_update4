@@ -1,3 +1,4 @@
 res://Scenes/main.tscn
 res://Scripts/memory_manager.gd
 res://Scripts/forget_screen.gd
+res://Scenes/forget_screen.tscn
