@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://b8qijc07r2nb4" path="res://Assets/day_background.png" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
 [ext_resource type="Texture2D" uid="uid://bvc7tsmbmap8e" path="res://Assets/day_player.png" id="3_344ge"]
-[ext_resource type="Script" path="res://Scripts/demon.gd" id="5_344ge"]
+[ext_resource type="Script" uid="uid://blqccgtk7jc4s" path="res://Scripts/demon.gd" id="5_344ge"]
 [ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
-[ext_resource type="Script" path="res://Scripts/detective.gd" id="6_ynf5e"]
-[ext_resource type="Script" path="res://Scripts/cultist.gd" id="7_hptm8"]
-[ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
+[ext_resource type="Script" uid="uid://cyyw0hnp0txc2" path="res://Scripts/detective.gd" id="6_ynf5e"]
+[ext_resource type="Script" uid="uid://ffodg6uf7ohb" path="res://Scripts/cultist.gd" id="7_hptm8"]
+[ext_resource type="Script" uid="uid://cbfuriar2ryas" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://cd556cexy6fo5" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://b0ah3vi4n7ged" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
 
@@ -21,32 +21,45 @@ position = Vector2(576, 324)
 scale = Vector2(0.5997396, 0.6013889)
 texture = ExtResource("2_6bp64")
 
-[node name="day_player_ui" type="Sprite2D" parent="day_background"]
-scale = Vector2(0.99609196, 0.9990378)
-texture = ExtResource("3_344ge")
-
-[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
-unique_name_in_owner = true
-
-[node name="UI" parent="." instance=ExtResource("3_8gbba")]
-
 [node name="Visitors" type="Node2D" parent="."]
 
 [node name="Demon" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("5_344ge")
 visitor_name = "Demon"
 
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Demon"]
+position = Vector2(900, 100)
+
 [node name="Detective" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("6_ynf5e")
 visitor_name = "Detective"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Detective"]
+position = Vector2(900, 100)
 
 [node name="Cultist" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("7_hptm8")
 visitor_name = "Cultist"
 
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Cultist"]
+position = Vector2(900, 100)
+
 [node name="Nurse" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("8_d1ilt")
 visitor_name = "Nurse"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Nurse"]
+position = Vector2(900, 100)
+
+[node name="day_player_ui" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.5973958, 0.6008102)
+texture = ExtResource("3_344ge")
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
+unique_name_in_owner = true
+
+[node name="UI" parent="." instance=ExtResource("3_8gbba")]
 
 [node name="TutorialBox" parent="." instance=ExtResource("11_d1ilt")]
 visible = false
