@@ -22,19 +22,9 @@ func _ready():
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
-		#forget_button.hide()
-		forget_button.pressed.connect(_on_forget_pressed)
+		forget_button.pressed.connect(func(): get_node("ForgetScreen").appear())
 		
 	VisitorManager.time_changed.connect(_update_background)
-	#var person_box = get_node("Submission Box")
-	#var event_box = get_node("Submission Box2")
-	
-	#for box in [person_box, event_box]:
-	#	if box:
-	#		box.card_added.connect(_on_card_stuck)
-	#		box.card_removed.connect(_on_card_unstuck)
-	#		box.wrong_card_type.connect(_on_wrong_card_type)
-	#		box.submission_ready.connect(_on_submission_complete)
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):
@@ -49,8 +39,6 @@ func _on_keyword_received(key: String):
 	card_container.add_child(new_card)
 	new_card.setup(data)
 	
-	new_card.selection_toggled.connect(_on_card_toggle)
-	
 	if new_card.has_signal("card_drag_started"):
 		new_card.card_drag_started.connect(_on_card_drag_started)
 	
@@ -59,24 +47,7 @@ func _on_keyword_received(key: String):
 	
 	if new_card.has_signal("card_dropped_in_area"):
 		new_card.card_dropped_in_area.connect(_on_card_dropped_in_area)
-	
-	update_ui_text()
-	update_forget_button_visibility()
 
-func update_ui_text():
-	if count_label:
-		var count = MemoryManager.get_count()
-		var max_count = MemoryManager.max_memories
-		count_label.text = "Memories: %s/%s" % [count, max_count]
-		
-func update_forget_button_visibility():
-	if forget_button:
-		var card_count = MemoryManager.get_count()
-		if card_count > max_memories:
-			forget_button.show()
-		else:
-			pass
-			#forget_button.hide()
 
 #player and backgrounds changes func
 func _update_background(is_day : bool):
@@ -100,13 +71,7 @@ func _on_forget_pressed():
 		print("I have to forget something")
 		return
 	
-	for card in cards_to_forget:
-		MemoryManager.remove_memory(card.memory_key)
-		card.queue_free()
-	cards_to_forget.clear()
 	
-	update_ui_text()
-	update_forget_button_visibility()
 
 
 func _on_card_drag_started(card_node):
@@ -133,11 +98,9 @@ func get_submission_areas():
 
 func _on_card_stuck(card, box):
 	print("Card stuck: ", card.memory_key, " to ", box.name)
-	update_forget_button_visibility()
 
 func _on_card_unstuck(card, box):
 	print("Card removed: ", card.memory_key, " from ", box.name)
-	update_forget_button_visibility()
 
 func _on_wrong_card_type(card, box):
 	print("WRONG TYPE! ", card.get_card_type(), " card in ", box.name)
