@@ -16,6 +16,7 @@ var dialogues : Dictionary
 
 # Visitors need a sprite to show the character sprites
 @onready var character_sprite : Sprite2D = $CharacterSprite
+var can_submit := true
 
 # Variables to keep track of which dialogue is currently being shown
 var current_visit_branch : String
@@ -40,10 +41,6 @@ const TARGET_SCREEN_HEIGHT_RATIO = 0.85
 const SCREEN_HEIGHT = 648.0
 const CHAR_POSITION_X = 900.0
 const CHAR_POSITION_Y = 300.0
-
-# Dictionary to store various visitor states. An example state could be "ritual stage"
-var visitor_states := {}
-
 
 func _ready():
 	# Connect the 2 buttons on the dialogue_box scene to the dialogue managers
@@ -140,19 +137,6 @@ func hide_inputs():
 			child.clear_cards()
 			child.hide()
 
-func show_inputs():
-	dialogue_box.show_confirm()
-	for child in get_children():
-		if child is SubmissionBox:
-			child.show()
-
-
-func hide_inputs():
-	dialogue_box.hide_confirm()
-	for child in get_children():
-		if child is SubmissionBox:
-			child.clear_cards()
-			child.hide()
 
 # Sets the visit branch to the given string
 # Also sets the dialogue branch to dialogue0
@@ -269,6 +253,9 @@ func dialogue_concluded():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
 	
+	if !can_submit:
+		return
+	
 	# If there is an ending, do nothing else
 	if endingID != "":
 		print("loading ", endingID)
@@ -286,11 +273,11 @@ func dialogue_concluded():
 		check_submissions()
 	elif dialogues[current_visit_branch][current_dialogue_branch].has("result"): 
 		# The new dialogue links to some other dialogue without accepting cards
-		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
 		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	else:
 		#character sprites change and animation
 		if has_node("CharacterSprite"):
+			can_submit = false
 			var sprite = $CharacterSprite
 			
 			var tween = create_tween()
@@ -299,7 +286,7 @@ func dialogue_concluded():
 			await tween.finished
 			
 			sprite.visible = false
-		
+			can_submit = true
 		VisitorManager.send_next_visitor()
 
 
@@ -354,6 +341,8 @@ func check_submissions():
 func create_submission_box(type : String):
 	var box_instance = box_scene.instantiate()
 	if box_instance:
+		box_instance.z_index = 1
+		
 		# Set the accepted card type based on the parameter
 		box_instance.initialize(type.capitalize(), instantiated_submission_box_count)
 		

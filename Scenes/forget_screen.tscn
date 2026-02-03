@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://dokmbuibnqqms"]
+
+[ext_resource type="Texture2D" uid="uid://cls0djb5tk211" path="res://Assets/box.png" id="1_bdyuc"]
+[ext_resource type="FontVariation" uid="uid://d3osqbkfd4jv3" path="res://Fonts/base_font.tres" id="2_gjcf5"]
+
+[sub_resource type="Gradient" id="Gradient_aqosg"]
+colors = PackedColorArray(1, 1, 1, 0.1254902, 0, 0, 0, 0.48235294)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oqlsr"]
+gradient = SubResource("Gradient_aqosg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0)
+metadata/_snap_enabled = true
+
+[node name="ForgetScreen" type="CanvasLayer"]
+
+[node name="Forget" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.3888889
+anchor_top = 0.5925926
+anchor_right = 0.5
+anchor_bottom = 0.69135803
+offset_left = 64.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("1_bdyuc")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Forget"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("2_gjcf5")
+theme_override_font_sizes/normal_font_size = 25
+text = "FORGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_oqlsr")
+
+[node name="Title" type="RichTextLabel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 131.0
+offset_bottom = -422.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Choose memories to forget."
+horizontal_alignment = 1
+
+[node name="CardContainer" type="HBoxContainer" parent="."]
+offset_top = 215.0
+offset_right = 1152.0
+offset_bottom = 367.0
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
