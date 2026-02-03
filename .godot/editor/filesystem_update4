@@ -1,8 +1,6 @@
-res://Scripts/jimmy_jones.gd
-res://Scripts/temp.gd
-res://Scenes/node_2d.tscn
-res://Scripts/visitor_instance.gd
-res://Scenes/jimmy_jones.tscn
-res://Scripts/keywords.gd
-res://Scripts/night_visitor.gd
-res://Scripts/base_night_visitor.gd
+res://Scenes/ui.tscn
+res://Scenes/card_view.tscn
+res://Scenes/main.tscn
+res://Scenes/dialogue_box.tscn
+res://Scenes/base_visitor.tscn
+res://Scenes/submission_box.tscn

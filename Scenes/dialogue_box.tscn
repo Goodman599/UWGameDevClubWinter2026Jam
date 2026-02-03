@@ -1,28 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://osdop6onyqxw"]
+[gd_scene load_steps=4 format=3 uid="uid://osdop6onyqxw"]
 
-[ext_resource type="Script" uid="uid://b8egxdag8vmdx" path="res://Scripts/dialogue_box.gd" id="1_aetfs"]
+[ext_resource type="Script" uid="uid://b8egxdag8vmdx" path="res://Scripts/dialogue_box.gd" id="1_hygrc"]
+[ext_resource type="Texture2D" uid="uid://3j3agtcrs6gy" path="res://Assets/dialogue_box.png" id="2_l8qb8"]
+[ext_resource type="PackedScene" uid="uid://cawextt8su2ct" path="res://Scenes/submission_box.tscn" id="3_kyvu4"]
 
 [node name="DialogueBox" type="Node2D"]
-script = ExtResource("1_aetfs")
+script = ExtResource("1_hygrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(475, 244)
+scale = Vector2(0.57564574, 0.6025641)
+texture = ExtResource("2_l8qb8")
 
 [node name="Text" type="RichTextLabel" parent="."]
-offset_right = 1152.0
-offset_bottom = 249.0
+offset_left = 208.00006
+offset_top = 90.0
+offset_right = 577.00006
+offset_bottom = 339.0
 bbcode_enabled = true
 text = "If I got some text it would look like this"
 
-[node name="Back" type="Button" parent="."]
-offset_left = 30.0
-offset_top = 88.0
-offset_right = 38.0
-offset_bottom = 96.0
-text = "Back"
+[node name="Confirm" type="Button" parent="."]
+offset_left = 622.0
+offset_top = 379.0
+offset_right = 713.0
+offset_bottom = 410.0
+text = "Confirm"
+flat = true
 
 [node name="Next" type="Button" parent="."]
-offset_left = 1049.0
-offset_top = 92.0
-offset_right = 1094.0
-offset_bottom = 123.0
+offset_left = 489.0
+offset_top = 365.0
+offset_right = 579.0
+offset_bottom = 396.0
 text = "Next"
+flat = true
+
+[node name="Back" type="Button" parent="."]
+offset_left = 201.0
+offset_top = 365.0
+offset_right = 295.0
+offset_bottom = 396.0
+text = "Back"
+flat = true
+
+[node name="Submission Box" parent="." instance=ExtResource("3_kyvu4")]
+position = Vector2(670, 148)
+
+[node name="Submission Box2" parent="." instance=ExtResource("3_kyvu4")]
+position = Vector2(669, 299)
 
 [connection signal="meta_clicked" from="Text" to="." method="_on_text_meta_clicked"]
