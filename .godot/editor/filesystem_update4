@@ -1,6 +1,7 @@
-res://Scenes/ui.tscn
-res://Scenes/card_view.tscn
-res://Scenes/main.tscn
-res://Scenes/dialogue_box.tscn
 res://Scenes/base_visitor.tscn
-res://Scenes/submission_box.tscn
+res://Scripts/base_visitor.gd
+res://Scenes/main.tscn
+res://Scripts/visitor_manager.gd
+res://Scripts/main.gd
+res://Scenes/dialogue_box.tscn
+res://Scripts/dialogue_box.gd

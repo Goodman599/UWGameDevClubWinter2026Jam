@@ -4,35 +4,43 @@ extends Node2D
 @onready var card_container = $UI/Control/CardPanel/CardContainer
 @onready var count_label = $UI/Control/CountLabel
 @onready var forget_button = $UI/Control/Button
+@onready var background_sprite = $day_background
+@onready var player_sprite = $day_player
 
 var card_scene = preload("res://Scenes/card_view.tscn")
 var cards_to_forget: Array = []
 var current_submission_cards: Array = []
 var max_memories = 6
 
+var bg_texture_day = preload("res://Assets/day_background.png")
+var bg_texture_night = preload("res://Assets/night_background.png")
+var player_day = preload("res://Assets/day_player.png")
+var player_night = preload("res://Assets/night_player.png")
+
 func _ready():
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
-		forget_button.hide()
+		#forget_button.hide()
 		forget_button.pressed.connect(_on_forget_pressed)
 		
-	var person_box = get_node("Submission Box")
-	var event_box = get_node("Submission Box2")
+	VisitorManager.time_changed.connect(_update_background)
+	#var person_box = get_node("Submission Box")
+	#var event_box = get_node("Submission Box2")
 	
-	for box in [person_box, event_box]:
-		if box:
-			box.card_added.connect(_on_card_stuck)
-			box.card_removed.connect(_on_card_unstuck)
-			box.wrong_card_type.connect(_on_wrong_card_type)
-			box.submission_ready.connect(_on_submission_complete)
+	#for box in [person_box, event_box]:
+	#	if box:
+	#		box.card_added.connect(_on_card_stuck)
+	#		box.card_removed.connect(_on_card_unstuck)
+	#		box.wrong_card_type.connect(_on_wrong_card_type)
+	#		box.submission_ready.connect(_on_submission_complete)
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):
 		return
 		
 	var data = MemoryDB.get_memory(key)
-	print(data.type)
+	
 	if data == null: 
 		return
 	
@@ -66,7 +74,16 @@ func update_forget_button_visibility():
 		if card_count > max_memories:
 			forget_button.show()
 		else:
-			forget_button.hide()
+			pass
+			#forget_button.hide()
+
+func _update_background(is_day : bool):
+	if is_day:
+		background_sprite.texture = bg_texture_day
+		player_sprite.texture = player_day
+	else:
+		background_sprite.texture = bg_texture_night
+		player_sprite.texture = player_night
 
 func _on_card_toggle(card_node, is_selected):
 	if is_selected:

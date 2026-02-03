@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://jop1da2n63nx"]
+
+[ext_resource type="PackedScene" uid="uid://c08jn70lnn2bm" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
+[ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://blqccgtk7jc4s" path="res://Scripts/demon.gd" id="5_344ge"]
+[ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://cyyw0hnp0txc2" path="res://Scripts/detective.gd" id="6_ynf5e"]
+[ext_resource type="Script" uid="uid://ffodg6uf7ohb" path="res://Scripts/cultist.gd" id="7_hptm8"]
+[ext_resource type="Script" uid="uid://cbfuriar2ryas" path="res://Scripts/nurse.gd" id="8_d1ilt"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
+unique_name_in_owner = true
+position = Vector2(0, 9)
+
+[node name="UI" parent="." instance=ExtResource("3_8gbba")]
+
+[node name="Visitors" type="Node2D" parent="."]
+
+[node name="Demon" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("5_344ge")
+visitor_name = "Demon"
+
+[node name="Detective" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("6_ynf5e")
+visitor_name = "Detective"
+
+[node name="Cultist" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("7_hptm8")
+visitor_name = "Cultist"
+
+[node name="Nurse" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("8_d1ilt")
+visitor_name = "Nurse"

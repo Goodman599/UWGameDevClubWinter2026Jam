@@ -1,0 +1,73 @@
+{
+  "visit0": {
+	"dialogue0": {
+	  "accepts": [
+		"action",
+        "feeling"
+	  ],
+	  "lines": [
+		"Hey. Hello. I’m {Detective Raede}[Person, Detective Raede], call me… uh… nevermind. Tough situation you’re in, huh. I’m not gonna pretend I understand how you feel. I don’t. But things are not as they seem.", "I can’t go into the details right now, but I’m working on a solution. For now, let’s just say I’m working on a case, and my only witness is… unresponsive.", "Enough about me. How are you feeling? Good?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+			"Blink Twice",
+            "EMPTY"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+			"EMPTY",
+            "Sadness"
+		  ],
+		  "result": "dialogue2"
+		},
+		"case2": {
+		  "submissions": [
+			"Blink Twice",
+            "Sadness"
+		  ],
+		  "result": "dialogue3"
+		},
+		"case3": {
+		  "submissions": [
+			"EMPTY",
+            "EMPTY"
+		  ],
+		  "result": "dialogue4"
+		}
+	  }
+	  
+	},
+	"dialogue1": {
+	  "lines": [
+        "<The detective’s face lightens up a little.>\nOh, great! I hope I can count on you, then."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue2": {
+	  "lines": [
+        "<A sudden sadness overwhelms you. Is this your life now? The detective sighs.>\n\nI… I see. I’m so sorry. I hope… ah, if only things went differently, but there’s no turning back now."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue3": {
+	  "lines": [
+        "Don’t worry. There’s no need for you to hide it. I understand. I give you my word, I will not leave you alone."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue4": {
+	  "lines": [
+        "Totally unresponsive, huh. This is not a great start. Not great at all. I hope you can understand what I’m getting at here."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue5": {
+	  "lines": [
+		"I know you’re going through a lot, but I’m gonna need you to do something for me, alright? From now on, people will start coming to see you. You might know them, you might not. I need you to do your utmost to remember as many details as possible about them. Believe me, together, we can find a way out of this. Never lose {hope}[feeling, Hope]. We will meet again.", "The detective leaves, closing the door behind him. Even if you remember things, how are you supposed to tell him?"
+	  ]
+	}
+  }
+}
