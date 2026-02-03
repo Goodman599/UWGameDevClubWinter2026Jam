@@ -31,8 +31,9 @@ func add_memory(key: String) -> bool:
 	return true
 
 func add_card_to_forget(card: MemoryCard):
-	cards_to_forget.append(card)
-	forget_screen.add_card_copy_to_container(card)
+	if not card in cards_to_forget:
+		cards_to_forget.append(card)
+		forget_screen.add_card_copy_to_container(card)
 
 func remove_memory(key: String):
 	if key in collected_memories:
