@@ -1,4 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://cbqc4y0el8cgt"]
+[gd_scene load_steps=2 format=3 uid="uid://cbqc4y0el8cgt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wviqb"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -13,6 +15,7 @@ grow_vertical = 0
 mouse_filter = 2
 
 [node name="CountLabel" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 1038.0
 offset_top = 3.0
@@ -22,21 +25,27 @@ text = "Memories: 0/6"
 
 [node name="CardPanel" type="PanelContainer" parent="Control"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = -2.0
-offset_right = 1035.0
-offset_bottom = 131.0
+offset_left = 134.0
+offset_top = -45.0
+offset_right = 970.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wviqb")
 
 [node name="CardContainer" type="HBoxContainer" parent="Control/CardPanel" groups=["DialogueBox"]]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 105
+theme_override_constants/separation = 120
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 1064.0
-offset_top = 74.0
-offset_right = 1122.0
+offset_left = 990.0
+offset_top = -41.0
+offset_right = 1021.0
 offset_bottom = 105.0
-text = "Forget
-"
+text = "F
+O
+R
+G
+E
+T"
+flat = true
