@@ -21,6 +21,10 @@ MemoryDB="*res://Scripts/memory_database.gd"
 MemoryManager="*res://Scripts/memory_manager.gd"
 VisitorManager="*res://Scripts/visitor_manager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor]
 
 version_control/autoload_on_startup=true

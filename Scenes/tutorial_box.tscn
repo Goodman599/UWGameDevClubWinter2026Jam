@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd556cexy6fo5"]
+
+[ext_resource type="Texture2D" uid="uid://cls0djb5tk211" path="res://Assets/box.png" id="1_wlh8e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldroe"]
+texture = ExtResource("1_wlh8e")
+texture_margin_left = 300.0
+texture_margin_top = 300.0
+texture_margin_right = 300.0
+texture_margin_bottom = 300.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="TutorialBox" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 9.999878
+offset_bottom = 281.99994
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ldroe")
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -41,6 +41,8 @@ func get_box_index() -> int:
 	return box_index
 
 func _on_mouse_entered():
+	print("RAAH")
+	
 	if not is_highlighted:
 		is_highlighted = true
 		update_appearance()
@@ -78,7 +80,7 @@ func add_card(card: Control) -> bool:
 		return false
 
 	if cards.size() >= max_cards:
-		return false
+		clear_cards()
 
 	if card.has_method("remove_from_area"):
 		card.remove_from_area()

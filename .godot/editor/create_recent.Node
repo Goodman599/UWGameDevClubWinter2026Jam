@@ -1,2 +1,7 @@
+RichTextLabel
+ColorRect
+Panel
+Container
+TextureRect
 Sprite2D
 Button
