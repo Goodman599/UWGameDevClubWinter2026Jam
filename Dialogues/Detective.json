@@ -42,13 +42,13 @@
 	},
 	"dialogue1": {
 	  "lines": [
-        "The detective’s face lightens up a little.\nOh, great! I hope I can count on you, then."
+        "<The detective’s face lightens up a little.>\nOh, great! I hope I can count on you, then."
 	  ],
 	  "result": "dialogue5"
 	},
 	"dialogue2": {
 	  "lines": [
-        "A sudden sadness overwhelms you. Is this your life now? The detective sighs.\n\nI… I see. I’m so sorry. I hope… ah, if only things went differently, but there’s no turning back now."
+        "<A sudden sadness overwhelms you. Is this your life now? The detective sighs.>\n\nI… I see. I’m so sorry. I hope… ah, if only things went differently, but there’s no turning back now."
 	  ],
 	  "result": "dialogue5"
 	},

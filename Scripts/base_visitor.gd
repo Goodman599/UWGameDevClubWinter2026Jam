@@ -58,10 +58,16 @@ func plain_to_clickable(text : String) -> String:
 	text = text.replace("{", "[b][url]")
 	text = text.replace("}", "[/url][/b]")
 	
+	text = text.replace("<", "[i]")
+	text = text.replace(">", "[/i]")
+	
 	return text
 
 # Switch to the next dialogue in the current branch
 func next_dialogue():
+	if VisitorManager.current_visitor_name != visitor_name:
+		return
+	
 	if current_dialogue_index < current_dialogue_line_count:
 		# If just submitted ---- We have a submit button now, dont let go next if at end
 		if current_dialogue_index == current_dialogue_line_count - 1:
@@ -77,6 +83,10 @@ func next_dialogue():
 
 # Switch to the previous dialogue in the current branch
 func prev_dialogue():
+	if VisitorManager.current_visitor_name != visitor_name:
+		return
+	
+	print(current_dialogue_index)
 	if current_dialogue_index > 0:
 		current_dialogue_index -= 1
 		show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
@@ -135,10 +145,6 @@ func set_dialogue_branch(branch_name : String):
 		else:
 			queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]))
 			
-	# The new dialogue links to some other dialogue without accepting cards
-	elif dialogues[current_visit_branch][current_dialogue_branch].has("result"):
-		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
-		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	
 	if current_dialogue_line_count == 1:
 		show_inputs()
@@ -161,6 +167,7 @@ func register_keywords(dialogue_array : Array):
 			# Find the end of the specification
 			var memory_data_end_index : int = line.find("]", search_index)
 			var memory_data = line.substr(next_keyword_end_index + 1, memory_data_end_index - next_keyword_end_index).trim_prefix("[").trim_suffix("]").split(", ")
+			
 			
 			memory_type = MemoryData.MemoryType.get(memory_data[0].capitalize())
 			
@@ -201,6 +208,11 @@ func queue_visit(visit_name : String, delay : int, priority : int = 0):
 func dialogue_concluded():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
+	
+	print(visitor_name)
+	
+	
+	
 	# Update any visitor states
 	if (dialogues[current_visit_branch])[current_dialogue_branch].has("setState"):
 		for state in dialogues[current_visit_branch][current_dialogue_branch]["setState"]:
@@ -209,12 +221,15 @@ func dialogue_concluded():
 	
 	if current_dialogue_takes_cards:
 		check_submissions()
+	elif dialogues[current_visit_branch][current_dialogue_branch].has("result"): 
+		# The new dialogue links to some other dialogue without accepting cards
+		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
+		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	else:
 		VisitorManager.send_next_visitor()
 
 
 func check_submissions():
-	print("Checking cases on: ", dialogues[current_visit_branch][current_dialogue_branch])
 	var submissions := []
 	
 	for i in range(instantiated_submission_box_count):

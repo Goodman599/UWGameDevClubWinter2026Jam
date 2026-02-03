@@ -14,7 +14,7 @@ func _ready():
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
-		forget_button.hide()
+		#forget_button.hide()
 		forget_button.pressed.connect(_on_forget_pressed)
 		
 	#var person_box = get_node("Submission Box")
@@ -66,7 +66,8 @@ func update_forget_button_visibility():
 		if card_count > max_memories:
 			forget_button.show()
 		else:
-			forget_button.hide()
+			pass
+			#forget_button.hide()
 
 func _on_card_toggle(card_node, is_selected):
 	if is_selected:

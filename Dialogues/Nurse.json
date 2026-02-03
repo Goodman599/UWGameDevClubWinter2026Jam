@@ -62,13 +62,13 @@
 	},
 	"dialogue1": {
 	  "lines": [
-		"You blink twice, but the nurse isn’t looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}(Item, Nurse’s Writing). ",
+		"<You blink twice, but the nurse isn’t looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].>",
         "Aaand, you’re looking good. I’ll bring the guest in, but we should keep it short for today. Once you’re stable, we can set up longer visits. Goodbye!"
 	  ]
 	},
 	"dialogue2": {
 	  "lines": [
-		"You stare at the nurse, unblinking, but she isn’t even looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].",
+		"<You stare at the nurse, unblinking, but she isn’t even looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].>",
         "Aaand, you’re looking good. I’ll bring the guest in, but we should keep it short for today. Once you’re stable, we can set up longer visits. Goodbye!"
 	  ]
 	}

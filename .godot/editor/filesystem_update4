@@ -9,3 +9,4 @@ res://Scripts/visitor_instance.gd
 res://Scripts/nurse.gd
 res://Dialogues/Nurse.json
 res://Dialogues/Cultist.json
+res://Scripts/main.gd

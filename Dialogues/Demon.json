@@ -14,9 +14,9 @@
   "night1": {
 	"dialogue0": {
 	  "lines": [
-		"You wake during the night, covered in sweat. You try to move something, anything, just to be reminded that your body is no longer yours to control. ",
-		"An oppressive weight pushes against every motion Soon, it becomes too much to bear, and you slip into a suffocating sleep.",
-        "{A single tear}[feeling, Sadness] rolls down your face."
+		"<You wake during the night, covered in sweat. You try to move something, anything, just to be reminded that your body is no longer yours to control.>",
+		"<An oppressive weight pushes against every motion Soon, it becomes too much to bear, and you slip into a suffocating sleep.>",
+        "<{A single tear}[feeling, Sadness] rolls down your face.>"
 	  ],
 	  "nextVisit": {
 		"id": "night2",
@@ -27,8 +27,8 @@
   "night2": {
 	"dialogue0": {
 	  "lines": [
-		"You wake up with a start. The room is dark, but the blinking lights of medical equipment reveal… {something}[Person, Shadowy Figure]… on the other side of the room. It blends with the darkness, and you wonder if it is there at all.",
-        "Maybe you DO need more meds."
+		"<You wake up with a start. The room is dark, but the blinking lights of medical equipment reveal… {something}[Person, Shadowy Figure]… on the other side of the room. It blends with the darkness, and you wonder if it is there at all.>",
+        "<Maybe you DO need more meds.>"
 	  ]
 	}
   }
