@@ -4,8 +4,8 @@ extends Node2D
 @onready var card_container = $UI/Control/CardPanel/CardContainer
 @onready var count_label = $UI/Control/CountLabel
 @onready var forget_button = $UI/Control/Button
-@onready var background_sprite = $day_background
-@onready var player_sprite = $day_player_ui
+@onready var background_sprite = $background
+@onready var player_sprite = $player_ui
 
 var card_scene = preload("res://Scenes/card_view.tscn")
 var cards_to_forget: Array = []

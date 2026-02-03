@@ -6,7 +6,7 @@ signal time_changed(is_day : bool)
 var visitor_queue : Array[VisitorInstance]
 var current_visitor_name : String
 
-@onready var background : Sprite2D = $day_background
+@onready var background : Sprite2D = $background
 #func _ready() -> void:
 	#send_next_visitor();
 
