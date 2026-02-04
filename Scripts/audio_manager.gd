@@ -82,6 +82,24 @@ func play_ui_sound(sound_name: String):
 		sfx_player.stream = stream
 		sfx_player.play()
 
+func play_start_music(track_name: String):
+	if current_music_track == track_name:
+		return
+	
+	var path = "res://Musics/Eerie.mp3"
+	var stream = load(path)
+	
+	if stream:
+		current_music_track = track_name
+		music_player.stream = stream
+		music_player.play()
+
+func stop_start_music():
+	if music_player.playing:
+		music_player.stop()
+	
+	current_music_track = ""
+
 func play_click():
 	play_ui_sound("Click")
 	
