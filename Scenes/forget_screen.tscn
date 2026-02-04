@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dokmbuibnqqms"]
 
-[ext_resource type="Texture2D" path="res://Assets/box.png" id="1_bdyuc"]
-[ext_resource type="Script" path="res://Scripts/forget_screen.gd" id="1_gjcf5"]
-[ext_resource type="FontVariation" path="res://Fonts/base_font.tres" id="2_gjcf5"]
+[ext_resource type="Texture2D" uid="uid://cls0djb5tk211" path="res://Assets/box.png" id="1_bdyuc"]
+[ext_resource type="Script" uid="uid://b6e2f74okg18w" path="res://Scripts/forget_screen.gd" id="1_gjcf5"]
+[ext_resource type="FontVariation" uid="uid://d3osqbkfd4jv3" path="res://Fonts/base_font.tres" id="2_gjcf5"]
 
 [sub_resource type="Gradient" id="Gradient_aqosg"]
 colors = PackedColorArray(1, 1, 1, 0.26666668, 0, 0, 0, 0.62352943)
@@ -15,6 +15,7 @@ fill_to = Vector2(1, 0.3)
 metadata/_snap_enabled = true
 
 [node name="ForgetScreen" type="CanvasLayer"]
+layer = 0
 script = ExtResource("1_gjcf5")
 
 [node name="Forget" type="TextureButton" parent="."]

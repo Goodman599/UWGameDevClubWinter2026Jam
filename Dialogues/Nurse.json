@@ -3,7 +3,7 @@
 	"dialogue0": {
 	  "lines": [
 		"Hey you, you’re finally awake. Judging by the scans, your mind must be a confused mess right now.",
-		"What I am about to say, I say with full sympathy. You’ve been diagnosed with LIS, Locked-In Syndrome. You can probably tell already, but you can only {move your eyes}[action, Blink Twice].\n\nClick on a highlighted keyword to save it as a memory.",
+		"What I am about to say, I say with full sympathy. You’ve been diagnosed with LIS, Locked-In Syndrome. You can probably tell already, but you can only {move your eyes}[action, Blink Twice].",
         "I need you to please blink twice if you can hear me."
 	  ],
 	  "accepts": [
@@ -20,7 +20,7 @@
 		  "submissions": [
             "EMPTY"
 		  ],
-		  "result": "dialogue0"
+		  "result": "dialogue2"
 		}
 	  }
 	},
@@ -33,6 +33,29 @@
 		"id": "NurseDay2",
 		"delay": "2",
 		"priority": "1"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+			"Let's try that again.",
+			"{Blink twice}[action, Blink Twice] if you can hear me."
+	  ],
+	  "accepts": [
+        "action"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Blink Twice"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue2"
+		}
 	  }
 	}
   },
