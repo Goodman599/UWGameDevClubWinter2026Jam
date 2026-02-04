@@ -11,3 +11,4 @@ res://Scripts/memory_card.gd
 res://Scripts/submission_box.gd
 res://Scripts/visitor_manager.gd
 res://Scenes/ui.tscn
+res://Scenes/dialogue_box.tscn
