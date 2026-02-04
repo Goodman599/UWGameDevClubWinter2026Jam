@@ -43,6 +43,9 @@ var default_pos_bg: Vector2
 var original: MemoryCard
 var is_copy_of_forgotten: bool = false
 
+@export var is_dummy: bool = false
+@export var can_swap: bool = true
+
 func _ready():
 	default_pos_type = type_label.position
 	default_pos_content = content_label.position
@@ -133,6 +136,9 @@ func setup(data:MemoryData):
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if is_dummy:
+			return
+		
 		if event.pressed:
 			is_click_started_on_card = true
 			drag_offset = get_local_mouse_position()
@@ -198,7 +204,7 @@ func stop_drag():
 	elif $Hitbox.get_overlapping_areas().size() > 0:
 		var swapping = false
 		for area in $Hitbox.get_overlapping_areas():
-			if area.get_parent() is MemoryCard:
+			if area.get_parent() is MemoryCard and area.get_parent().can_swap:
 				MemoryManager.swap_cards(self, area.get_parent())
 				swapping = true
 				break

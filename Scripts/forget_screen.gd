@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var forget_button : TextureButton = $Forget
 
-var memory_card = preload("res://Scenes/card_view.tscn")
+var memory_card = preload("res://Scenes/dummy_card.tscn")
 
 const BASE_COLOR = Color8(0, 70, 255)
 const HOVERED_COLOR = Color8(0, 30, 215)
@@ -38,6 +38,8 @@ func confirmed():
 
 func add_card_copy_to_container(card : MemoryCard):
 	var new_card = memory_card.instantiate()
+	new_card.is_dummy = false
+	new_card.can_swap = false
 	new_card.is_copy_of_forgotten = true
 	$CardContainer.add_child(new_card)
 	new_card.copy_attributes(card)

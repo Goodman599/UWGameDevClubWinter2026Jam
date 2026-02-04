@@ -28,8 +28,6 @@ offset_right = 120.0
 offset_bottom = 160.0
 expand_mode = 1
 
-[node name="Content2" type="Sprite2D" parent="."]
-
 [node name="Type" type="Label" parent="."]
 layout_mode = 0
 offset_left = 15.0
