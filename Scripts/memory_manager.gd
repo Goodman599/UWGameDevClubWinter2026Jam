@@ -6,16 +6,24 @@ var collected_memories: Array[String] = []
 var cards_to_forget : Array[MemoryCard] = []
 const max_memories = 7
 
-@onready var forget_screen = get_tree().root.get_node("Main/ForgetScreen")
+var forget_screen : CanvasLayer
+var card_container : HBoxContainer
+
 var in_forget_mode := false
 
 func _ready():
 	for i in range(max_memories):
 		collected_memories.append("")
-	print(collected_memories)
+	
+
+func set_references(card_container_ref, forget_screen_ref):
+	card_container = card_container_ref
+	forget_screen = forget_screen_ref
 
 func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
-	var card_container = get_tree().root.get_node("Main/UI/Control/CardPanel/CardContainer")
+	if !card_container:
+		return
+	
 	var cards = card_container.get_children()
 	var drag_index = cards.find(card1)   # Current position of dragged card
 	var drop_index = cards.find(card2)      # Current position of drop card

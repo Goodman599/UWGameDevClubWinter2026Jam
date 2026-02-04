@@ -21,6 +21,8 @@ var dragged_card: Control = null
 var drag_start_index: int = -1
 
 func _ready():
+	MemoryManager.set_references(card_container, $ForgetScreen)
+	
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
