@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://co5g564adfopx"
+path="res://.godot/imported/Demon 2.wav-e62919e93f96a4ef9834ed55ad529533.sample"
+
+[deps]
+
+source_file="res://Musics/Demon speaks (Play oneshot on start of line_)/Demon 2.wav"
+dest_files=["res://.godot/imported/Demon 2.wav-e62919e93f96a4ef9834ed55ad529533.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

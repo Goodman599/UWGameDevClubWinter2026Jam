@@ -192,6 +192,10 @@ func start_drag():
 	original_parent = get_parent()
 	original_z_index = z_index
 	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_pick_up_card()
+	
 	global_position = original_position
 	
 	scale = original_scale * 1.2
@@ -205,6 +209,10 @@ func stop_drag():
 		return
 	
 	is_dragging = false
+	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_put_down_card()
 	
 	if is_over_submission_area and current_submission_area:
 		drop_into_area(current_submission_area)
@@ -220,16 +228,16 @@ func stop_drag():
 		
 		if !swapping:
 			return_to_original()
-				
-		var smallest_distance : float = abs(self.global_position.x - valid_cards[0].global_position.x)
-		var closest_index = 0
-		
-		for i in range(valid_cards.size()):
-			if smallest_distance > abs(self.global_position.x - valid_cards[i].global_position.x):
-				smallest_distance = abs(self.global_position.x - valid_cards[i].global_position.x)
-				closest_index = i
-		
-		MemoryManager.swap_cards(self, valid_cards[closest_index])
+		else:
+			var smallest_distance : float = abs(self.global_position.x - valid_cards[0].global_position.x)
+			var closest_index = 0
+			
+			for i in range(valid_cards.size()):
+				if smallest_distance > abs(self.global_position.x - valid_cards[i].global_position.x):
+					smallest_distance = abs(self.global_position.x - valid_cards[i].global_position.x)
+					closest_index = i
+			
+			MemoryManager.swap_cards(self, valid_cards[closest_index])
 		
 	else:
 		return_to_original()

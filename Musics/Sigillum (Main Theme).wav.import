@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2aobw386o78k"
+path="res://.godot/imported/Sigillum (Main Theme).wav-77fb1fcd9f413c559752a8d741fc00c5.sample"
+
+[deps]
+
+source_file="res://Musics/Sigillum (Main Theme).wav"
+dest_files=["res://.godot/imported/Sigillum (Main Theme).wav-77fb1fcd9f413c559752a8d741fc00c5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

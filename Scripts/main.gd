@@ -24,6 +24,10 @@ func _ready():
 	dialogue_box.keyword_clicked.connect(_on_keyword_received)
 	
 	if forget_button:
+		forget_button.pressed.connect(_on_forget_button_pressed)
+		forget_button.mouse_entered.connect(_on_forget_button_hovered)
+	
+	if forget_button:
 		forget_button.pressed.connect(func(): get_node("ForgetScreen").appear())
 		
 		
@@ -31,6 +35,19 @@ func _ready():
 	
 	for i in range(MemoryManager.max_memories):
 		card_container.add_child(dummy_card_scene.instantiate())
+
+func _on_forget_button_pressed():
+	# Play button click sound
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_click()
+	
+	get_node("ForgetScreen").appear()
+
+func _on_forget_button_hovered():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_hover()
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):
