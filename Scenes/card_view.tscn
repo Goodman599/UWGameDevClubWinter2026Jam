@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://blahtm4hjo1cf"]
+[gd_scene load_steps=5 format=3 uid="uid://blahtm4hjo1cf"]
 
 [ext_resource type="Script" uid="uid://dxd3sxfj3hai0" path="res://Scripts/memory_card.gd" id="1_p1guq"]
-[ext_resource type="Texture2D" uid="uid://b3lvuvwwmxwmr" path="res://Assets/card_view.png" id="2_p1guq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sljx0"]
 font_size = 11
@@ -24,9 +23,9 @@ script = ExtResource("1_p1guq")
 
 [node name="Card" type="TextureRect" parent="."]
 layout_mode = 0
+offset_top = -9.0
 offset_right = 120.0
-offset_bottom = 152.0
-texture = ExtResource("2_p1guq")
+offset_bottom = 160.0
 expand_mode = 1
 
 [node name="Content2" type="Sprite2D" parent="."]
