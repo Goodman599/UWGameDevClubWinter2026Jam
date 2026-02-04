@@ -385,7 +385,6 @@ func delete_submission_boxes():
 #preload of character arts
 func load_character_sprite():
 	var sprite_path = "res://Assets/" + visitor_name + ".png"
-	print(sprite_path)
 	
 	if FileAccess.file_exists(sprite_path):
 		var texture = load(sprite_path)
