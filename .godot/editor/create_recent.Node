@@ -1,12 +1,4 @@
-RichTextLabel
-TextureButton
-HBoxContainer
-CenterContainer
-PointLight2D
-TextureRect
-ColorRect
-Panel
-CanvasLayer
-Container
+CollisionShape2D
+Area2D
 Sprite2D
 Button

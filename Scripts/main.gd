@@ -94,7 +94,7 @@ func _end_card_drag(card_node):
 	var mouse_pos = get_global_mouse_position()
 	print("Mouse position: ", mouse_pos)
 	
-	var drop_card = _get_card_at_position(mouse_pos)
+	var drop_card = _get_card_at_position()
 	
 	if drop_card and drop_card != dragged_card:
 		print("Found drop card: ", drop_card.memory_key)
@@ -135,13 +135,10 @@ func _end_card_drag(card_node):
 	
 	dragged_card = null
 	drag_start_index = -1
-func _get_card_at_position(global_pos: Vector2) -> Control:
+
+func _get_card_at_position() -> Control:
 	var local_pos = card_container.get_local_mouse_position()
 	var CARD_WIDTH = 100
-	
-	# Show all card positions
-	for i in range(card_container.get_child_count()):
-		var card = card_container.get_child(i)
 	
 	var card_index = int(local_pos.x / CARD_WIDTH)
 	var card_count = card_container.get_child_count()

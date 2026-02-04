@@ -143,6 +143,7 @@ func stop_drag():
 	if is_over_submission_area and current_submission_area:
 		drop_into_area(current_submission_area)
 	else:
+		print($Hitbox.get_overlapping_areas())
 		return_to_original()
 	
 	scale = original_scale
@@ -203,7 +204,7 @@ func drop_into_area(area: Node2D):
 		else:
 			return_to_original()
 			return
-			
+	
 	return_to_original()
 
 func return_to_original():
