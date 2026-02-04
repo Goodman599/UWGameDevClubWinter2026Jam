@@ -11,11 +11,8 @@ var current_music_track: String = ""
 func _ready():
 	# Start main theme and hospital ambience
 	play_music("Sigillum (Demon Version)")
-	if _on_time_changed(true):
-		play_ambience("Heart Monitor Ambience - Looping")
-	else:
-		play_ambience("Heartbeat - Looping")
-	
+	play_ambience("Heartbeat - Looping")
+
 	# Connect to visitor changes
 	connect_to_visitor_manager()
 
@@ -104,6 +101,8 @@ func _on_time_changed(is_day: bool):
 	if is_day:
 		# Switch to day theme
 		play_music("Sigillum (Main Theme)")
+		play_ambience("Heart Monitor Ambience - Looping")
 	else:
 		# Switch to demon/night theme
 		play_music("Sigillum (Demon Version)")
+		play_ambience("Heartbeat - Looping")
