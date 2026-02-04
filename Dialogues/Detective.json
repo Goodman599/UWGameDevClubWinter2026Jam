@@ -99,7 +99,7 @@
 		},
 		"case1": {
 		  "submissions": [
-            "EMPTY"
+            "ANY"
 		  ],
 		  "result": "dialogue2"
 		}

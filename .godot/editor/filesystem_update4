@@ -1,16 +1,2 @@
-res://Scripts/base_visitor.gd
-res://Dialogues/Cultist.json
-res://Dialogues/Demon.json
 res://Dialogues/Detective.json
 res://Dialogues/Nurse.json
-res://Scenes/card_view.tscn
-res://Scripts/cultist.gd
-res://Scripts/detective.gd
-res://Scripts/dialogue_box.gd
-res://Scripts/forget_screen.gd
-res://Scripts/main.gd
-res://Scripts/memory_card.gd
-res://Scripts/memory_manager.gd
-res://Scripts/submission_box.gd
-res://Scenes/base_visitor.tscn
-res://Scenes/main.tscn
