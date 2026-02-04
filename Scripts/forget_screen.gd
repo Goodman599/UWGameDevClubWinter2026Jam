@@ -32,6 +32,7 @@ func disappear():
 
 func confirmed():
 	MemoryManager.forget_cards()
+	
 	for child in $CardContainer.get_children():
 		child.queue_free()
 	disappear()
