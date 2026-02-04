@@ -1,4 +1,9 @@
-res://Scenes/audio_manager.tscn
+res://Scripts/main.gd
+res://Scripts/start_menu.gd
+res://Scripts/base_visitor.gd
 res://Scripts/audio_manager.gd
-res://start_menu.gd
-res://Scenes/start_menu.tscn
+res://Scenes/audio_manager.tscn
+res://Scripts/dialogue_box.gd
+res://Scripts/forget_screen.gd
+res://Scripts/black_screen.gd
+res://Scenes/black_screen.tscn

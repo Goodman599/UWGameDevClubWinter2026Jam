@@ -9,7 +9,6 @@ func _ready():
 	modulate = Color(1, 1, 1, 0)
 	$Text.self_modulate = Color(1, 1, 1, 0) 
 	endings = load_json_as_dict("res://Dialogues/Endings.json")
-	load_ending("ending2")
 
 func load_ending(newEndingID : String):
 	endingID = newEndingID
@@ -43,6 +42,8 @@ func show_next():
 		tween = get_tree().create_tween()
 		tween.tween_property($Text, "self_modulate", Color(1, 1, 1, 1), 1)
 		in_text_transition = false
+	elif current_dialogue_index == endings[endingID].size() - 1:
+		get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

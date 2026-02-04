@@ -10,7 +10,8 @@ var current_music_track: String = ""
 
 func _ready():
 	# Start main theme and hospital ambience
-	play_start_music("Eerie")
+	if get_parent().name == "StartMenu":
+		play_start_music("Eerie")
 	#play_music("Sigillum (Demon Version)")
 	#play_ambience("Heartbeat - Looping")
 
