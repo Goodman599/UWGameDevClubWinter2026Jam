@@ -3,8 +3,8 @@ extends BaseVisitor
 # The Cultist.
 
 var good_submissions := 0
-var total_submissions := -1
-var success := false
+var total_submissions := 0
+var success := false 
 
 func _init():	
 	visitor_states = {
@@ -33,13 +33,15 @@ func add_final_visit(ending: String):
 	var next_visit = VisitorInstance.new()
 	next_visit.person = self
 	next_visit.visit_branch = ending
-	next_visit.visit_time = 2
+	next_visit.visit_time = 33 # night 17
 	print("adding ending " , ending)
 	VisitorManager.add_visitor_to_queue(next_visit)
 	
 func check_condition(flag: int):
 	print("checking cultist condition")
-	if flag == 0: # which ending
+	total_submissions += 1
+	if total_submissions >= 3:		
+	
 		var detective_node := get_parent().get_node("Detective")
 		var detective_succeeded : bool = detective_node.success
 		
@@ -47,8 +49,9 @@ func check_condition(flag: int):
 		for item in visitor_states.keys():
 			print("item: ", item)
 			if item ==  "Anime_Poster_Submitted" or item == "Blanket_Submitted" or item == "Signed_Baseball_Submitted" or item == "Friend's_Card_Submitted":
-				print(visitor_states[item])
+				
 				if visitor_states[item] == true:
+					print(visitor_states[item])
 					good_submissions += 1
 					
 		if good_submissions < 2:
@@ -67,10 +70,6 @@ func check_condition(flag: int):
 			else:
 				add_final_visit("success")
 				
-	if flag == 1: # should loop end
-		total_submissions += 1
-		if total_submissions == 3:
-			visitor_states["Last_Submission"] = true
 	
 	print(flag)
 	print(good_submissions)

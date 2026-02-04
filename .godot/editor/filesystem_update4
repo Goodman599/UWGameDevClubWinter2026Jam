@@ -1,6 +1,4 @@
-res://Dialogues/Cultist.json
 res://Scenes/main.tscn
 res://Scripts/cultist.gd
 res://Scripts/base_visitor.gd
-res://Dialogues/Detective.json
-res://Scripts/visitor_manager.gd
+res://Dialogues/Cultist.json

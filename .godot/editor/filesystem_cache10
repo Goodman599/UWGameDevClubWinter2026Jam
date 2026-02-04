@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1770237260
+::res://::1770243915
 export_presets.cfg::TextFile::-1::1770189855::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::2043928752645084993::1770007187::1770099085::1::::<><><>0<>0<>741079734df41478eaf76716db92b45f<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1770195653
@@ -32,15 +32,15 @@ night_background.png::CompressedTexture2D::9065554572698763336::1770100382::1770
 night_player.png::CompressedTexture2D::5372851390852270236::1770100382::1770195642::1::::<><><>0<>0<>fa253183c96110d666025017eda80290<>res://.godot/imported/night_player.png-825172043bd7ec4231c5a7bbe0cf6b16.ctex::
 Nurse.png::CompressedTexture2D::1832640117603914480::1770189854::1770195644::1::::<><><>0<>0<>907c34bc46faedf544bd240e4131583b<>res://.godot/imported/Nurse.png-dcb662ae1b6247acd138d1ee828b4c6a.ctex::
 nurse_card.png::CompressedTexture2D::7404798761723388001::1770189854::1770195641::1::::<><><>0<>0<>3fd35b2b33805d404ce815821ccace7c<>res://.godot/imported/nurse_card.png-4e4a6f5128355a378dc999aeaa5167bc.ctex::
-::res://Dialogues/::1770235922
+::res://Dialogues/::1770243903
 Collector.json::JSON::-1::1770198242::0::1::::<><><>0<>0<><>::
-Cultist.json::JSON::-1::1770235922::0::1::::<><><>0<>0<><>::
+Cultist.json::JSON::-1::1770243903::0::1::::<><><>0<>0<><>::
 Demon.json::JSON::-1::1770209304::0::1::::<><><>0<>0<><>::
-Detective.json::JSON::-1::1770234923::0::1::::<><><>0<>0<><>::
+Detective.json::JSON::-1::1770243903::0::1::::<><><>0<>0<><>::
 Endings.json::JSON::-1::1770234923::0::1::::<><><>0<>0<><>::
-Friend.json::JSON::-1::1770229261::0::1::::<><><>0<>0<><>::
+Friend.json::JSON::-1::1770243903::0::1::::<><><>0<>0<><>::
 Mom.json::JSON::-1::1770211348::0::1::::<><><>0<>0<><>::
-Nurse.json::JSON::-1::1770237249::0::1::::<><><>0<>0<><>::
+Nurse.json::JSON::-1::1770243903::0::1::::<><><>0<>0<><>::
 template.json::JSON::-1::1770099059::0::1::::<><><>0<>0<><>::
 ::res://Exports/::1770189854
 ::res://Exports/v0.2/::1770195641
@@ -58,8 +58,8 @@ NimbusSanL-Regu.ttf::FontFile::348500785993602788::1770189854::1770195641::1::::
 NimbusSanL-ReguCond.ttf::FontFile::347409111976803980::1770189854::1770195641::1::::<><><>0<>0<>476ad577c746094de6735e553f0a863f<>res://.godot/imported/NimbusSanL-ReguCond.ttf-8ab81e448f7ec87c1f25684328452e61.fontdata::
 NimbusSanL-ReguCondItal.ttf::FontFile::2408134775118710449::1770189854::1770195641::1::::<><><>0<>0<>6b3ee6efa10d37a81da9f63977e00c57<>res://.godot/imported/NimbusSanL-ReguCondItal.ttf-6b6adf6a260a1e3fa468216e8d646d84.fontdata::
 NimbusSanL-ReguItal.ttf::FontFile::3513516810322815107::1770189854::1770195641::1::::<><><>0<>0<>e1c1dfaecd48624288b7b28131b122e7<>res://.godot/imported/NimbusSanL-ReguItal.ttf-96e33448522b9a1a942fdd243e9a10ab.fontdata::
-::res://Musics/::1770231859
-Eerie.mp3::AudioStreamMP3::8483440600282859821::1770230008::1770231859::1::::<><><>0<>0<>707513bf6a4eb6c7929e569414517227<>res://.godot/imported/Eerie.mp3-10126ee63ccf10456e39c50300a7499d.mp3str::
+::res://Musics/::1770243906
+Eerie.mp3::AudioStreamMP3::8483440600282859821::1770230008::1770243906::1::::<><><>0<>0<>707513bf6a4eb6c7929e569414517227<>res://.godot/imported/Eerie.mp3-10126ee63ccf10456e39c50300a7499d.mp3str::
 Sigillum (Demon Version).wav::AudioStreamWAV::1581562052030435558::1770227613::1770227725::1::::<><><>0<>0<>ba1b7ef01ccc7011912847be6bedcba1<>res://.godot/imported/Sigillum (Demon Version).wav-92fd55223f3aed5adcb21950563f6b40.sample::
 Sigillum (Main Theme).wav::AudioStreamWAV::9055213853308423532::1770227613::1770227725::1::::<><><>0<>0<>5e3bc999307c6be32015c913dad1783b<>res://.godot/imported/Sigillum (Main Theme).wav-77fb1fcd9f413c559752a8d741fc00c5.sample::
 ::res://Musics/Character Speaking Blips/::1770227724
@@ -82,7 +82,7 @@ Hover.wav::AudioStreamWAV::2929738757390086947::1770227613::1770227724::1::::<><
 Lock in choice_Confirm.wav::AudioStreamWAV::1926572849626195966::1770227613::1770227724::1::::<><><>0<>0<>6337293dda18fb3aef68a40e221c875c<>res://.godot/imported/Lock in choice_Confirm.wav-2cd546ce8ee5d4f0d19d808b8eb00b90.sample::
 Pick up card.wav::AudioStreamWAV::8092014536337125938::1770227613::1770227724::1::::<><><>0<>0<>bf0570c4ee28c9c04077a5ec6eec7209<>res://.godot/imported/Pick up card.wav-7493fb6c09453d303437f12dd969b593.sample::
 Put down card.wav::AudioStreamWAV::1257668191308938981::1770227613::1770227724::1::::<><><>0<>0<>1edbb08295cc30c3c86095a09f4856da<>res://.godot/imported/Put down card.wav-d6727dce843a7a96c17e084dbc023651.sample::
-::res://Scenes/::1770237063
+::res://Scenes/::1770243903
 audio_manager.tscn::PackedScene::521103702077770753::1770227613::0::1::::<><><>0<>0<><>::uid://d3i8f77tcp705::::res://Scripts/audio_manager.gd<>uid://wsedi5l22a5c::::res://Musics/Sigillum (Demon Version).wav
 base_visitor.tscn::PackedScene::3924856640986231098::1770235215::0::1::::<><><>0<>0<><>::uid://c760kqjdets52::::res://Scripts/base_visitor.gd
 black_screen.tscn::PackedScene::6625214838140456438::1770189854::0::1::::<><><>0<>0<><>::uid://cvnbju26164yl::::res://Scripts/black_screen.gd<>uid://d3osqbkfd4jv3::::res://Fonts/base_font.tres
@@ -91,21 +91,21 @@ dialogue_box.tscn::PackedScene::1020010598992117236::1770189854::0::1::::<><><>0
 dummy_card.tscn::PackedScene::5117107503198836815::1770189854::0::1::::<><><>0<>0<><>::uid://blahtm4hjo1cf::::res://Scenes/card_view.tscn
 forget_screen.tscn::PackedScene::8163281092148350554::1770195615::0::1::::<><><>0<>0<><>::uid://cls0djb5tk211::::res://Assets/box.png<>uid://b6e2f74okg18w::::res://Scripts/forget_screen.gd<>uid://d3osqbkfd4jv3::::res://Fonts/base_font.tres
 jimmy_jones.tscn::PackedScene::5020385622218201995::1770099059::0::1::::<><><>0<>0<><>::
-main.tscn::PackedScene::661558225647583081::1770237063::0::1::::<><><>0<>0<><>::uid://cdr6auqdcg70j::::res://Scenes/jimmy_jones.tscn<>uid://br8imeuu2b8qj::::res://Scripts/main.gd<>uid://d2fomhmv6aug3::::res://Assets/night_background.png<>uid://cbqc4y0el8cgt::::res://Scenes/ui.tscn<>uid://blqccgtk7jc4s::::res://Scripts/demon.gd<>uid://osdop6onyqxw::::res://Scenes/dialogue_box.tscn<>uid://cyyw0hnp0txc2::::res://Scripts/detective.gd<>uid://ffodg6uf7ohb::::res://Scripts/cultist.gd<>uid://cbfuriar2ryas::::res://Scripts/nurse.gd<>uid://ciswcvrcm3we3::::res://Assets/night_player.png<>uid://kis7wloiarh1::::res://Scripts/friend.gd<>uid://3s00ivwlv3q0::::res://Scripts/mom.gd<>uid://co5msquirny4y::::res://Scripts/collector.gd<>uid://c1nkk5odx3lik::::res://Scenes/black_screen.tscn<>uid://dokmbuibnqqms::::res://Scenes/forget_screen.tscn<>uid://h1oy6ytc7axs::::res://Scenes/tutorial_box_1.tscn<>uid://c07efikxahy8j::::res://Scenes/tutorial_box_2.tscn<>uid://dp1hvx1ojpwuk::::res://Scenes/tutorial_box_3.tscn<>uid://hoorcejsr43n::::res://Scenes/audio_manager.tscn
+main.tscn::PackedScene::661558225647583081::1770243903::0::1::::<><><>0<>0<><>::uid://cdr6auqdcg70j::::res://Scenes/jimmy_jones.tscn<>uid://br8imeuu2b8qj::::res://Scripts/main.gd<>uid://d2fomhmv6aug3::::res://Assets/night_background.png<>uid://cbqc4y0el8cgt::::res://Scenes/ui.tscn<>uid://blqccgtk7jc4s::::res://Scripts/demon.gd<>uid://osdop6onyqxw::::res://Scenes/dialogue_box.tscn<>uid://cyyw0hnp0txc2::::res://Scripts/detective.gd<>uid://ffodg6uf7ohb::::res://Scripts/cultist.gd<>uid://cbfuriar2ryas::::res://Scripts/nurse.gd<>uid://ciswcvrcm3we3::::res://Assets/night_player.png<>uid://kis7wloiarh1::::res://Scripts/friend.gd<>uid://3s00ivwlv3q0::::res://Scripts/mom.gd<>uid://co5msquirny4y::::res://Scripts/collector.gd<>uid://c1nkk5odx3lik::::res://Scenes/black_screen.tscn<>uid://dokmbuibnqqms::::res://Scenes/forget_screen.tscn<>uid://h1oy6ytc7axs::::res://Scenes/tutorial_box_1.tscn<>uid://c07efikxahy8j::::res://Scenes/tutorial_box_2.tscn<>uid://dp1hvx1ojpwuk::::res://Scenes/tutorial_box_3.tscn<>uid://hoorcejsr43n::::res://Scenes/audio_manager.tscn
 submission_box.tscn::PackedScene::4818542648025572707::1770189855::0::1::::<><><>0<>0<><>::uid://xmtn1gevl0mo::::res://Scripts/submission_box.gd<>uid://8elgd0uumsaa::::res://Assets/CardSlot.png
 tutorial_box.tscn::PackedScene::5047216212620367718::1770195615::0::1::::<><><>0<>0<><>::uid://cls0djb5tk211::::res://Assets/box.png
 tutorial_box_1.tscn::PackedScene::545890290190593568::1770195615::0::1::::<><><>0<>0<><>::uid://cls0djb5tk211::::res://Assets/box.png
 tutorial_box_2.tscn::PackedScene::6593874780087678947::1770195615::0::1::::<><><>0<>0<><>::uid://cls0djb5tk211::::res://Assets/box.png
 tutorial_box_3.tscn::PackedScene::8266232296727417938::1770195615::0::1::::<><><>0<>0<><>::uid://cls0djb5tk211::::res://Assets/box.png
 ui.tscn::PackedScene::4876234776476220639::1770195615::0::1::::<><><>0<>0<><>::
-::res://Scripts/::1770237063
+::res://Scripts/::1770243903
 audio_manager.gd::GDScript::9143079015755025000::1770227613::0::1::::AudioManager<>Node2D<><>0<>0<><>::
-base_visitor.gd::GDScript::7084416711356564311::1770236365::0::1::::BaseVisitor<>Node2D<><>0<>0<><>::
-black_screen.gd::GDScript::6273721877346787559::1770235215::0::1::::<>Control<><>0<>0<><>::
+base_visitor.gd::GDScript::7084416711356564311::1770243903::0::1::::BaseVisitor<>Node2D<><>0<>0<><>::
+black_screen.gd::GDScript::6273721877346787559::1770243898::0::1::::<>Control<><>0<>0<><>::
 collector.gd::GDScript::5818178130800365898::1770204999::0::1::::<>BaseVisitor<><>0<>0<><>::
-cultist.gd::GDScript::362121866186608055::1770237063::0::1::::<>BaseVisitor<><>0<>0<><>::
+cultist.gd::GDScript::362121866186608055::1770243903::0::1::::<>BaseVisitor<><>0<>0<><>::
 demon.gd::GDScript::3191653358338615228::1770099059::0::1::::<>BaseVisitor<><>0<>0<><>::
-detective.gd::GDScript::6508299487946520195::1770236680::0::1::::<>BaseVisitor<><>0<>0<><>::
+detective.gd::GDScript::6508299487946520195::1770243903::0::1::::<>BaseVisitor<><>0<>0<><>::
 dialogue_box.gd::GDScript::4711315567868421669::1770227613::0::1::::DialogueBox<>Node2D<><>0<>0<><>::
 forget_screen.gd::GDScript::4572182361458822064::1770227613::0::1::::<>CanvasLayer<><>0<>0<><>::
 friend.gd::GDScript::719554682840913356::1770204076::0::1::::<>BaseVisitor<><>0<>0<><>::
@@ -119,4 +119,4 @@ mom.gd::GDScript::2004009444747597953::1770205592::0::1::::<>BaseVisitor<><>0<>0
 nurse.gd::GDScript::4854597219142226250::1770099059::0::1::::<>BaseVisitor<><>0<>0<><>::
 submission_box.gd::GDScript::1640294149992985266::1770227613::0::1::::SubmissionBox<>Node2D<><>0<>0<><>::
 visitor_instance.gd::GDScript::4908994649003773279::1770099059::0::1::::VisitorInstance<>Node<><>0<>0<><>::
-visitor_manager.gd::GDScript::1014027118276477363::1770189855::0::1::::<>Node<><>0<>0<><>::
+visitor_manager.gd::GDScript::1014027118276477363::1770243903::0::1::::<>Node<><>0<>0<><>::

@@ -295,11 +295,11 @@ func dialogue_concluded():
 			visitor_states[state] = str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["setState"][state])
 	
 	# The following are special checks not covered by the json format, requiring manual checks.
-	if visitor_name == "Cultist" && current_visit_branch == "AskForItem":
+	if visitor_name == "Cultist" && current_visit_branch == "AskForItem" && current_dialogue_branch == "dialogue0":
 		check_condition(1) # checks if the number of cultist loops is enough
 		
-	if visitor_name == "Cultist" && current_dialogue_branch == "exit_dialogue":
-		check_condition(0) # checks which ending the cultist branch should lead to
+	#if visitor_name == "Cultist" && current_dialogue_branch == "exit_dialogue":
+		#check_condition(0) # checks which ending the cultist branch should lead to
 	
 	
 	if current_dialogue_takes_cards:

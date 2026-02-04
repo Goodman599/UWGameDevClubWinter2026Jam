@@ -163,15 +163,6 @@
         "Now, what part of yourself can you offer?"
 	  ],
 	  "cases": {
-		"finished": {
-		  "submissions": [
-            "ANY"
-		  ],
-		  "stateChecks": {
-			"Last_Submission": "true"
-		  },
-		  "result": "exit_dialogue"
-		},
 		"case0": {
 		  "submissions": [
             "Nurse's Writing"
@@ -366,11 +357,6 @@
 		"id": "AskForItem",
 		"delay": "4"
 	  }
-	},
-	"exit_dialogue": {
-	  "lines": [
-		"Greetings, child. The day of the ritual is soon approaching, and we have done everything we can to prepare. Now, we must pay for the success of the ascension.", "May the lord reward his faithful servants."
-	  ]
 	}
   },
   "success": {
