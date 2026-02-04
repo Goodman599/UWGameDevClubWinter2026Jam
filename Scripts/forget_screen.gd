@@ -18,6 +18,13 @@ func _ready():
 	forget_button.mouse_exited.connect(set_color.bind(BASE_COLOR))
 	forget_button.mouse_entered.connect(set_color.bind(HOVERED_COLOR))
 	forget_button.pressed.connect(confirmed)
+	
+	forget_button.mouse_entered.connect(_on_forget_button_hovered)
+
+func _on_forget_button_hovered():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_hover()
 
 func set_color(color : Color):
 	forget_button.self_modulate = color
@@ -31,6 +38,11 @@ func disappear():
 	hide()
 
 func confirmed():
+	# Play confirm sound
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_choice_confirm()
+	
 	MemoryManager.forget_cards()
 	
 	for child in $CardContainer.get_children():

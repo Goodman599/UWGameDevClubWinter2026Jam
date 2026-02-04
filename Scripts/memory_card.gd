@@ -192,6 +192,10 @@ func start_drag():
 	original_parent = get_parent()
 	original_z_index = z_index
 	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_pick_up_card()
+	
 	global_position = original_position
 	
 	scale = original_scale * 1.2
@@ -205,6 +209,10 @@ func stop_drag():
 		return
 	
 	is_dragging = false
+	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_put_down_card()
 	
 	if is_over_submission_area and current_submission_area:
 		drop_into_area(current_submission_area)

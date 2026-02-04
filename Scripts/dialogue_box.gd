@@ -17,13 +17,48 @@ func _ready():
 	# Hide confirm button initially
 	if confirm_button:
 		confirm_button.hide()
+		
+	$Next.pressed.connect(_on_next_pressed)
+	$Back.pressed.connect(_on_back_pressed)
+	$Confirm.pressed.connect(_on_confirm_pressed)
+	
+	$Next.mouse_entered.connect(_on_button_hovered)
+	$Back.mouse_entered.connect(_on_button_hovered)
+	$Confirm.mouse_entered.connect(_on_button_hovered)
+
+func _on_next_pressed():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_click()
+
+func _on_back_pressed():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_click()
+
+func _on_confirm_pressed():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_choice_confirm()
+
+func _on_button_hovered():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_hover()
 
 # Takes a String and puts it into the Text node
 func set_text(text : String):
-	check_for_tutorials(text)
-	
 	$Text.text = text
 	$Text.visible_characters = -1
+	
+	_play_dialogue_sound_for_current_visitor()
+
+func _play_dialogue_sound_for_current_visitor():
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	var visitor_name = VisitorManager.current_visitor_name if VisitorManager else ""
+	
+	if audio_manager and visitor_name:
+		audio_manager.play_dialogue_sound(visitor_name)
 
 
 func set_text_scroll(text : String):
@@ -31,6 +66,9 @@ func set_text_scroll(text : String):
 	
 	$Text.visible_characters = 0
 	$Text.text = text
+	
+	_play_dialogue_sound_for_current_visitor()
+	
 	var tween = get_tree().create_tween()
 	
 	# Save some time if text is super long. Scrolling will never take more than 3 seconds
@@ -40,6 +78,24 @@ func set_text_scroll(text : String):
 		tween.tween_property($Text, "visible_ratio", 1, 3)
 	await tween.finished
 	
+	# ADD DIALOGUE SOUNDS HERE
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	var visitor_name = VisitorManager.current_visitor_name if VisitorManager else "" 
+	
+	if audio_manager and visitor_name != "Demon" and visitor_name != "":
+		var scroll_time = text.length() / 40.0 if text.length() <= 120 else 3
+		var blip_interval = 0.08
+		var total_blips = int(scroll_time / blip_interval)
+		var blip_counter = 0
+		
+		while blip_counter < total_blips:
+			await get_tree().create_timer(blip_interval).timeout
+			audio_manager.play_dialogue_sound(visitor_name)
+			blip_counter += 1
+	else:
+		audio_manager.play_dialogue_sound("Demon")
+	
+	await tween.finished
 	emit_signal("scroll_finished")
 
 

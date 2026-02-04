@@ -89,6 +89,10 @@ func add_card(card: Control) -> bool:
 		card.remove_from_area()
 
 	cards.append(card)
+	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_put_down_card()
 
 	#var card_2d = create_sticky_card(card)
 	#stuck_cards.append(card_2d)

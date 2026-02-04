@@ -1,2 +1,4 @@
-res://Dialogues/Cultist.json
-res://Dialogues/Detective.json
+res://Scenes/audio_manager.tscn
+res://Scripts/audio_manager.gd
+res://Scripts/main.gd
+res://Scripts/submission_box.gd

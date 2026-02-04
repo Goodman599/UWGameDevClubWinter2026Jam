@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://r6hu10ax3s5r"
+path="res://.godot/imported/Put down card.wav-d6727dce843a7a96c17e084dbc023651.sample"
+
+[deps]
+
+source_file="res://Musics/UI-Card Sounds/Put down card.wav"
+dest_files=["res://.godot/imported/Put down card.wav-d6727dce843a7a96c17e084dbc023651.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
