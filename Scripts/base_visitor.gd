@@ -174,8 +174,10 @@ func set_visit_branch(branch_name : String) -> void:
 		var sprite = $CharacterSprite
 		sprite.visible = true
 		sprite.modulate.a = 0.0
+		dialogue_box.modulate.a = 0.0
 		var tween = create_tween()
 		tween.tween_property(sprite, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(dialogue_box, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
 # Sets the dialogue branch to the given string
@@ -306,6 +308,7 @@ func dialogue_concluded():
 			
 			var tween = create_tween()
 			tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
+			tween.parallel().tween_property(dialogue_box, "modulate:a", 0.0, 0.5)
 			
 			await tween.finished
 			
