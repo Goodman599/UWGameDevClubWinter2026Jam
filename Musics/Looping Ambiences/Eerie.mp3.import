@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ds4pa6qwostuj"
+path="res://.godot/imported/Eerie.mp3-9ace5b2b7a1983bf8c67dbf2175b36e3.mp3str"
+
+[deps]
+
+source_file="res://Musics/Looping Ambiences/Eerie.mp3"
+dest_files=["res://.godot/imported/Eerie.mp3-9ace5b2b7a1983bf8c67dbf2175b36e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

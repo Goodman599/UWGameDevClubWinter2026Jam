@@ -11,8 +11,9 @@ func _init():
 		"Signed_Baseball_Submitted": false,
 		"Friends_Card_Submitted": false,
 		"Souvenir_Submitted": false,
-		"Flowers_Submitted": false
+		"Flowers_Submitted": false,
 		
+		"Last_Submission": false
 	}
 	
 

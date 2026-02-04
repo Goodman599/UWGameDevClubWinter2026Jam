@@ -1,2 +1,5 @@
 res://Dialogues/Detective.json
 res://Dialogues/Nurse.json
+res://Dialogues/Cultist.json
+res://Scripts/cultist.gd
+res://Dialogues/Endings.json

@@ -165,7 +165,7 @@
 	  "cases": {
 		"case0": {
 		  "submissions": [
-            "Nurse’s Writing"
+            "Nurse's Writing"
 		  ],
 		  "stateChecks": {
 			"Nurses_Writing_Submitted": "false"
@@ -355,72 +355,6 @@
 	  ],
 	  "nextVisit": {
 		"id": "AskForItem",
-		"delay": "4"
-	  }
-	}
-  },
-  "wastingTime": {
-	"dialogue0": {
-	  "accepts": [
-        "person"
-	  ],
-	  "setState": {
-		"Investigated_Demon": "true"
-	  },
-	  "lines": [
-		"Hey. Turns out, that was a tremendous waste of time. I wasted precious time, gained no new information. I hope this doesn't happen again. ", "Now, who else do you think is suspicious?"
-	  ],
-	  "cases": {
-		"case0": {
-		  "submissions": [
-            "Father Neal"
-		  ],
-		  "stateChecks": {
-			"Investigated_Cultist": "false"
-		  },
-		  "result": "invFat"
-		},
-		"case1": {
-		  "submissions": [
-            "Shadowy Figure"
-		  ],
-		  "stateChecks": {
-			"Investigated_Demon": "false"
-		  },
-		  "result": "invSha"
-		},
-		"fallback": {
-		  "submissions": [
-            "ANY"
-		  ],
-		  "result": "fallback"
-		}
-	  }
-	},
-	"invFat": {
-	  "lines": [
-        "Father Neal, huh. I wouldn't be surprised if that priest had some secrets."
-	  ],
-	  "nextVisit": {
-		"id": "investigatingFat",
-		"delay": "4"
-	  }
-	},
-	"invSha": {
-	  "lines": [
-        "The info I'm getting from you is pretty vague. You want me to investigate a phantom? I'll take a look for any information in the libraries."
-	  ],
-	  "nextVisit": {
-		"id": "investigatingSha",
-		"delay": "4"
-	  }
-	},
-	"fallback": {
-	  "lines": [
-        "I don't see how spending more time on this can help us, but I'll do my best."
-	  ],
-	  "nextVisit": {
-		"id": "wastingTime",
 		"delay": "4"
 	  }
 	}
