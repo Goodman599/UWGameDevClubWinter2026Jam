@@ -215,20 +215,15 @@ func stop_drag():
 		if !swapping:
 			return_to_original()
 			
-		var card_width = valid_cards[0].size.x
 		var smallest_distance : float = abs(self.global_position.x - valid_cards[0].global_position.x)
 		var closest_index = 0
 		
 		for i in range(valid_cards.size()):
-			print(self.global_position, "  ", valid_cards[i].global_position)
-			print(abs(self.global_position.x - valid_cards[i].global_position.x))
 			if smallest_distance > abs(self.global_position.x - valid_cards[i].global_position.x):
 				smallest_distance = abs(self.global_position.x - valid_cards[i].global_position.x)
 				closest_index = i
 		
 		MemoryManager.swap_cards(self, valid_cards[closest_index])
-		
-		
 		
 	else:
 		return_to_original()

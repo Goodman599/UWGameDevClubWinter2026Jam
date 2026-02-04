@@ -31,7 +31,6 @@ func _ready():
 	
 	for i in range(MemoryManager.max_memories):
 		card_container.add_child(dummy_card_scene.instantiate())
-		MemoryManager.collected_memories.append(null)
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):

@@ -10,3 +10,4 @@ res://Scripts/main.gd
 res://Scripts/memory_card.gd
 res://Scripts/memory_manager.gd
 res://Scripts/base_visitor.gd
+res://Scenes/card_view.tscn
