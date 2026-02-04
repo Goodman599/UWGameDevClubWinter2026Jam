@@ -3,3 +3,7 @@ res://Scripts/submission_box.gd
 res://Scripts/memory_card.gd
 res://Scripts/forget_screen.gd
 res://Scenes/card_view.tscn
+res://Scenes/submission_box.tscn
+res://Scripts/memory_manager.gd
+res://Scripts/visitor_manager.gd
+res://Scenes/ui.tscn

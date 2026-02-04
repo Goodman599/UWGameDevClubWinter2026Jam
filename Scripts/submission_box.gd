@@ -72,6 +72,9 @@ func can_accept_card(card_type: String) -> bool:
 	return accepts_card_type(card_type) and cards.size() < max_cards
 
 func add_card(card: Control) -> bool:
+	if !visible:
+		return false
+	
 	var card_type = card.get_card_type() if card.has_method("get_card_type") else ""
 	
 	if not accepts_card_type(card_type):
