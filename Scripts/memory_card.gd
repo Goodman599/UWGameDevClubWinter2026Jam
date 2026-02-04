@@ -15,6 +15,12 @@ const COLOR_FEELING = Color("#a349a4")
 const COLOR_ITEM = Color("d36529ff")
 const COLOR_ACTION = Color("890029ff")
 
+const BG_COLOR_PERSON = Color("ccecfeff")
+const BG_COLOR_EVENT = Color("2ff86cff")
+const BG_COLOR_FEELING = Color("db91daff")
+const BG_COLOR_ITEM = Color("fcc0a6ff")
+const BG_COLOR_ACTION = Color("ff6075ff")
+
 var memory_key: String = ""
 var memory_type: int = 0
 var is_dragging: bool = false
@@ -55,26 +61,63 @@ func setup(data:MemoryData):
 	content_label.text = data.display_text
 	var target_color = Color.WHITE
 	
+	# Reset bg to default (colored background, no texture)
+	if bg:
+		bg.texture = null  # Clear any previous texture
+		bg.show()
+		bg.modulate = Color.WHITE  # Reset color
+		
 	match data.type:
 		MemoryData.MemoryType.Person:
 			type_label.text = "Person"
 			target_color = COLOR_PERSON
+			
+			if bg:
+				# Try to load custom art based on display_name
+				var display_name = content_label.text
+				print("Loading art for: ", display_name)
+				
+				# Clean up the display name for filename
+				var clean_name = display_name.to_lower()
+				var art_texture = load("res://Assets/" + clean_name + "_card.png")
+				
+				if art_texture:
+					# Set the custom art texture
+					bg.texture = art_texture
+					bg.modulate = Color.WHITE  # Show art in original colors
+					# Don't hide! We want to show the art
+				else:
+					# Fallback to colored background if no art found
+					print("Warning: No art found for ", display_name)
+					bg.modulate = BG_COLOR_PERSON
 		
 		MemoryData.MemoryType.Event:
 			type_label.text = "Event"
 			target_color = COLOR_EVENT
+			if bg:
+				bg.texture = load("res://Assets/card_view.png")  # Ensure no custom art
+				bg.modulate = BG_COLOR_EVENT
 			
 		MemoryData.MemoryType.Feeling:
 			type_label.text = "Feeling"
 			target_color = COLOR_FEELING
+			if bg:
+				bg.texture = load("res://Assets/card_view.png")
+				bg.modulate = BG_COLOR_FEELING
 			
 		MemoryData.MemoryType.Item:
 			type_label.text = "Item"
 			target_color = COLOR_ITEM
+			if bg:
+				bg.texture = load("res://Assets/card_view.png")
+				bg.modulate = BG_COLOR_ITEM
 			
 		MemoryData.MemoryType.Action:
 			type_label.text = "Action"
 			target_color = COLOR_ACTION
+			if bg:
+				bg.texture = load("res://Assets/card_view.png")
+				bg.modulate = BG_COLOR_ACTION
 			
 	type_label.modulate = target_color
 

@@ -1,15 +1,4 @@
-res://Scenes/main.tscn
-res://Scripts/memory_manager.gd
-res://Scripts/forget_screen.gd
-res://Scenes/forget_screen.tscn
 res://Scenes/card_view.tscn
-res://Scripts/base_visitor.gd
-res://Scripts/black_screen.gd
-res://Scripts/dialogue_box.gd
 res://Scripts/main.gd
-res://Scripts/memory_card.gd
-res://Scripts/submission_box.gd
-res://Scripts/visitor_manager.gd
-res://Scenes/ui.tscn
 res://Scenes/dialogue_box.tscn
-res://Scenes/submission_box.tscn
+res://Scripts/memory_card.gd
