@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cokt0ly301hkp"]
 
 [ext_resource type="Texture2D" uid="uid://dv2psjtllpucq" path="res://Assets/StartMenu.png" id="1_juhg0"]
-[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_m6uer"]
+[ext_resource type="Script" uid="uid://dh4ks0r1g3e6s" path="res://Scripts/start_menu.gd" id="1_m6uer"]
 [ext_resource type="PackedScene" uid="uid://hoorcejsr43n" path="res://Scenes/audio_manager.tscn" id="3_m6uer"]
 
 [node name="StartMenu" type="Control"]

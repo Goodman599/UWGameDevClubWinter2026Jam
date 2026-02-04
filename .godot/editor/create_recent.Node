@@ -1,8 +1,10 @@
+TextureRect
+Panel
+CanvasLayer
 ColorRect
 AudioStreamPlayer
 Button
 MenuButton
-TextureRect
 Control
 Node2D
 TextureButton
@@ -10,4 +12,3 @@ VBoxContainer
 HBoxContainer
 Sprite2D
 CollisionShape2D
-Area2D

@@ -7,3 +7,7 @@ res://Scripts/dialogue_box.gd
 res://Scripts/forget_screen.gd
 res://Scripts/black_screen.gd
 res://Scenes/black_screen.tscn
+res://Scenes/blink_transition.tscn
+res://Scripts/blink_transition.gd
+res://Scenes/start_menu.tscn
+res://Scripts/visitor_manager.gd
