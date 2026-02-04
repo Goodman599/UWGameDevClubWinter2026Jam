@@ -1,6 +1,6 @@
 extends Control
+class_name MemoryCard
 
-signal selection_toggled(card_node, is_selected)
 signal card_drag_started(card_node)
 signal card_drag_ended(card_node)
 signal card_dropped_in_area(card_node, area)
@@ -15,8 +15,14 @@ const COLOR_FEELING = Color("#a349a4")
 const COLOR_ITEM = Color("d36529ff")
 const COLOR_ACTION = Color("890029ff")
 
+const BG_COLOR_PERSON = Color("ccecfeff")
+const BG_COLOR_EVENT = Color("2ff86cff")
+const BG_COLOR_FEELING = Color("db91daff")
+const BG_COLOR_ITEM = Color("fcc0a6ff")
+const BG_COLOR_ACTION = Color("ff6075ff")
+
 var memory_key: String = ""
-var is_selected: bool = false
+var memory_type: int = 0
 var is_dragging: bool = false
 var is_click_started_on_card: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -24,7 +30,7 @@ var original_position: Vector2 = Vector2.ZERO
 var original_parent: Control
 var original_z_index: int = 0
 var original_scale: Vector2 = Vector2.ONE
-var drag_threshold: float = 10.0 
+var drag_threshold: float = 1.0 
 var stuck_to_box: Node = null
 
 var is_over_submission_area: bool = false
@@ -33,6 +39,14 @@ var current_submission_area: Node2D = null
 var default_pos_type: Vector2
 var default_pos_content: Vector2
 var default_pos_bg: Vector2
+
+var original: MemoryCard
+var is_copy_of_forgotten: bool = false
+
+var card_view_texture = preload("res://Assets/card_view.png")
+
+@export var is_dummy: bool = false
+@export var can_swap: bool = true
 
 func _ready():
 	default_pos_type = type_label.position
@@ -48,40 +62,101 @@ func _ready():
 
 func setup(data:MemoryData):
 	memory_key = data.id
+	memory_type = data.type
 	content_label.text = data.display_text
 	var target_color = Color.WHITE
 	
+	# Reset bg to default (colored background, no texture)
+	if bg:
+		bg.texture = null  # Clear any previous texture
+		bg.show()
+		bg.modulate = Color.WHITE  # Reset color
+		
 	match data.type:
 		MemoryData.MemoryType.Person:
 			type_label.text = "Person"
 			target_color = COLOR_PERSON
+			
+			if bg:
+				# Try to load custom art based on display_name
+				var display_name = content_label.text
+				
+				# Clean up the display name for filename
+				var clean_name : String
+				match display_name:
+					"Nurse":
+						clean_name = "nurse"
+					"Father Neal":
+						clean_name = "cultist"
+					"Detective Raede":
+						clean_name = "detective"
+					"Shadowy Figure":
+						clean_name = "demon"
+					"Best Friend":
+						clean_name = "friend"
+					"Mom":
+						clean_name = "mom"
+					"Mrs. Wren":
+						clean_name = "collector"
+				
+				var art_texture = load("res://Assets/" + clean_name + "_card.png")
+				
+				if art_texture:
+					# Set the custom art texture
+					bg.texture = art_texture
+					bg.modulate = Color.WHITE  # Show art in original colors
+					# Don't hide! We want to show the art
+				else:
+					# Fallback to colored background if no art found
+					print("Warning: No art found for ", display_name)
+					bg.texture = card_view_texture
+					bg.modulate = BG_COLOR_PERSON
 		
 		MemoryData.MemoryType.Event:
 			type_label.text = "Event"
 			target_color = COLOR_EVENT
+			if bg:
+				bg.texture = card_view_texture  # Ensure no custom art
+				bg.modulate = BG_COLOR_EVENT
 			
 		MemoryData.MemoryType.Feeling:
 			type_label.text = "Feeling"
 			target_color = COLOR_FEELING
+			if bg:
+				bg.texture = card_view_texture
+				bg.modulate = BG_COLOR_FEELING
 			
 		MemoryData.MemoryType.Item:
 			type_label.text = "Item"
 			target_color = COLOR_ITEM
+			if bg:
+				bg.texture = card_view_texture
+				bg.modulate = BG_COLOR_ITEM
 			
 		MemoryData.MemoryType.Action:
 			type_label.text = "Action"
 			target_color = COLOR_ACTION
+			if bg:
+				bg.texture = card_view_texture
+				bg.modulate = BG_COLOR_ACTION
 			
 	type_label.modulate = target_color
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if is_dummy:
+			return
+		
 		if event.pressed:
 			is_click_started_on_card = true
 			drag_offset = get_local_mouse_position()
 			original_position = global_position
 			
-			toggle_selection()
+			if is_copy_of_forgotten:
+				MemoryManager.cards_to_forget.erase(original)
+				queue_free()
+			elif MemoryManager.in_forget_mode:
+				MemoryManager.add_card_to_forget(self)
 		else:
 			if is_click_started_on_card and not is_dragging:
 				pass
@@ -96,6 +171,16 @@ func _gui_input(event):
 		if mouse_move_distance > drag_threshold:
 			start_drag()
 
+# A method to make a card a copy of another card
+func copy_attributes(card : MemoryCard) -> void:
+	original = card
+	
+	var memory_data = MemoryData.new()
+	memory_data.id = card.memory_key
+	memory_data.type = card.memory_type
+	memory_data.display_text = card.content_label.text
+	setup(memory_data)
+
 func _process(_delta):
 	if is_dragging:
 		global_position = get_global_mouse_position() - drag_offset
@@ -103,14 +188,14 @@ func _process(_delta):
 		check_submission_areas()
 
 func start_drag():
-	if  not is_selected:
-		return
-	
 	is_dragging = true
 	original_parent = get_parent()
 	original_z_index = z_index
 	
-	get_tree().root.add_child(self)
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_pick_up_card()
+	
 	global_position = original_position
 	
 	scale = original_scale * 1.2
@@ -125,8 +210,35 @@ func stop_drag():
 	
 	is_dragging = false
 	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_put_down_card()
+	
 	if is_over_submission_area and current_submission_area:
 		drop_into_area(current_submission_area)
+	elif $Hitbox.get_overlapping_areas().size() > 0:
+		var swapping = false
+		
+		var valid_cards : Array[MemoryCard] = []
+		for area in $Hitbox.get_overlapping_areas():
+			if area.get_parent() is MemoryCard and area.get_parent().can_swap:
+				valid_cards.append(area.get_parent())
+				
+				swapping = true
+		
+		if !swapping:
+			return_to_original()
+		else:
+			var smallest_distance : float = abs(self.global_position.x - valid_cards[0].global_position.x)
+			var closest_index = 0
+			
+			for i in range(valid_cards.size()):
+				if smallest_distance > abs(self.global_position.x - valid_cards[i].global_position.x):
+					smallest_distance = abs(self.global_position.x - valid_cards[i].global_position.x)
+					closest_index = i
+			
+			MemoryManager.swap_cards(self, valid_cards[closest_index])
+		
 	else:
 		return_to_original()
 	
@@ -138,6 +250,9 @@ func stop_drag():
 	current_submission_area = null
 	
 	card_drag_ended.emit(self)
+
+
+
 
 # In memory_card.gd, modify check_submission_areas():
 func check_submission_areas():
@@ -188,7 +303,7 @@ func drop_into_area(area: Node2D):
 		else:
 			return_to_original()
 			return
-			
+	
 	return_to_original()
 
 func return_to_original():
@@ -200,27 +315,6 @@ func return_to_original():
 	
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "global_position", original_position, 0.3)
-
-func toggle_selection():
-	if is_dragging or current_submission_area:
-		return
-	
-	is_selected = not is_selected
-	selection_toggled.emit(self, is_selected)
-
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	var offset = Vector2(0, -15) if is_selected else Vector2.ZERO
-	
-	tween.tween_property(type_label, "position", default_pos_type + offset, 0.2)
-	tween.tween_property(content_label, "position", default_pos_content + offset, 0.2)
-	if bg:
-		tween.tween_property(bg, "position", default_pos_bg + offset, 0.2)
-		
-	var target_modulate = Color(0.6, 0.6, 0.6) if is_selected else Color(1, 1, 1)
-	tween.tween_property(self, "modulate", target_modulate, 0.2)
-	
-	var target_scale = Vector2(1.05, 1.05) if is_selected else Vector2.ONE
-	tween.tween_property(self, "scale", target_scale, 0.2)
 
 func get_memory_data() -> Dictionary:
 	return {
@@ -246,7 +340,7 @@ func _on_mouse_entered():
 		tween.tween_property(self, "scale", original_scale * 1.05, 0.1)
 
 func _on_mouse_exited():
-	if not is_dragging and not is_selected:
+	if not is_dragging:
 		var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "scale", original_scale, 0.1)
 
@@ -258,7 +352,6 @@ func set_stuck_to_box(box: Node):
 	
 	if box:
 		is_dragging = false
-		is_selected = false
 
 		modulate = Color(1, 1, 1, 0.5)
 	else:

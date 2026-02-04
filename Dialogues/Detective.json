@@ -6,7 +6,9 @@
         "feeling"
 	  ],
 	  "lines": [
-		"Hey. Hello. I’m {Detective Raede}[Person, Detective Raede], call me… uh… nevermind. Tough situation you’re in, huh. I’m not gonna pretend I understand how you feel. I don’t. But things are not as they seem.", "I can’t go into the details right now, but I’m working on a solution. For now, let’s just say I’m working on a case, and my only witness is… unresponsive.", "Enough about me. How are you feeling? Good?"
+		"Hey. Hello. I’m {Detective Raede}[Person, Detective Raede], call me… uh… nevermind. Tough situation you’re in, huh. I’m not gonna pretend I understand how you feel. I don’t. But things are not as they seem.",
+		"I can’t go into the details right now, but I’m working on a solution. For now, let’s just say I’m working on a case, and my only witness is… unresponsive.",
+        "Enough about me. How are you feeling? Good?"
 	  ],
 	  "cases": {
 		"case0": {
@@ -38,7 +40,6 @@
 		  "result": "dialogue4"
 		}
 	  }
-	  
 	},
 	"dialogue1": {
 	  "lines": [
@@ -66,8 +67,402 @@
 	},
 	"dialogue5": {
 	  "lines": [
-		"I know you’re going through a lot, but I’m gonna need you to do something for me, alright? From now on, people will start coming to see you. You might know them, you might not. I need you to do your utmost to remember as many details as possible about them. Believe me, together, we can find a way out of this. Never lose {hope}[feeling, Hope]. We will meet again.", "The detective leaves, closing the door behind him. Even if you remember things, how are you supposed to tell him?"
-	  ]
+		"I know you’re going through a lot, but I’m gonna need you to do something for me, alright? From now on, people will start coming to see you. You might know them, you might not. I need you to do your utmost to remember as many details as possible about them. Believe me, together, we can find a way out of this. Never lose {hope}[feeling, Hope]. We will meet again.",
+        "The detective leaves, closing the door behind him. Even if you remember things, how are you supposed to tell him?"
+	  ],
+	  "nextVisit": {
+		"id": "Day6",
+		"delay": "8"
+	  }
+	}
+  },
+  "Day6": {
+	"dialogue0": {
+	  "accepts": [
+        "Item"
+	  ],
+	  "lines": [
+		"Hey there. This is {Raede}[Person, Detective Raede] again. Hope you’re feeling better.",
+		"I’ve done some digging, and it’s pretty obvious something strange is going on here.",
+		"Let’s start from the beginning, just to get you {caught up}[Event, Car Accident]. Almost two weeks ago, at around midnight, you were driving alone from the church back to your home, which matches your routine for the past few months. The trip takes around twenty minutes, and five minutes into the drive, at a completely deserted intersection, you suddenly accelerate through a red light and crash into a lamp post.",
+		"Considering it was raining hard, losing control is nothing out of the ordinary. What’s suspicious is, all records related to the crash are gone. Not a single one left! Hundreds of crashes like this happen every day in the US, what’s so special about yours?",
+		"I know you can’t answer my questions very effectively in your current state, but I am not worried about that.\n\n<The detective winks at you.>",
+		"Please just stay vigilant, as anyone involved in hiding the records is certain to try and silence the victim as well. Remember as many details as you can. Every bit of info is valuable, especially if something, or someone, is suspicious.",
+        "Just for now, is there any way I can help you? Just… do your best to indicate. I am quite observant."
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Nurse's Writing"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+		"<You do your best to look towards the nurse’s writing on the wall behind you. It is just barely out of sight.>",
+		"Oh, is this what you’re looking for? It’s a progress report of your condition, and it looks… alarming, to say the least. The doctors are stumped, their normal treatment for nervous system injury is not working. This just confirms my suspicions. There is something deeply unusual with your injury.",
+        "There’s not much else we can do now, but do not lose {hope}[feeling, Hope].  I will be visiting again very soon. Goodbye."
+	  ],
+	  "nextVisit": {
+		"id": "Night9",
+		"delay": "7"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+        "Well… What did I expect? It’s not an issue. There is still {hope}[feeling, Hope]. I will be visiting again very soon. Goodbye."
+	  ],
+	  "nextVisit": {
+		"id": "Night9",
+		"delay": "7"
+	  }
+	}
+  },
+  "Night9": {
+	"dialogue0": {
+	  "accepts": [
+        "Item"
+	  ],
+	  "lines": [
+		"<You hear a light knock on the door. {Detective Raede}[Person, Detective Raede] swiftly enters the room, before quietly closing the door behind him.>\n\nThe security here is laughable. Sometimes it’s hard to believe how far a badge and a reflective uniform can get you these days.",
+		"Sorry to disturb you. I wouldn’t do so if this wasn’t important. I have truly exhausted my options, so I am forced into taking more drastic measures.",
+		"First, I must admit, I have not been entirely truthful with you. I am not a public servant, nor a hired private investigator.",
+		"Decades ago, when I was working for the government, I was tasked with investigating strange occurrences, such as your car accident. Mind you, strange things happen all the time, but I would always have a hunch for when things are truly abnormal, because when I looked at a person carefully enough, I just KNEW.",
+		"I knew if people were lying. I knew what color their underwear was. I knew what they had eaten for breakfast, and who they had it with.",
+		"Call it a sixth sense… Call me a psychic… I don’t even know why I can do this. I never told anyone, and just used my skill for investigative work. After I got to know my bosses in the government, I quit very quickly. I knew I wasn’t using my talent for humanity’s benefit.",
+		"I noticed that, on the day of your accident, the ground quaked and the sky darkened. The changes were subtle, imperceptible to most people, but I noticed right away. I came to visit you when you were still unconscious, and when I saw you, I was shaken to the core…",
+		"It’s… It’s… hard to explain. You looked nothing like any of the other people I saw. In fact, you didn’t look like a person. Yet there you were, lying in the hospital bed.",
+        "I can tell right now that you are just as confused as I am, but also that you don’t entirely believe {my story}[Event, Detective’s Story]. Let me prove it to you. Please, think of something that I would never expect."
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Strong Sedatives"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "Anime Poster"
+		  ],
+		  "result": "dialogue2"
+		},
+		"case2": {
+		  "submissions": [
+            "Nurse's Writing"
+		  ],
+		  "result": "dialogue3"
+		},
+		"case3": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "dialogue4"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+        "You were given sedatives so strong they knocked you out for a whole day. This is a bad sign, because it means the only way they can make you feel better, is to make you feel nothing at all. But this is besides the point. I hope this is enough to prove my credibility."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue2": {
+	  "lines": [
+        "Your favorite anime is… uh… Okay I give up. The name is too long for me to detect, but growing up with a father who preached of the supernatural, you’ve always been drawn to greater powers, religious or not. I hope this is enough to prove my credibility."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue3": {
+	  "lines": [
+        "Uh… You’re thinking of the nurse’s note, but this is not as helpful, as I can see it, but you can’t. Either way, I knew you were thinking of the note, so I hope this is enough to prove my credibility."
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue4": {
+	  "lines": [
+        "Uh… You’re not thinking of anything. I can’t blame you. I can tell you have amnesia, but you’re just going to have to trust me during this process, okay?"
+	  ],
+	  "result": "dialogue5"
+	},
+	"dialogue5": {
+	  "accepts": [
+        "person"
+	  ],
+	  "lines": [
+		"You remember how I asked you to take note of suspicious things and people? I need a lead, a place to start. Who do you think I should investigate first? I likely won’t have enough time for more than 3 investigations, so I’m counting on you.",
+        "Who should I start with?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Father Neal"
+		  ],
+		  "stateChecks": {
+			"Investigated_Cultist": "false"
+		  },
+		  "result": "invFat"
+		},
+		"case1": {
+		  "submissions": [
+            "Shadowy Figure"
+		  ],
+		  "stateChecks": {
+			"Investigated_Demon": "false"
+		  },
+		  "result": "invSha"
+		},
+		"fallback": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "fallback"
+		}
+	  }
+	},
+	"invFat": {
+	  "lines": [
+        "Father Neal, huh. I wouldn't be surprised if that priest had some secrets."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingFat",
+		"delay": "4"
+	  }
+	},
+	"invSha": {
+	  "lines": [
+        "The info I'm getting from you is pretty vague. You want me to investigate a phantom? I'll take a look for any information in the libraries."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingSha",
+		"delay": "4"
+	  }
+	},
+	"fallback": {
+	  "lines": [
+        "I don't see how spending more time on this can help us, but I'll do my best."
+	  ],
+	  "nextVisit": {
+		"id": "wastingTime",
+		"delay": "4"
+	  }
+	}
+  },
+  "investigatingFat": {
+	"dialogue0": {
+	  "accepts": [
+        "person"
+	  ],
+	  "setState": {
+		"Investigated_Cultist": "true"
+	  },
+	  "lines": [
+		"Hey. I must thank you for your suggestion to investigate {Neal}[Person, Father Neal], because he is more dangerous than he looks.",
+		"This guy’s history is a mystery. No government records, no yearbook photos, nothing! He has seemingly no connection to anything or anyone outside of the church, where he is a well-known priest, loved by everyone.",
+		"I followed him around at the church for a long while. It looked like he was just an ordinary member of the church! He preached, he lectured, he took donations, all that church stuff.",
+		"When the day was over and he left for a side hallway, I followed him. But guess what? There were security guards all over the place! They were carrying no weapons, but the one who found me grabbed me with such force! He was a slender man, but he damn nearly broke my wrist!",
+		"I told them I got lost looking for the bathroom, but I don’t think they believed me. All I’m telling you is, watch out for that man!",
+        "Now, who else do you think is suspicious?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Father Neal"
+		  ],
+		  "stateChecks": {
+			"Investigated_Cultist": "false"
+		  },
+		  "result": "invFat"
+		},
+		"case1": {
+		  "submissions": [
+            "Shadowy Figure"
+		  ],
+		  "stateChecks": {
+			"Investigated_Demon": "false"
+		  },
+		  "result": "invSha"
+		},
+		"fallback": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "fallback"
+		}
+	  }
+	},
+	"invFat": {
+	  "lines": [
+        "Father Neal, huh. I wouldn't be surprised if that priest had some secrets."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingFat",
+		"delay": "4"
+	  }
+	},
+	"invSha": {
+	  "lines": [
+        "The info I'm getting from you is pretty vague. You want me to investigate a phantom? I'll take a look for any information in the libraries."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingSha",
+		"delay": "4"
+	  }
+	},
+	"fallback": {
+	  "lines": [
+        "I don't see how spending more time on this can help us, but I'll do my best."
+	  ],
+	  "nextVisit": {
+		"id": "wastingTime",
+		"delay": "4"
+	  }
+	}
+  },
+  "investigatingSha": {
+	"dialogue0": {
+	  "accepts": [
+        "person"
+	  ],
+	  "setState": {
+		"Investigated_Demon": "true"
+	  },
+	  "lines": [
+		"Hey. I think we’re onto something, so I’ll just cut to the chase. The description in your mind of the {shadow}[Person, Shadowy Figure] was, frankly, quite vague. Plus, I probably wouldn’t even believe you, if not for our unusual circumstances. Of course, there are many historical records of hysteria, hallucinations, and other attempted explanations for what you could have seen, but I believe I have found the real cause.",
+		"I did a lot of digging, both online and offline. All evidence suggests you are likely seeing a nascent form of some higher being. By higher being, I mean a being that treats the laws of reality and physics as mere guidelines. Kind of like how we might treat, say, traffic lights.",
+		"These higher beings exist outside the confines of our world. They are almost utterly untouchable by us. Almost.",
+		"They do have one weakness: they technically do not exist in our material world. As beings outside the sandbox game, they must take control of a character within the game, if they want to influence it. We might be able to close the game, or so to speak, rendering the higher being powerless to affect us.",
+		"All evidence leads to the {Scorned Sigillum}[Item] being the key to this process. Nobody knows who it originally belonged to, probably because it didn’t belong to anyone from our world. Throughout history, there have been many civilisations who have attempted a ritual to summon such an outer being into our world, and in exchange, they hoped to gain its favor. The ritual is apparently quite easy, with the hardest part being establishing contact with the higher being in the first place. If the ritual succeeds, the host’s body would be piloted by the outer being.",
+		"This means you are safe, at least for a little while longer.",
+		"Now, who else do you think is suspicious?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Father Neal"
+		  ],
+		  "stateChecks": {
+			"Investigated_Cultist": "false"
+		  },
+		  "result": "invFat"
+		},
+		"case1": {
+		  "submissions": [
+            "Shadowy Figure"
+		  ],
+		  "stateChecks": {
+			"Investigated_Demon": "false"
+		  },
+		  "result": "invSha"
+		},
+		"fallback": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "fallback"
+		}
+	  }
+	},
+	"invFat": {
+	  "lines": [
+        "Father Neal, huh. I wouldn't be surprised if that priest had some secrets."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingFat",
+		"delay": "4"
+	  }
+	},
+	"invSha": {
+	  "lines": [
+        "The info I'm getting from you is pretty vague. You want me to investigate a phantom? I'll take a look for any information in the libraries."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingSha",
+		"delay": "4"
+	  }
+	},
+	"fallback": {
+	  "lines": [
+        "I don't see how spending more time on this can help us, but I'll do my best."
+	  ],
+	  "nextVisit": {
+		"id": "wastingTime",
+		"delay": "4"
+	  }
+	}
+  },
+  "wastingTime": {
+	"dialogue0": {
+	  "accepts": [
+        "person"
+	  ],
+	  "setState": {
+		"Investigated_Demon": "true"
+	  },
+	  "lines": [
+		"So last two days were a giant waste of time. You got any more suspects?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Father Neal"
+		  ],
+		  "stateChecks": {
+			"Investigated_Cultist": "false"
+		  },
+		  "result": "invFat"
+		},
+		"case1": {
+		  "submissions": [
+            "Shadowy Figure"
+		  ],
+		  "stateChecks": {
+			"Investigated_Demon": "false"
+		  },
+		  "result": "invSha"
+		},
+		"fallback": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "fallback"
+		}
+	  }
+	},
+	"invFat": {
+	  "lines": [
+        "Father Neal, huh. I wouldn't be surprised if that priest had some secrets."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingFat",
+		"delay": "4"
+	  }
+	},
+	"invSha": {
+	  "lines": [
+        "The info I'm getting from you is pretty vague. You want me to investigate a phantom? I'll take a look for any information in the libraries."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingSha",
+		"delay": "4"
+	  }
+	},
+	"fallback": {
+	  "lines": [
+        "I don't see how spending more time on this can help us, but I'll do my best."
+	  ],
+	  "nextVisit": {
+		"id": "wastingTime",
+		"delay": "4"
+	  }
 	}
   }
 }

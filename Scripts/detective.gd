@@ -4,7 +4,8 @@ extends BaseVisitor
 
 func _init():	
 	visitor_states = {
-		
+		"Investigated_Cultist" = false,
+		"Investigated_Demon" = false
 	}
 
 	

@@ -1,34 +1,32 @@
-[gd_scene load_steps=13 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=20 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://cdr6auqdcg70j" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
 [ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
-[ext_resource type="Texture2D" uid="uid://b8qijc07r2nb4" path="res://Assets/day_background.png" id="2_6bp64"]
+[ext_resource type="Texture2D" uid="uid://d2fomhmv6aug3" path="res://Assets/night_background.png" id="2_6iyac"]
 [ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
-[ext_resource type="Texture2D" uid="uid://bvc7tsmbmap8e" path="res://Assets/day_player.png" id="3_344ge"]
-[ext_resource type="Script" path="res://Scripts/demon.gd" id="5_344ge"]
+[ext_resource type="Script" uid="uid://blqccgtk7jc4s" path="res://Scripts/demon.gd" id="5_344ge"]
 [ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
-[ext_resource type="Script" path="res://Scripts/detective.gd" id="6_ynf5e"]
-[ext_resource type="Script" path="res://Scripts/cultist.gd" id="7_hptm8"]
-[ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
-[ext_resource type="PackedScene" uid="uid://cd556cexy6fo5" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
-[ext_resource type="PackedScene" uid="uid://b0ah3vi4n7ged" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
+[ext_resource type="Script" uid="uid://cyyw0hnp0txc2" path="res://Scripts/detective.gd" id="6_ynf5e"]
+[ext_resource type="Script" uid="uid://ffodg6uf7ohb" path="res://Scripts/cultist.gd" id="7_hptm8"]
+[ext_resource type="Script" uid="uid://cbfuriar2ryas" path="res://Scripts/nurse.gd" id="8_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://ciswcvrcm3we3" path="res://Assets/night_player.png" id="8_fdnlq"]
+[ext_resource type="Script" path="res://Scripts/friend.gd" id="8_h1bgf"]
+[ext_resource type="Script" path="res://Scripts/mom.gd" id="9_b3802"]
+[ext_resource type="Script" path="res://Scripts/collector.gd" id="10_b3802"]
+[ext_resource type="PackedScene" uid="uid://c1nkk5odx3lik" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
+[ext_resource type="PackedScene" uid="uid://dokmbuibnqqms" path="res://Scenes/forget_screen.tscn" id="13_fdnlq"]
+[ext_resource type="PackedScene" path="res://Scenes/tutorial_box_1.tscn" id="13_wsu2k"]
+[ext_resource type="PackedScene" path="res://Scenes/tutorial_box_2.tscn" id="14_k12tt"]
+[ext_resource type="PackedScene" path="res://Scenes/tutorial_box_3.tscn" id="15_h1bgf"]
+[ext_resource type="PackedScene" uid="uid://hoorcejsr43n" path="res://Scenes/audio_manager.tscn" id="19_fevyy"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
 
-[node name="day_background" type="Sprite2D" parent="."]
+[node name="background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
 scale = Vector2(0.5997396, 0.6013889)
-texture = ExtResource("2_6bp64")
-
-[node name="day_player_ui" type="Sprite2D" parent="day_background"]
-scale = Vector2(0.99609196, 0.9990378)
-texture = ExtResource("3_344ge")
-
-[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
-unique_name_in_owner = true
-
-[node name="UI" parent="." instance=ExtResource("3_8gbba")]
+texture = ExtResource("2_6iyac")
 
 [node name="Visitors" type="Node2D" parent="."]
 
@@ -36,25 +34,60 @@ unique_name_in_owner = true
 script = ExtResource("5_344ge")
 visitor_name = "Demon"
 
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Demon"]
+position = Vector2(900, 100)
+
 [node name="Detective" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("6_ynf5e")
 visitor_name = "Detective"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Detective"]
+position = Vector2(900, 100)
 
 [node name="Cultist" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("7_hptm8")
 visitor_name = "Cultist"
 
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Cultist"]
+position = Vector2(900, 100)
+
 [node name="Nurse" parent="Visitors" instance=ExtResource("1_1k0k3")]
 script = ExtResource("8_d1ilt")
 visitor_name = "Nurse"
 
-[node name="TutorialBox" parent="." instance=ExtResource("11_d1ilt")]
-visible = false
-self_modulate = Color(0.58431375, 1, 0.5921569, 1)
-offset_left = 826.99994
-offset_top = 71.000015
-offset_right = 3127.0
-offset_bottom = 1350.9998
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Nurse"]
+position = Vector2(900, 100)
+
+[node name="Friend" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("8_h1bgf")
+visitor_name = "Friend"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Friend"]
+position = Vector2(900, 100)
+
+[node name="Mom" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("9_b3802")
+visitor_name = "Mom"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Mom"]
+position = Vector2(900, 100)
+
+[node name="Collector" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("10_b3802")
+visitor_name = "Collector"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Collector"]
+position = Vector2(900, 100)
+
+[node name="player_ui" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.5973958, 0.6008102)
+texture = ExtResource("8_fdnlq")
+
+[node name="DialogueBox" parent="." instance=ExtResource("5_kry3j")]
+unique_name_in_owner = true
+
+[node name="UI" parent="." instance=ExtResource("3_8gbba")]
 
 [node name="BlackScreen" parent="." instance=ExtResource("12_6iyac")]
 unique_name_in_owner = true
@@ -63,3 +96,63 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 1152.0
 offset_bottom = 648.0
 metadata/_edit_lock_ = true
+
+[node name="ForgetScreen" parent="." instance=ExtResource("13_fdnlq")]
+visible = false
+
+[node name="Tutorials" type="Node2D" parent="."]
+
+[node name="TutorialBox" parent="Tutorials" instance=ExtResource("13_wsu2k")]
+visible = false
+offset_left = 127.99999
+offset_top = 215.99998
+offset_right = 2147.9998
+offset_bottom = 1325.9999
+mouse_filter = 1
+
+[node name="Text" parent="Tutorials/TutorialBox" index="0"]
+offset_left = -81.999985
+offset_top = 13.460022
+offset_right = -1523.0
+offset_bottom = -606.5
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+text = "Click on [b] bold [/b] phrases to remember them."
+
+[node name="TutorialBox2" parent="Tutorials" instance=ExtResource("14_k12tt")]
+visible = false
+offset_left = 721.0
+offset_top = 21.999998
+offset_right = 3451.0
+offset_bottom = 1781.9999
+mouse_filter = 1
+
+[node name="Text" parent="Tutorials/TutorialBox2" index="0"]
+offset_left = -156.99986
+offset_top = -73.17999
+offset_right = -2198.3398
+offset_bottom = -1305.286
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+
+[node name="TutorialBox3" parent="Tutorials" instance=ExtResource("15_h1bgf")]
+visible = false
+offset_left = 884.0
+offset_top = 343.0
+offset_right = 3394.0
+offset_bottom = 1712.9998
+mouse_filter = 1
+
+[node name="Text" parent="Tutorials/TutorialBox3" index="0"]
+offset_left = -111.00012
+offset_top = -6.17984
+offset_right = -1898.0001
+offset_bottom = -765.49976
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+
+[node name="AudioManager" parent="." instance=ExtResource("19_fevyy")]
+
+[editable path="Tutorials/TutorialBox"]
+[editable path="Tutorials/TutorialBox2"]
+[editable path="Tutorials/TutorialBox3"]

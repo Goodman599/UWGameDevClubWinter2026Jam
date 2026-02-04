@@ -14,11 +14,17 @@ var dialogues : Dictionary
 # Visitors need a reference to the dialogue box to show their text
 @onready var dialogue_box : DialogueBox = get_node("%DialogueBox")
 
+# Visitors need a sprite to show the character sprites
+@onready var character_sprite : Sprite2D = $CharacterSprite
+var can_submit := true
+var takes_inputs := true
+
 # Variables to keep track of which dialogue is currently being shown
 var current_visit_branch : String
 var current_dialogue_branch : String
 var current_dialogue_index : int = 0
 var current_dialogue_line_count : int
+var max_shown_line_index : int = 0
 
 var current_dialogue_takes_cards := false
 
@@ -32,6 +38,17 @@ var visitor_states := {}
 # Store which ending will be shown after the current dialogue.
 var endingID := ""
 
+#constant used to make sprites fit the screen
+const TARGET_SCREEN_HEIGHT_RATIO = 0.85
+const SCREEN_HEIGHT = 648.0
+const CHAR_POSITION_X = 900.0
+const CHAR_POSITION_Y = 300.0
+
+
+const SCROLL_ENABLED := false
+
+
+
 func _ready():
 	# Connect the 2 buttons on the dialogue_box scene to the dialogue managers
 	dialogue_box.get_node("Next").pressed.connect(next_dialogue)
@@ -42,11 +59,21 @@ func _ready():
 	
 	# Load dialogue from json
 	dialogues = load_json_as_dict("res://Dialogues/" + visitor_name + ".json")
+	
+	load_character_sprite()
 
 
 # Takes a String, formats it, and puts it into the dialogue box
-func show_text(text : String):
-	dialogue_box.set_text(plain_to_clickable(text))
+func show_text(text : String, scroll : bool = false):
+	if scroll and SCROLL_ENABLED:
+		takes_inputs = false
+		dialogue_box.set_text_scroll(plain_to_clickable(text))
+		
+		await dialogue_box.scroll_finished
+		takes_inputs = true
+		
+	else:
+		dialogue_box.set_text(plain_to_clickable(text))
 	
 
 # Method that converts "{}" in dialogue to appropriate BBCodes
@@ -69,15 +96,18 @@ func plain_to_clickable(text : String) -> String:
 func next_dialogue():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
-		
-	if current_dialogue_index < current_dialogue_line_count:
-		# If just submitted ---- We have a submit button now, dont let go next if at end
-		if current_dialogue_index == current_dialogue_line_count - 1:
-			#check_submissions()
-			return
-		
+	
+	if not takes_inputs:
+		return
+	
+	if current_dialogue_index < current_dialogue_line_count - 1:
 		current_dialogue_index += 1
-		show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+		
+		if current_dialogue_index > max_shown_line_index:
+			max_shown_line_index = current_dialogue_index
+			show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index], true)
+		else:
+			show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
 		
 		if current_dialogue_index == current_dialogue_line_count - 1:
 			show_inputs()
@@ -88,6 +118,9 @@ func next_dialogue():
 # Switch to the previous dialogue in the current branch
 func prev_dialogue():
 	if VisitorManager.current_visitor_name != visitor_name:
+		return
+	
+	if not takes_inputs:
 		return
 	
 	if current_dialogue_index > 0:
@@ -125,11 +158,24 @@ func hide_inputs():
 			child.clear_cards()
 			child.hide()
 
+
 # Sets the visit branch to the given string
 # Also sets the dialogue branch to dialogue0
 func set_visit_branch(branch_name : String) -> void:
+	#dialogue_box change to demon style
+	if dialogue_box.has_method("switch_style"):
+		dialogue_box.switch_style(visitor_name)
+	
 	current_visit_branch = branch_name
 	set_dialogue_branch("dialogue0")
+	
+	#animation of character sprite changes
+	if has_node("CharacterSprite"):
+		var sprite = $CharacterSprite
+		sprite.visible = true
+		sprite.modulate.a = 0.0
+		var tween = create_tween()
+		tween.tween_property(sprite, "modulate:a", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
 # Sets the dialogue branch to the given string
@@ -139,8 +185,9 @@ func set_visit_branch(branch_name : String) -> void:
 func set_dialogue_branch(branch_name : String):
 	current_dialogue_branch = branch_name
 	current_dialogue_index = 0
+	max_shown_line_index = 0
 	current_dialogue_line_count = dialogues[current_visit_branch][current_dialogue_branch]["lines"].size()
-	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index], true)
 	register_keywords(dialogues[current_visit_branch][current_dialogue_branch]["lines"])
 	
 	dialogue_index_changed()
@@ -228,9 +275,14 @@ func dialogue_concluded():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
 	
+	if !can_submit:
+		return
+	
+	if not takes_inputs:
+		return
+	
 	# If there is an ending, do nothing else
 	if endingID != "":
-		print("loading ", endingID)
 		get_node("%BlackScreen").appear(endingID)
 		return
 	
@@ -245,9 +297,20 @@ func dialogue_concluded():
 		check_submissions()
 	elif dialogues[current_visit_branch][current_dialogue_branch].has("result"): 
 		# The new dialogue links to some other dialogue without accepting cards
-		print("current dialogue branch is: ", dialogues[current_visit_branch][current_dialogue_branch])
 		set_dialogue_branch(dialogues[current_visit_branch][current_dialogue_branch]["result"])
 	else:
+		#character sprites change and animation
+		if has_node("CharacterSprite"):
+			can_submit = false
+			var sprite = $CharacterSprite
+			
+			var tween = create_tween()
+			tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
+			
+			await tween.finished
+			
+			sprite.visible = false
+			can_submit = true
 		VisitorManager.send_next_visitor()
 
 
@@ -302,6 +365,8 @@ func check_submissions():
 func create_submission_box(type : String):
 	var box_instance = box_scene.instantiate()
 	if box_instance:
+		box_instance.z_index = 1
+		
 		# Set the accepted card type based on the parameter
 		box_instance.initialize(type.capitalize(), instantiated_submission_box_count)
 		
@@ -316,3 +381,22 @@ func delete_submission_boxes():
 	for child in get_children():
 		if child is SubmissionBox:
 			child.queue_free()
+
+#preload of character arts
+func load_character_sprite():
+	var sprite_path = "res://Assets/" + visitor_name + ".png"
+	
+	if FileAccess.file_exists(sprite_path):
+		var texture = load(sprite_path)
+		$CharacterSprite.texture = texture
+		
+		var tex_h = texture.get_height()
+		var target_h = SCREEN_HEIGHT * TARGET_SCREEN_HEIGHT_RATIO
+		var scale_factor = target_h / tex_h
+		$CharacterSprite.scale = Vector2(scale_factor, scale_factor)
+		$CharacterSprite.position = Vector2(CHAR_POSITION_X, CHAR_POSITION_Y)
+		
+		$CharacterSprite.visible = false 
+		
+	else:
+		push_warning("BaseVisitor: Can't find arts -> " + sprite_path)

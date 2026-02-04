@@ -29,9 +29,97 @@
 	  "lines": [
 		"<You wake up with a start. The room is dark, but the blinking lights of medical equipment reveal… {something}[Person, Shadowy Figure]… on the other side of the room. It blends with the darkness, and you wonder if it is there at all.>",
         "<Maybe you DO need more meds.>"
+	  ],
+	  "nextVisit": {
+		"id": "night4",
+		"delay": "4"
+		}
+	}
+  },
+  "night4": {
+	"dialogue0": {
+	  "accepts": [
+        "feeling"
+	  ],
+	  "lines": [
+        "<The {dark, ominous cloud}[Person, Shadowy Figure] is once again in the room with you, but this time, more defined, and closer. Is this what they call a medically-induced hallucination? Is it… Death?>"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Hope"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "Sadness"
+		  ],
+		  "result": "dialogue2"
+		},
+		"case2": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue3"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+        "<What nonsense. The worst has passed, and you survived. Death holds no sway over you, and you will not be afraid of phantoms. You blink, and the shadow is already gone.>"
+	  ],
+	  "nextVisit": {
+		"id": "night10",
+		"delay": "12"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+        "<You try not to worry too much, since you have no escape anyway. What more is there to lose? Maybe you want it to suffocate you, to release you from this waking nightmare. As if determined to make you suffer, the shadow stays still. You eventually drift into sleep.>"
+	  ],
+	  "nextVisit": {
+		"id": "night10",
+		"delay": "12"
+	  }
+	},
+	"dialogue3": {
+	  "lines": [
+        "<You try not to worry too much, since you have no escape anyway. With some difficulty, you manage to fall asleep again.>"
+	  ],
+	  "nextVisit": {
+		"id": "night10",
+		"delay": "12"
+	  }
+	}
+  },
+  "night10": {
+	"dialogue0": {
+	  "lines": [
+		"<Your eyes pop open. Your body is like stone: heavy, but without feeling. The {shadowy figure}[Person, Shadowy Figure] is back, but something is different this time. Its borders are clear, because outside is faintly illuminated by the lights of machinery, but the inside is a starry void.>",
+		"<Then, you hear your own voice, but wheezing and twisted, coming from directly inside your head.>",
+		"THE ASCENSION IS DUE THE VESSEL RESISTS MY WAIT CONTINUES THE TIME IS NIGH THE FUTURE IS DECIDED THE WORLD IS MINE…",
+        "<You shut your eyes before the voice becomes so loud it turns into an inaudible screeching. Seconds later, you lose consciousness.>"
+	  ],
+	  "nextVisit": {
+		"id": "night13",
+		"delay": "10"
+	  }
+	}
+  },
+  "night13": {
+	"dialogue0": {
+	  "lines": [
+		"<Once again, you find the {shadowy figure}[Person, Shadowy Figure] in front of you. Although there is no screeching, no growling, and no sweat covering your body, you still can’t hear your own heartbeat. >",
+		"Ahh. I apologize for our last meeting… I am not proud of the state you saw me in… You were not supposed to see that.",
+		"Relax. Your suffering will be over before you even realize it. There is nothing to fear. Please, hold out for a few more days.",
+		"It appears your life in the hospital has been quite eventful. I have been watching the whole time, you know. Seldom does fate change so quickly for an individual. You are truly an extraordinary specimen, able to contain me, yet almost resist me. Almost.",
+		"<The shadow pauses for a while. You are confused initially, but soon begin to lose consciousness. As you struggle to keep your eyes open, realization dawns on you.>",
+		"<You do not know how to breathe.>",
+		"You consider me a threat. You are frantically searching through everything you remember, hoping to find something that just might buy you a moment of extra time.",
+		"YOU ARE OUT OF OPTIONS YOU CANNOT DELAY THE INEVITABLE ACCEPT DEATH DIE DIE DIE DIE DIE DIE DIE DIE DIE DIE",
+        "<You finally pass out.>"
 	  ]
 	}
   }
 }
- 
- 

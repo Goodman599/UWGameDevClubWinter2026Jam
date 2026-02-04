@@ -4,7 +4,16 @@ extends BaseVisitor
 
 func _init():	
 	visitor_states = {
+		"Nurses_Writing_Submitted": false,
+		"Strong_Sedatives_Submitted": false,
+		"Anime_Poster_Submitted": false,
+		"Blanket_Submitted": false,
+		"Signed_Baseball_Submitted": false,
+		"Friends_Card_Submitted": false,
+		"Souvenir_Submitted": false,
+		"Flowers_Submitted": false,
 		
+		"Last_Submission": false
 	}
 	
 

@@ -17,6 +17,8 @@ var is_highlighted: bool = false
 
 var box_index: int = 0
 
+var memory_card = preload("res://Scenes/dummy_card.tscn")
+
 signal card_added(card: Control, box: SubmissionBox)
 signal card_removed(card: Control, box: SubmissionBox)
 signal submission_ready(cards: Array)
@@ -41,8 +43,6 @@ func get_box_index() -> int:
 	return box_index
 
 func _on_mouse_entered():
-	print("RAAH")
-	
 	if not is_highlighted:
 		is_highlighted = true
 		update_appearance()
@@ -72,6 +72,9 @@ func can_accept_card(card_type: String) -> bool:
 	return accepts_card_type(card_type) and cards.size() < max_cards
 
 func add_card(card: Control) -> bool:
+	if !visible:
+		return false
+	
 	var card_type = card.get_card_type() if card.has_method("get_card_type") else ""
 	
 	if not accepts_card_type(card_type):
@@ -86,20 +89,30 @@ func add_card(card: Control) -> bool:
 		card.remove_from_area()
 
 	cards.append(card)
+	
+	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
+	if audio_manager:
+		audio_manager.play_put_down_card()
 
-	var card_2d = create_sticky_card(card)
-	stuck_cards.append(card_2d)
-	card_container.add_child(card_2d)
-	position_sticky_card(card_2d, cards.size() - 1)
-
-	if card.has_method("set_stuck_to_box"):
-		card.set_stuck_to_box(self)
+	#var card_2d = create_sticky_card(card)
+	#stuck_cards.append(card_2d)
+	#card_container.add_child(card_2d)
+	#position_sticky_card(card_2d, cards.size() - 1)
+#
+	#if card.has_method("set_stuck_to_box"):
+		#card.set_stuck_to_box(self)
+	
+	var new_card : MemoryCard = memory_card.instantiate()
+	$CardContainer.add_child(new_card)
+	new_card.copy_attributes(card)
+	new_card.mouse_filter = Control.MOUSE_FILTER_PASS
+	new_card.can_swap = false
 	
 	update_appearance()
 	card_added.emit(card, self)
-
-	if cards.size() == max_cards:
-		submission_ready.emit(cards)
+#
+	#if cards.size() == max_cards:
+		#submission_ready.emit(cards)
 	
 	return true
 
@@ -113,6 +126,7 @@ func remove_card(card: Control):
 			stuck_cards.remove_at(index)
 		
 		cards.remove_at(index)
+		$CardContainer.get_child(0).queue_free()
 		
 		if card.has_method("set_stuck_to_box"):
 			card.set_stuck_to_box(null)

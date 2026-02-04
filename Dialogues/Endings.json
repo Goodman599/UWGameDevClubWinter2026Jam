@@ -1,10 +1,19 @@
 {
-	"ending1": [
-		"This is all the text that will be in this ending.", 
-        "This would be a second line in this ending."
+	"cultist": [
+		"The demon overwrites your mind.",
+		"Your consciousness fades.",
+		"You soul is dead."
 	],
-	"ending2": [
-		"This is ending 2.",
-		"Its got text!"
+	"detective": [
+		"The ritual was a thwarted.",
+		"The demon is banished." ,
+		"Your body is your own once more."
+	],
+	"neutral": [
+		"The ritual was a failure..",
+		"The doctor’s medicines failed.",
+		"The surgery wrecks your body.",
+		"The demon’s soul shrivels within you.",
+		"You are locked within a decaying shell."
 	]
 }

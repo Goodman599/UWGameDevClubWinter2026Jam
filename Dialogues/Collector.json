@@ -1,0 +1,174 @@
+{
+  "visit0": {
+	"dialogue0": {
+	  "lines": [
+		"Hey you, you’re finally awake. Judging by the scans, your mind must be a confused mess right now.",
+		"What I am about to say, I say with full sympathy. You’ve been diagnosed with LIS, Locked-In Syndrome. You can probably tell already, but you can only {move your eyes}[action, Blink Twice].",
+        "I need you to please blink twice if you can hear me."
+	  ],
+	  "accepts": [
+        "action"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Blink Twice"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+		"This is truly an unfortunate state to be in. I can only imagine the pain and shock you are experiencing. Recovery is difficult, but possible. You have {me and my team’s}[person, Nurse] full support until that happens. We are rooting for you.",
+        "Now, I’ll let you rest. We will talk tomorrow."
+	  ],
+	  "nextVisit": {
+		"id": "NurseDay2",
+		"delay": "2",
+		"priority": "1"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+		"Let's try that again.",
+        "{Blink twice}[action, Blink Twice] if you can hear me."
+	  ],
+	  "accepts": [
+        "action"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Blink Twice"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	}
+  },
+  "NurseDay2": {
+	"dialogue0": {
+	  "lines": [
+		"Vitals looking good, I’ll just administer the routine medicine. I heard you got yourself into some crazy accident, huh. At least there’s some good news: you’ve got visitors! A bit of conversation might do you good, even if they must be one-sided.",
+        "You’re gonna be here for a while, so let’s set up a routine. I’ll ask everybody to ask only yes or no questions, and you can just [blink twice] to say yes, how about that?"
+	  ],
+	  "accepts": [
+        "action"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Blink Twice"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+		"<You blink twice, but the nurse isn’t looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].>",
+        "Aaand, you’re looking good. I’ll bring the guest in, but we should keep it short for today. Once you’re stable, we can set up longer visits. Goodbye!"
+	  ],
+	  "nextVisit": {
+		"id": "NurseDay7",
+		"delay": "10"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+		"<You stare at the nurse, unblinking, but she isn’t even looking at you. She checks your IV bag, then pulls out a pen from her pocket. You can’t see far enough to the side to see where she is {writing}[Item, Nurse’s Writing].>",
+        "Aaand, you’re looking good. I’ll bring the guest in, but we should keep it short for today. Once you’re stable, we can set up longer visits. Goodbye!"
+	  ],
+	  "nextVisit": {
+		"id": "NurseDay7",
+		"delay": "10"
+	  }
+	}
+  },
+  "NurseDay7": {
+	"dialogue0": {
+	  "lines": [
+		"You’ve had an eventful week, haven’t you? Most of our patients don’t have this many people visiting them, and especially not from such a diverse crowd.",
+		"Rest assured, you are on the path to recovery. The doctors have taken a closer look at your test results, and we can expect some new treatments next week.So don’t go anywhere, okay? Hahaha.",
+        "Oh sorry. I meant no offence.\n\n<The nurse leaves, closing the door with a gentle click. It seems there are no other visitors for today.>"
+	  ],
+	  "nextVisit": {
+		"id": "NurseDay8",
+		"delay": "2"
+	  }
+	}
+  },
+  "NurseDay8": {
+	"dialogue0": {
+	  "lines": [
+		"Congratulations! The doctors say you are ready for the next stage of treatment. I will say, these medicines pick up in terms of effectiveness, but also have larger adverse side effects. Bear with us a little longer, and you will be out of here in no time, okay? We’ll give you some {sedatives}[Item, Strong Sedatives] too. They will help you relax.",
+        "<The nurse gives you a quick injection before leaving the room. The sedatives are so strong that you immediately pass out. When you next open your eyes, it was already the next day.>"
+	  ],
+	  "nextVisit": {
+		"id": "NurseDay17",
+		"delay": "18"
+	  }
+	}
+  },
+  "NurseDay17": {
+	"dialogue0": {
+	  "lines": [
+		"I have… Good news and Bad news. Do you want… actually nevermind. I’ll just lay it out for you. The bad news is, none of our medications seem to be working. Your case is an unusually tough nut to crack, and we have exhausted the extent of standard treatments for Locked-In Syndrome.",
+		"The good news is, your never-before-seen condition has drawn the attention of a few medical experts, who devised an experimental surgical procedure. They believe the procedure, and I quote, has a high likelihood of success.",
+		"The doctor has prepared for the surgery in two days. However, before we do anything, I will need you to sign something for me, just a quick waiver. All it does is waive the right for family members or patients to sue in case of bodily injury or potential death as a result of the surgery. This procedure is highly experimental, after all. Surely you understand.",
+        "For unconscious patients, the law requires close family members to sign for you, but since you are still fully aware, you have the power to decide. Will you sign it? Remember to {blink twice}[Action, Blink Twice] to confirm."
+	  ],
+	  "accepts": [
+        "action"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Blink Twice"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+        "Excellent, we’ll be going ahead with the surgery then! Get a good night's rest!"
+	  ],
+	  "ending": "neutral"
+	},
+	"dialogue2": {
+	  "lines": [
+		"Oh, you don’t want to sign it? Sure, then. You do you, but I’ll let you in on a secret.",
+		"You see, this waiver you are signing, really makes no difference. Some very, very powerful people have noticed you. I can assure you, you are never going to leave this hospital. I don’t know the details, but I’m guessing they won’t try to cure you. You are more valuable as a cadaver than a healthy living being.",
+		"I admit, this seems like a cold hearted thing to do, but some sacrifices are necessary for the greater good.",
+        "Oh, and also, they paid me enough for me to retire on the spot. So yeah. Thank you for your sacrifice. Goodbye."
+	  ],
+	  "ending": "neutral"
+	}
+  }
+}

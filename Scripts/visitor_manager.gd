@@ -1,12 +1,11 @@
 extends Node
 
 var time = 0 # 0 - 41, one for each day and night
+signal time_changed(is_day : bool)
 
 var visitor_queue : Array[VisitorInstance]
 var current_visitor_name : String
 
-#func _ready() -> void:
-	#send_next_visitor();
 
 # Takes and adds a VisitorInstance to the queue, and sorts the queue chronologically
 func add_visitor_to_queue(visitor : VisitorInstance):
@@ -26,7 +25,7 @@ func send_next_visitor():
 	#for visitor in visitor_queue:
 		#print(visitor.person, " is visiting at ", visitor.get_visit_time(), " with priority ", visitor.get_visit_priority())
 	if visitor_queue.size() == 0:
-		print("You ended")
+		print("You somehow ran out of visitors")
 		return
 	
 	var next_visit_instance : VisitorInstance = visitor_queue[0]
@@ -41,8 +40,10 @@ func send_next_visitor():
 func step_time():
 	time += 1
 	print("The time is: ", time)
-	if time % 2 == 1:
+	var is_day = (time % 2 == 1)
+	if is_day:
 		print("It's day now!")
 	else:
 		print("It's night now!")
+	time_changed.emit(is_day)
 	send_next_visitor()
