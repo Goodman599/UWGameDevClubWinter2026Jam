@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=16 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://cdr6auqdcg70j" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
 [ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
@@ -10,9 +10,11 @@
 [ext_resource type="Script" path="res://Scripts/cultist.gd" id="7_hptm8"]
 [ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://ciswcvrcm3we3" path="res://Assets/night_player.png" id="8_fdnlq"]
-[ext_resource type="PackedScene" uid="uid://bn3vyetjk4m2j" path="res://Scenes/tutorial_box.tscn" id="11_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c1nkk5odx3lik" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
 [ext_resource type="PackedScene" uid="uid://dokmbuibnqqms" path="res://Scenes/forget_screen.tscn" id="13_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://h1oy6ytc7axs" path="res://Scenes/tutorial_box_1.tscn" id="13_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://c07efikxahy8j" path="res://Scenes/tutorial_box_2.tscn" id="14_k12tt"]
+[ext_resource type="PackedScene" uid="uid://dp1hvx1ojpwuk" path="res://Scenes/tutorial_box_3.tscn" id="15_h1bgf"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
@@ -62,14 +64,6 @@ unique_name_in_owner = true
 
 [node name="UI" parent="." instance=ExtResource("3_8gbba")]
 
-[node name="TutorialBox" parent="." instance=ExtResource("11_d1ilt")]
-visible = false
-self_modulate = Color(0.58431375, 1, 0.5921569, 1)
-offset_left = 826.99994
-offset_top = 71.000015
-offset_right = 3127.0
-offset_bottom = 1350.9998
-
 [node name="BlackScreen" parent="." instance=ExtResource("12_6iyac")]
 unique_name_in_owner = true
 visible = false
@@ -80,3 +74,58 @@ metadata/_edit_lock_ = true
 
 [node name="ForgetScreen" parent="." instance=ExtResource("13_fdnlq")]
 visible = false
+
+[node name="Tutorials" type="Node2D" parent="."]
+
+[node name="TutorialBox" parent="Tutorials" instance=ExtResource("13_wsu2k")]
+visible = false
+offset_left = 127.99999
+offset_top = 215.99998
+offset_right = 2147.9998
+offset_bottom = 1325.9999
+mouse_filter = 1
+
+[node name="Text" parent="Tutorials/TutorialBox" index="0"]
+offset_left = -81.999985
+offset_top = 13.460022
+offset_right = -1523.0
+offset_bottom = -606.5
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+text = "Click on [b] bold [/b] phrases to remember them."
+
+[node name="TutorialBox2" parent="Tutorials" instance=ExtResource("14_k12tt")]
+visible = false
+offset_left = 721.0
+offset_top = 21.999998
+offset_right = 3451.0
+offset_bottom = 1781.9999
+mouse_filter = 1
+
+[node name="Text" parent="Tutorials/TutorialBox2" index="0"]
+offset_left = -156.99986
+offset_top = -73.17999
+offset_right = -2198.3398
+offset_bottom = -1305.286
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+
+[node name="TutorialBox3" parent="Tutorials" instance=ExtResource("15_h1bgf")]
+visible = false
+offset_left = 884.0
+offset_top = 343.0
+offset_right = 3394.0
+offset_bottom = 1712.9998
+mouse_filter = 1
+
+[node name="Text" parent="Tutorials/TutorialBox3" index="0"]
+offset_left = -111.00012
+offset_top = -6.17984
+offset_right = -1898.0001
+offset_bottom = -765.49976
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+
+[editable path="Tutorials/TutorialBox"]
+[editable path="Tutorials/TutorialBox2"]
+[editable path="Tutorials/TutorialBox3"]

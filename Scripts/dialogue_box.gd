@@ -20,11 +20,15 @@ func _ready():
 
 # Takes a String and puts it into the Text node
 func set_text(text : String):
+	check_for_tutorials(text)
+	
 	$Text.text = text
 	$Text.visible_characters = -1
 
 
 func set_text_scroll(text : String):
+	check_for_tutorials(text)
+	
 	$Text.visible_characters = 0
 	$Text.text = text
 	var tween = get_tree().create_tween()
@@ -37,6 +41,20 @@ func set_text_scroll(text : String):
 	await tween.finished
 	
 	emit_signal("scroll_finished")
+
+
+func check_for_tutorials(text : String):
+	if text.begins_with("What I am about to say, I say with full sympathy. You’ve been diagnosed with LIS,"):
+		$"../Tutorials/TutorialBox".show()
+		$"../Tutorials/TutorialBox3".show()
+	else:
+		$"../Tutorials/TutorialBox".hide()
+		$"../Tutorials/TutorialBox3".hide()
+	if text.begins_with("I need you to please blink twice if you can hear me."):
+		$"../Tutorials/TutorialBox2".show()
+	else:
+		$"../Tutorials/TutorialBox2".hide()
+
 
 # Show the confirm button
 func show_confirm():
