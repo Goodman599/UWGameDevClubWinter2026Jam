@@ -1,6 +1,5 @@
 extends Node
 
-signal memory_added(key: String)
 signal memory_removed(key: String)
 
 var collected_memories: Array[String] = []
@@ -13,6 +12,7 @@ var in_forget_mode := false
 func _ready():
 	for i in range(max_memories):
 		collected_memories.append("")
+	print(collected_memories)
 
 func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
 	var card_container = get_tree().root.get_node("Main/UI/Control/CardPanel/CardContainer")
@@ -20,9 +20,9 @@ func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
 	var drag_index = cards.find(card1)   # Current position of dragged card
 	var drop_index = cards.find(card2)      # Current position of drop card
 	
-	print("Swapping:")
-	print("  Card at index ", drag_index, " (", card1.memory_key, ")")
-	print("  with Card at index ", drop_index, " (", card2.memory_key, ")")
+	#print("Swapping:")
+	#print("  Card at index ", drag_index, " (", card1.memory_key, ")")
+	#print("  with Card at index ", drop_index, " (", card2.memory_key, ")")
 	
 	if drag_index < drop_index:
 		# Dragged card is LEFT of drop card
@@ -48,8 +48,16 @@ func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
 
 
 func add_memory(key: String) -> bool:
-	if key in collected_memories:
-		print("You've already memorized \"", key, "\".")
+	var memory_data : MemoryData = MemoryDB.database.get(key.to_lower())
+	if !memory_data:
+		print(key, " is not in the database!")
+		print("The database is: ", MemoryDB.database)
+		return false
+		
+	var content : String = memory_data.display_text
+	
+	if content in collected_memories:
+		print("You've already memorized \"", content, "\".")
 		return false
 	
 	var next_free_index = -1
@@ -63,9 +71,9 @@ func add_memory(key: String) -> bool:
 		forget_screen.appear()
 		return false
 	
-	collected_memories[next_free_index] = key
+	collected_memories[next_free_index] = content
 	
-	memory_added.emit(key)
+	print(collected_memories)
 	return true
 
 func add_card_to_forget(card: MemoryCard):
@@ -85,7 +93,7 @@ func get_count() -> int:
 
 func forget_cards():
 	get_node("../Main")._on_forget_pressed()
-	for card in cards_to_forget:
-		remove_memory(card.memory_key)
+	for card : MemoryCard in cards_to_forget:
+		remove_memory(card.content_label.text)
 		card.queue_free()
 	cards_to_forget.clear()

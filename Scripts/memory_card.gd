@@ -80,7 +80,6 @@ func setup(data:MemoryData):
 			if bg:
 				# Try to load custom art based on display_name
 				var display_name = content_label.text
-				print("Loading art for: ", display_name)
 				
 				# Clean up the display name for filename
 				var clean_name : String
@@ -104,6 +103,7 @@ func setup(data:MemoryData):
 				else:
 					# Fallback to colored background if no art found
 					print("Warning: No art found for ", display_name)
+					bg.texture = card_view_texture
 					bg.modulate = BG_COLOR_PERSON
 		
 		MemoryData.MemoryType.Event:
@@ -186,7 +186,6 @@ func start_drag():
 	original_parent = get_parent()
 	original_z_index = z_index
 	
-	get_tree().root.add_child(self)
 	global_position = original_position
 	
 	scale = original_scale * 1.2
@@ -205,13 +204,32 @@ func stop_drag():
 		drop_into_area(current_submission_area)
 	elif $Hitbox.get_overlapping_areas().size() > 0:
 		var swapping = false
+		
+		var valid_cards : Array[MemoryCard] = []
 		for area in $Hitbox.get_overlapping_areas():
 			if area.get_parent() is MemoryCard and area.get_parent().can_swap:
-				MemoryManager.swap_cards(self, area.get_parent())
+				valid_cards.append(area.get_parent())
+				
 				swapping = true
-				break
+		
 		if !swapping:
 			return_to_original()
+			
+		var card_width = valid_cards[0].size.x
+		var smallest_distance : float = abs(self.global_position.x - valid_cards[0].global_position.x)
+		var closest_index = 0
+		
+		for i in range(valid_cards.size()):
+			print(self.global_position, "  ", valid_cards[i].global_position)
+			print(abs(self.global_position.x - valid_cards[i].global_position.x))
+			if smallest_distance > abs(self.global_position.x - valid_cards[i].global_position.x):
+				smallest_distance = abs(self.global_position.x - valid_cards[i].global_position.x)
+				closest_index = i
+		
+		MemoryManager.swap_cards(self, valid_cards[closest_index])
+		
+		
+		
 	else:
 		return_to_original()
 	

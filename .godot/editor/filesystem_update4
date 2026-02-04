@@ -7,3 +7,6 @@ res://Scenes/tutorial_box_3.tscn
 res://Scenes/main.tscn
 res://Scripts/dialogue_box.gd
 res://Scripts/main.gd
+res://Scripts/memory_card.gd
+res://Scripts/memory_manager.gd
+res://Scripts/base_visitor.gd
