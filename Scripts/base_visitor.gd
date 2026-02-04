@@ -17,12 +17,14 @@ var dialogues : Dictionary
 # Visitors need a sprite to show the character sprites
 @onready var character_sprite : Sprite2D = $CharacterSprite
 var can_submit := true
+var takes_inputs := true
 
 # Variables to keep track of which dialogue is currently being shown
 var current_visit_branch : String
 var current_dialogue_branch : String
 var current_dialogue_index : int = 0
 var current_dialogue_line_count : int
+var max_shown_line_index : int = 0
 
 var current_dialogue_takes_cards := false
 
@@ -42,6 +44,11 @@ const SCREEN_HEIGHT = 648.0
 const CHAR_POSITION_X = 900.0
 const CHAR_POSITION_Y = 300.0
 
+
+const SCROLL_ENABLED := false
+
+
+
 func _ready():
 	# Connect the 2 buttons on the dialogue_box scene to the dialogue managers
 	dialogue_box.get_node("Next").pressed.connect(next_dialogue)
@@ -57,8 +64,16 @@ func _ready():
 
 
 # Takes a String, formats it, and puts it into the dialogue box
-func show_text(text : String):
-	dialogue_box.set_text(plain_to_clickable(text))
+func show_text(text : String, scroll : bool = false):
+	if scroll and SCROLL_ENABLED:
+		takes_inputs = false
+		dialogue_box.set_text_scroll(plain_to_clickable(text))
+		
+		await dialogue_box.scroll_finished
+		takes_inputs = true
+		
+	else:
+		dialogue_box.set_text(plain_to_clickable(text))
 	
 
 # Method that converts "{}" in dialogue to appropriate BBCodes
@@ -81,15 +96,18 @@ func plain_to_clickable(text : String) -> String:
 func next_dialogue():
 	if VisitorManager.current_visitor_name != visitor_name:
 		return
-		
-	if current_dialogue_index < current_dialogue_line_count:
-		# If just submitted ---- We have a submit button now, dont let go next if at end
-		if current_dialogue_index == current_dialogue_line_count - 1:
-			#check_submissions()
-			return
-		
+	
+	if not takes_inputs:
+		return
+	
+	if current_dialogue_index < current_dialogue_line_count - 1:
 		current_dialogue_index += 1
-		show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+		
+		if current_dialogue_index > max_shown_line_index:
+			max_shown_line_index = current_dialogue_index
+			show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index], true)
+		else:
+			show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
 		
 		if current_dialogue_index == current_dialogue_line_count - 1:
 			show_inputs()
@@ -100,6 +118,9 @@ func next_dialogue():
 # Switch to the previous dialogue in the current branch
 func prev_dialogue():
 	if VisitorManager.current_visitor_name != visitor_name:
+		return
+	
+	if not takes_inputs:
 		return
 	
 	if current_dialogue_index > 0:
@@ -164,8 +185,9 @@ func set_visit_branch(branch_name : String) -> void:
 func set_dialogue_branch(branch_name : String):
 	current_dialogue_branch = branch_name
 	current_dialogue_index = 0
+	max_shown_line_index = 0
 	current_dialogue_line_count = dialogues[current_visit_branch][current_dialogue_branch]["lines"].size()
-	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index])
+	show_text(dialogues[current_visit_branch][current_dialogue_branch]["lines"][current_dialogue_index], true)
 	register_keywords(dialogues[current_visit_branch][current_dialogue_branch]["lines"])
 	
 	dialogue_index_changed()
@@ -254,6 +276,9 @@ func dialogue_concluded():
 		return
 	
 	if !can_submit:
+		return
+	
+	if not takes_inputs:
 		return
 	
 	# If there is an ending, do nothing else

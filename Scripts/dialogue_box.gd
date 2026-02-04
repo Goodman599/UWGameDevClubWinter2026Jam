@@ -5,6 +5,7 @@ class_name DialogueBox
 # Visitors will store a reference to this scene
 
 signal keyword_clicked(keyword_text: String)
+signal scroll_finished
 
 @onready var confirm_button = $Confirm  # Assuming you have a Confirm button node
 @onready var box_sprite = $Sprite2D   #dialogue_box texture
@@ -20,6 +21,22 @@ func _ready():
 # Takes a String and puts it into the Text node
 func set_text(text : String):
 	$Text.text = text
+	$Text.visible_characters = -1
+
+
+func set_text_scroll(text : String):
+	$Text.visible_characters = 0
+	$Text.text = text
+	var tween = get_tree().create_tween()
+	
+	# Save some time if text is super long. Scrolling will never take more than 3 seconds
+	if text.length() <= 120:
+		tween.tween_property($Text, "visible_characters", text.length(), text.length() / 40.0)
+	else:
+		tween.tween_property($Text, "visible_ratio", 1, 3)
+	await tween.finished
+	
+	emit_signal("scroll_finished")
 
 # Show the confirm button
 func show_confirm():

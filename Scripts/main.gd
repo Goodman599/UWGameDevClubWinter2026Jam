@@ -75,10 +75,10 @@ func _on_forget_pressed():
 
 
 func _on_card_drag_started(card_node):
-	print("Card drag started: ", card_node.memory_key)
+	print("Card drag started: ", card_node.content_label.text)
 
 func _on_card_drag_ended(card_node):
-	print("Card drag ended: ", card_node.memory_key)
+	print("Card drag ended: ", card_node.content_label.text)
 
 func _on_card_dropped_in_area(card_node, area):
 	print("Card dropped in area: ", card_node.memory_key)
