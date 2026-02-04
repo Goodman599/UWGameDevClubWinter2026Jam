@@ -1,0 +1,84 @@
+{
+  "visit0": {
+    "dialogue0": {
+      "lines": [
+        "Hey, buddy? How are you doing? You look pretty rough, {my friend}[Person, Best Friend]. I never expected to see you like this. Things really do change in the blink of an eye, huh. Locked in? More like locked in this room, am I right. Haha. <He laughs, awkwardly.>",
+        "Not much has happened in the past week, as far as I know. Last time I saw you was right before the crash, at the church. I’m still not sure what {Father Neal}[person, Father Neal] was thinking, picking you to lead the Sunday service. {Your dad}[person, Dad] always does it, it doesn't make much sense to suddenly drop it onto you.",
+        "Perhaps, as the high priest, your dad could have been trying to give you the opportunity to practice leading the congregation? We know he saw you as his successor.",
+        "The thing is, did he consider what effect it would have on you, if he placed all these expectations on you? Not everyone is as zealous as him…",
+        "My bad. I didn’t mean to trash talk your family. I know we don’t mess with this whole congregation thing any more than we have to, but desperate times call for desperate measures. If {Father Neal}[person, Father Neal] promises a miracle, like he always does, maybe, just maybe, it will work.",
+        "I’ll try and find time to visit again, alright? See you later."
+      ],
+      "nextVisit": {
+        "id": "Day11",
+        "delay": "12"
+      }
+    }
+  },
+  "Day11": {
+    "dialogue0": {
+      "lines": [
+        "<The door swings open. {Your friend}[Person, Best Friend] walks in.> Okay, don’t freak out... I stole something from my dad.",
+        "<Stepping inside, he drops his bag next to the bed, then kicks the door shut with their foot and drops into the chair.> I brought you something.",
+        "<They dig through their bag. Items falling out left and right. Snack wrappers. A pencil. A crumpled worksheet, etc.> Hold on- Just a moment... Ah!",
+        "<They pull out a {slightly scuffed baseball}[Item, Signed Baseball], covered in messy Sharpie signatures, and toss it gently onto your blanket.> You remember this? It’s that baseball on my dad's office shelf! Cool, right? I’ve always wanted to have a closer look. <He holds it up to your eyes and spins it around for you to see.> I remember how bad you wanted it. Well, it’s all yours now. It’s better than letting it collect dust on the shelf.",
+        "<Whispering>, Just be sure not to tell anyone…"
+      ],
+      "nextVisit": {
+        "id": "Day13",
+        "delay": "4"
+      }
+    }
+  },
+  "Day13": {
+    "dialogue0": {
+      "lines": [
+        "<Out of the corner of your eyes, you see {Your friend}[Person, Best Friend] walk into the room with something in his hand.>",
+        "Hi there, friend. I finally got free time to visit you again. I was walking down the isles in the market when I saw this. <He holds up a little {figurine of a boat}[Item, Souvenir].>\nYou like boating, I think? I found this nice figurine that might make this room a little more lively. I’ll just put it on your window sill, alright?",
+        "<You don’t really care about boats, but you do care about your friend. Proof that he still cares about you too is enough of a gift.>"
+      ],
+      "nextVisit": {
+        "id": "Day15",
+        "delay": "4"
+      }
+    }
+  },
+  "Day15": {
+    "dialogue0": {
+      "accepts": [
+        "action"
+      ],
+      "lines": [
+        "<It is late in the afternoon when {your friend}[Person, Best Friend] dashes into the room.>",
+        "How are you feeling today, buddy? I hope it isn’t too painful… Well, I’m sure it doesn’t feel good when you aren’t able to do anything, what am I saying. Anyway, I came here right after my job was done, and look what I got for you: a {Get-well-soon card}[Item, Friend’s Card] with googly eyes on it!",
+        "<He holds up the card in front of your eyes and shakes it, allowing you to see the swirling little eyes.>\nDoesn’t it look funny? I hope that card can make your day a little less boring. Remember, me and your family are all eager for you to get better! Don’t lose {hope}[Feeling, Hope], okay?"
+      ],
+      "cases": {
+        "case0": {
+          "submissions": [
+            "Blink Twice"
+          ],
+          "result": "dialogue1"
+        },
+        "case1": {
+          "submissions": [
+            "EMPTY"
+          ],
+          "result": "dialogue2"
+        }
+      }
+    },
+    "dialogue1": {
+      "lines": [
+        "I know you are strong enough to pull through this. I’ll leave {the card}[Item, Friend’s Card] here. ",
+        "The card reminded you of all the ups and downs that you overcame with the support of your friend. A symbol of love and trust, you felt much more hopeful by just knowing the card is still there."
+      ]
+    },
+    "dialogue2": {
+      "lines": [
+        "Damn, I’m not even sure if you are hearing me or not… <He places the card by your bedside and leaves with a saddened face.> ",
+        "The card reminded you of all the ups and downs that you overcame with the support of your friend. A symbol of love and trust, you felt much more hopeful by just knowing the card is still there."
+      ]
+    }
+  }
+}

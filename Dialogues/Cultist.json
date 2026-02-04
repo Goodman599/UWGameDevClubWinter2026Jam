@@ -30,8 +30,9 @@
 		"Is that so? Perhaps I shouldn’t be surprised. We shall discuss this on another day.",
         "In the meantime, I will pray for your swift recovery. Goodbye."
 	  ],
-	  "setState": {
-		"mentioned_supernatural": "true"
+	  "nextVisit": {
+		"id": "night7",
+		"delay": "9"
 	  }
 	},
 	"dialogue2": {
@@ -39,8 +40,388 @@
 		"You haven’t? Worry not, for he always answers those who are most in need, and I would wager you fit that criteria.",
         "We shall discuss this on another day. In the meantime, I will pray for your swift recovery. Goodbye."
 	  ],
+	  "nextVisit": {
+		"id": "night7",
+		"delay": "9"
+	  }
+	}
+  },
+  "night7": {
+	"dialogue0": {
+	  "accepts": [
+        "feeling"
+	  ],
+	  "lines": [
+		"<You slowly wake up to a quiet murmuring. You would have jumped in surprise, if your body allowed you to. {Father Neal}[Person, Father Neal] is kneeled next to your bed with his eyes closed, praying.>",
+		"Oh ho ho, pardon me, child. I apologize for disturbing your sleep. You see, the past few nights I’ve been visiting to offer a word of prayer for your quick recovery.",
+		"I cannot overstate how eager the congregation is to have you back with us. We do not trust in the lackluster treatment this institution can offer you. However, if our Lord still wishes for you to live, then you shall.",
+        "Now that you have been confined here for a week, how are you feeling? Worry not, you can tell me.\n\n<The priest opens his eyes and stares directly into yours>\n\nYou cannot speak, but the Lord’s voice is clear to me."
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Hope"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "Sadness"
+		  ],
+		  "result": "dialogue2"
+		},
+		"case2": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue3"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+        "Good. That’s the spirit. Even with a broken body, your spirit stays strong. You are sure to earn the Lord’s favor. My work here is done. I shall visit again when I am needed."
+	  ],
+	  "nextVisit": {
+		"id": "day10",
+		"delay": "5"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+        "Your body crumbles, and so does your spirit. The Lord’s kindness knows no bounds, and he is sure to lend you his aid. There is nothing else I can do here. I shall visit again when I am needed."
+	  ],
+	  "nextVisit": {
+		"id": "day10",
+		"delay": "5"
+	  }
+	},
+	"dialogue3": {
+	  "lines": [
+		"Your body is but a hollow husk. Us mortals come and go, but it is essential to fill our minds with substance, with emotion. Without it, we would be nothing but soulless automatons. Then, we are as good as dead, and even the Lord will not pity us.",
+        "There is nothing else I can do here. I shall visit again when I am needed."
+	  ],
+	  "nextVisit": {
+		"id": "day10",
+		"delay": "5"
+	  }
+	}
+  },
+  "day10": {
+	"dialogue0": {
+	  "accepts": [
+        "action"
+	  ],
+	  "lines": [
+		"<The door opens, and {Father Neal}[Person, Father Neal] steps in. He has a wide smile on his face.>",
+		"Greetings once again, child. I bear good news. The congregation has convened, and we are ready to release you from your torment. The {Scorned Sigillum}[Item] will be your salvation. Pay no mind to its unsavory name, there is a long and peculiar history behind it. Perhaps I can tell you on another day. Just know that it is an ancient artifact of immeasurable power, previously kept secret by the church.",
+		"The {Scorned Sigillum}[Item] has the power to touch the soul. It is both a method, and a medium. Both an open path, and a locked cage. Presently, your soul is trapped, caged. Once your soul is freed, your limbs will naturally obey.",
+        "Your current amnesia is evidence of my theory. Your consciousness is tethered to your soul by a single thread. To access this connection, we must provide a powerful link in the form of unforgettable memories. Do you… retain any such memories at the moment?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Blink Twice"
+		  ],
+		  "result": "dialogue1"
+		},
+		"case2": {
+		  "submissions": [
+            "EMPTY"
+		  ],
+		  "result": "dialogue2"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+        "That is good to hear! I’m sure the bonding ritual will go smoothly then. The ritual will take a week to prepare, during which I must visit you to collect memorable artifacts to serve as components in the ritual. I look forward to my next visit. May life treat you well."
+	  ],
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "5"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+        "That is unfortunate, but we still have a chance. During the next week, be sure to collect evidence of your greatest, most valuable memories. The ones that bond to your soul. The ritual will take a week to prepare, during which I must visit you to collect these memorable artifacts to serve as components in the ritual. I look forward to my next visit. May life treat you well."
+	  ],
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "5"
+	  }
+	}
+  },
+  "AskForItem": {
+	"dialogue0": {
+	  "accepts": [
+        "item"
+	  ],
+	  "lines": [
+		"Greetings, child. I am here, as arranged, to collect evidence of your soul. Sure, the item may be lost, but your memory of it will remain. Such is the price of redemption.",
+		"Remember, strong memories represent strong connections between body and soul. The ritual can only succeed if you are willing to lose not your most expensive possessions, but your most memorable ones.",
+        "Now, what part of yourself can you offer?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Nurse’s Writing"
+		  ],
+		  "stateChecks": {
+			"Nurses_Writing_Submitted": "false"
+		  },
+		  "result": "dialogue1"
+		},
+		"case1": {
+		  "submissions": [
+            "Strong Sedatives"
+		  ],
+		  "stateChecks": {
+			"Strong_Sedatives_Submitted": "false"
+		  },
+		  "result": "dialogue2"
+		},
+		"case2": {
+		  "submissions": [
+            "Anime Poster"
+		  ],
+		  "stateChecks": {
+			"Anime_Poster_Submitted": "false"
+		  },
+		  "result": "dialogue3"
+		},
+		"case3": {
+		  "submissions": [
+            "Blanket"
+		  ],
+		  "stateChecks": {
+			"Blanket_Submitted": "false"
+		  },
+		  "result": "dialogue4"
+		},
+		"case4": {
+		  "submissions": [
+            "Signed Baseball"
+		  ],
+		  "stateChecks": {
+			"Signed_Baseball_Submitted": "false"
+		  },
+		  "result": "dialogue5"
+		},
+		"case5": {
+		  "submissions": [
+            "Friend's Card"
+		  ],
+		  "stateChecks": {
+			"Friends_Card_Submitted": "false"
+		  },
+		  "result": "dialogue6"
+		},
+		"case6": {
+		  "submissions": [
+            "Souvenir"
+		  ],
+		  "stateChecks": {
+			"Souvenir_Submitted": "false"
+		  },
+		  "result": "dialogue7"
+		},
+		"case7": {
+		  "submissions": [
+            "Flowers"
+		  ],
+		  "stateChecks": {
+			"Flowers_Submitted": "false"
+		  },
+		  "result": "dialogue8"
+		},
+		"case8": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "dialogue9"
+		}
+	  }
+	},
+	"dialogue1": {
+	  "lines": [
+		"A description of your condition… Are you sure this is the best you can offer?",
+		"I will not question it further. May the Lord be with you.",
+        "<Father Neal rips the paper from the wall and carefully rolls it up before leaving.>"
+	  ],
 	  "setState": {
-		"mentioned_supernatural": "false"
+		"Nurses_Writing_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue2": {
+	  "lines": [
+		"Your medication… Are you sure this is the best you can offer?",
+		"I will not question it further. May the Lord be with you.",
+        "<Father Neal puts a vial of medication into a purse before leaving.>"
+	  ],
+	  "setState": {
+		"Strong_Sedatives_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue3": {
+	  "lines": [
+		"What a colorful poster, if not a bit childish. Though that is not a bad thing. Memories forged during childhood that still remain with you until this day must be the strongest indeed. This will serve us well.",
+        "<Father Neal carefully peels off the poster and rolls it up before leaving.>"
+	  ],
+	  "setState": {
+		"Anime_Poster_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue4": {
+	  "lines": [
+		"Oh, the blanket you are using? Quite intriguing. I can tell it has seen better days, and has had plenty of time to forge an unbreakable bond with its owner. This will serve us well.",
+        "<Father Neal carefully folds the blanket and tucks it under his arm before leaving.>"
+	  ],
+	  "setState": {
+		"Blanket_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue5": {
+	  "lines": [
+		"A baseball, huh? But not just any baseball. One that you have coveted all your life. This will serve us well.",
+        "<Father Neal puts the baseball into a small pouch before leaving.>"
+	  ],
+	  "setState": {
+		"Signed_Baseball_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue6": {
+	  "lines": [
+        "This brand new letter, you say? How could… But of course! It must be from somebody of great importance to you. This person will serve us well."
+	  ],
+	  "setState": {
+		"Friends_Card_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue7": {
+	  "lines": [
+		"This little trinket, you say? Are you sure this is the best you can offer?",
+        "I will not question it further. May the Lord be with you."
+	  ],
+	  "setState": {
+		"Souvenir_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue8": {
+	  "lines": [
+		"These flowers, you say? Are you sure this is the best you can offer?",
+        "I will not question it further. May the Lord be with you."
+	  ],
+	  "setState": {
+		"Flowers_Submitted": "true"
+	  },
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	},
+	"dialogue9": {
+	  "lines": [
+		"It appears you have nothing new to offer… ",
+        "I will not question it further. May the Lord be with you."
+	  ],
+	  "nextVisit": {
+		"id": "AskForItem",
+		"delay": "4"
+	  }
+	}
+  },
+  "wastingTime": {
+	"dialogue0": {
+	  "accepts": [
+        "person"
+	  ],
+	  "setState": {
+		"Investigated_Demon": "true"
+	  },
+	  "lines": [
+		"Hey. Turns out, that was a tremendous waste of time. I wasted precious time, gained no new information. I hope this doesn't happen again. ", "Now, who else do you think is suspicious?"
+	  ],
+	  "cases": {
+		"case0": {
+		  "submissions": [
+            "Father Neal"
+		  ],
+		  "stateChecks": {
+			"Investigated_Cultist": "false"
+		  },
+		  "result": "invFat"
+		},
+		"case1": {
+		  "submissions": [
+            "Shadowy Figure"
+		  ],
+		  "stateChecks": {
+			"Investigated_Demon": "false"
+		  },
+		  "result": "invSha"
+		},
+		"fallback": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "result": "fallback"
+		}
+	  }
+	},
+	"invFat": {
+	  "lines": [
+        "Father Neal, huh. I wouldn't be surprised if that priest had some secrets."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingFat",
+		"delay": "4"
+	  }
+	},
+	"invSha": {
+	  "lines": [
+        "The info I'm getting from you is pretty vague. You want me to investigate a phantom? I'll take a look for any information in the libraries."
+	  ],
+	  "nextVisit": {
+		"id": "investigatingSha",
+		"delay": "4"
+	  }
+	},
+	"fallback": {
+	  "lines": [
+        "I don't see how spending more time on this can help us, but I'll do my best."
+	  ],
+	  "nextVisit": {
+		"id": "wastingTime",
+		"delay": "4"
 	  }
 	}
   }

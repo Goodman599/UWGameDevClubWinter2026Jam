@@ -1,15 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://jop1da2n63nx"]
+[gd_scene load_steps=19 format=3 uid="uid://jop1da2n63nx"]
 
 [ext_resource type="PackedScene" uid="uid://cdr6auqdcg70j" path="res://Scenes/jimmy_jones.tscn" id="1_1k0k3"]
 [ext_resource type="Script" uid="uid://br8imeuu2b8qj" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="Texture2D" uid="uid://d2fomhmv6aug3" path="res://Assets/night_background.png" id="2_6iyac"]
 [ext_resource type="PackedScene" uid="uid://cbqc4y0el8cgt" path="res://Scenes/ui.tscn" id="3_8gbba"]
-[ext_resource type="Script" path="res://Scripts/demon.gd" id="5_344ge"]
+[ext_resource type="Script" uid="uid://blqccgtk7jc4s" path="res://Scripts/demon.gd" id="5_344ge"]
 [ext_resource type="PackedScene" uid="uid://osdop6onyqxw" path="res://Scenes/dialogue_box.tscn" id="5_kry3j"]
-[ext_resource type="Script" path="res://Scripts/detective.gd" id="6_ynf5e"]
-[ext_resource type="Script" path="res://Scripts/cultist.gd" id="7_hptm8"]
-[ext_resource type="Script" path="res://Scripts/nurse.gd" id="8_d1ilt"]
+[ext_resource type="Script" uid="uid://cyyw0hnp0txc2" path="res://Scripts/detective.gd" id="6_ynf5e"]
+[ext_resource type="Script" uid="uid://ffodg6uf7ohb" path="res://Scripts/cultist.gd" id="7_hptm8"]
+[ext_resource type="Script" uid="uid://cbfuriar2ryas" path="res://Scripts/nurse.gd" id="8_d1ilt"]
 [ext_resource type="Texture2D" uid="uid://ciswcvrcm3we3" path="res://Assets/night_player.png" id="8_fdnlq"]
+[ext_resource type="Script" uid="uid://kis7wloiarh1" path="res://Scripts/friend.gd" id="8_h1bgf"]
+[ext_resource type="Script" uid="uid://3s00ivwlv3q0" path="res://Scripts/mom.gd" id="9_b3802"]
+[ext_resource type="Script" uid="uid://co5msquirny4y" path="res://Scripts/collector.gd" id="10_b3802"]
 [ext_resource type="PackedScene" uid="uid://c1nkk5odx3lik" path="res://Scenes/black_screen.tscn" id="12_6iyac"]
 [ext_resource type="PackedScene" uid="uid://dokmbuibnqqms" path="res://Scenes/forget_screen.tscn" id="13_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://h1oy6ytc7axs" path="res://Scenes/tutorial_box_1.tscn" id="13_wsu2k"]
@@ -52,6 +55,27 @@ script = ExtResource("8_d1ilt")
 visitor_name = "Nurse"
 
 [node name="CharacterSprite" type="Sprite2D" parent="Visitors/Nurse"]
+position = Vector2(900, 100)
+
+[node name="Friend" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("8_h1bgf")
+visitor_name = "Friend"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Friend"]
+position = Vector2(900, 100)
+
+[node name="Mom" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("9_b3802")
+visitor_name = "Mom"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Mom"]
+position = Vector2(900, 100)
+
+[node name="Collector" parent="Visitors" instance=ExtResource("1_1k0k3")]
+script = ExtResource("10_b3802")
+visitor_name = "Collector"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Visitors/Collector"]
 position = Vector2(900, 100)
 
 [node name="player_ui" type="Sprite2D" parent="."]

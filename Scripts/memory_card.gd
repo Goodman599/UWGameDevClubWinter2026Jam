@@ -92,6 +92,12 @@ func setup(data:MemoryData):
 						clean_name = "detective"
 					"Shadowy Figure":
 						clean_name = "demon"
+					"Best Friend":
+						clean_name = "friend"
+					"Mom":
+						clean_name = "mom"
+					"Mrs. Wren":
+						clean_name = "collector"
 				
 				var art_texture = load("res://Assets/" + clean_name + "_card.png")
 				
@@ -214,7 +220,7 @@ func stop_drag():
 		
 		if !swapping:
 			return_to_original()
-			
+				
 		var smallest_distance : float = abs(self.global_position.x - valid_cards[0].global_position.x)
 		var closest_index = 0
 		

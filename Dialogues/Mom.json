@@ -1,0 +1,112 @@
+{
+  "visit0": {
+    "dialogue0": {
+      "accepts": [
+        "action"
+      ],
+      "lines": [
+        "<A woman eagerly rushes into the room, standing close beside your bed. She holds your hands, but {you feel nothing}[Feeling, Sadness].>",
+        "{My son}[Person, Mom]! What happened to you? Out of everyone in the whole wide world, disaster had to strike us. Are you feeling okay? Can you hear me?"
+      ],
+      "cases": {
+        "case0": {
+          "submissions": [
+            "Blink Twice"
+          ],
+          "result": "dialogue1"
+        },
+        "case1": {
+          "submissions": [
+            "EMPTY"
+          ],
+          "result": "dialogue2"
+        }
+      }
+    },
+    "dialogue1": {
+      "lines": [
+        "Thank goodness! It’s hard to be grateful, but perhaps I should be, because at least you’re still with me. ",
+        "I came as soon as I got the call from the hospital, darling. That nurse is absolutely no help, she fumbled around on the computer for ten minutes before giving me your room number. Me! {Your mother}[Person, Mom]! You would think a direct family member should have priority to meet you first.",
+        "Time is short, but I will be back as soon as I can, okay? I- I wish I could stay here with you all day. Goodbye, for now. "
+      ],
+      "nextVisit": {
+        "id": "Day9",
+        "delay": "10"
+      }
+    },
+    "dialogue2": {
+      "lines": [
+        "Nonononono, this shouldn’t have happened. How can this be? <She sobs quietly.>",
+        "I came as soon as I got the call from the hospital, darling. That nurse is absolutely no help, she fumbled around on the computer for ten minutes before giving me your room number. Me! {Your mother}[Person, Mom]! You would think a direct family member should have priority to meet you first. ",
+        "Time is short, but I will be back as soon as I can, okay? I- I wish I could stay here with you all day. Goodbye, for now. "
+      ],
+      "nextVisit": {
+        "id": "Day9",
+        "delay": "10"
+      }
+    }
+  },
+  "Day9": {
+    "dialogue0": {
+      "lines": [
+        "Hey hey, {your mother}[person, Mom] is back, and I brought you something! It’s a {poster from that cartoon}[Item, Anime Poster] you really like watching! Sorry, I forgot what it’s called. It’s the one with lots of teenagers yelling! The one where a high schooler becomes a demon hybrid and fights God, I think? Don’t you like it? The staff allowed us to keep it in your room.",
+        "Since you can’t move anyway, why don’t the nurses set up a TV for you, huh? I guess they don’t have the resources for that. This is a small town hospital, after all. You must be so bored here.",
+        "Life isn’t easy without you, my son. I’m bored too. You are hospitalized, your dad missing… If only he didn’t spend all day spewing his superstitions and religious hogwash, we would all still be together. ",
+        "If there is a higher being, is this what he wants for our family?\n\n<She stares out the window and into the distance for a few minutes, before leaving quietly.>"
+      ],
+      "nextVisit": {
+        "id": "Day11",
+        "delay": "4"
+      }
+    }
+  },
+  "Day11": {
+    "dialogue0": {
+      "lines": [
+        "<{Mom}[Person, Mom] walks in with careful steps. A vase holding {carefully picked flowers}[Item, Flowers] from her garden.>\nHey there sweetie, I have these for you. I’m sure this hospital scent can get sickening, so I hope these will be refreshing to have.\n<She sets the vase on the dresser, a place where the sunlight can reach.>",
+        "I made sure to pick out the color you liked! I hope you enjoy them.",
+        "<She walks over to you, reaching to take your hand. A gentle pause. Then a sharp sigh interrupts.>\nWell, I’ll be on my way now. I’m going to stop by to visit as soon as I can, please take care.\n<She exits the room. Your eyes drift to the flowers in front of you, their scent filling the air. As you inspect each petal, you notice signs of wilting already spreading through the bouquet; almost like a reflection of yourself. The water may help the flowers last a little longer, but all it truly does is prolong their inevitable end.>"
+      ],
+      "nextVisit": {
+        "id": "Day14",
+        "delay": "6"
+      }
+    }
+  },
+  "Day14": {
+    "dialogue0": {
+      "accepts": [
+        "action"
+      ],
+      "lines": [
+        "<{Your mother}[Person, Mom] walks in carrying a {folded blanket}[Item, Blanket].>",
+        "How are you holding up honey? I brought the one from home. The soft one you like.\n<She tucks it around you tightly.>",
+        "You always kicked this off when you were little. Every night. I’d come in at 3 a.m. and I'd find you off the bed.\n<A soft chuckle following right after. Trying her best to lighten the mood. She smooths your hair.>\nAre you comfortable like this?"
+      ],
+      "cases": {
+        "case0": {
+          "submissions": [
+            "Blink Twice"
+          ],
+          "result": "dialogue1"
+        },
+        "case1": {
+          "submissions": [
+            "EMPTY"
+          ],
+          "result": "dialogue2"
+        }
+      }
+    },
+    "dialogue1": {
+      "lines": [
+        "Good. Don’t move. Doctor’s orders."
+      ]
+    },
+    "dialogue2": {
+      "lines": [
+        "<She continues to readjust everything carefully.>"
+      ]
+    }
+  }
+}
