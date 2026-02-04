@@ -6,9 +6,6 @@ signal time_changed(is_day : bool)
 var visitor_queue : Array[VisitorInstance]
 var current_visitor_name : String
 
-@onready var background : Sprite2D = $background
-#func _ready() -> void:
-	#send_next_visitor();
 
 # Takes and adds a VisitorInstance to the queue, and sorts the queue chronologically
 func add_visitor_to_queue(visitor : VisitorInstance):

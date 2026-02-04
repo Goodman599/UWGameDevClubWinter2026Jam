@@ -39,6 +39,9 @@ func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
 		# 2. Move RIGHT card (B) to LEFT position
 		card_container.move_child(card1, drop_index)
 	
+	var temp = collected_memories[drag_index]
+	collected_memories[drag_index] = collected_memories[drop_index]
+	collected_memories[drop_index] = temp
 	
 func add_memory(key: String) -> bool:
 	if key in collected_memories:

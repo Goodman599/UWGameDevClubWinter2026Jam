@@ -4,34 +4,40 @@
 [ext_resource type="Texture2D" uid="uid://8elgd0uumsaa" path="res://Assets/CardSlot.png" id="1_ysex3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rql5e"]
-size = Vector2(113.333336, 230.90561)
+size = Vector2(89.66667, 132.72366)
 
 [node name="Submission Box" type="Node2D"]
-scale = Vector2(0.75, 0.563)
 script = ExtResource("1_rql5e")
 
 [node name="Card Slot" type="Sprite2D" parent="."]
-position = Vector2(-2.0000067, -3.5523891)
-scale = Vector2(0.65925926, 0.8981534)
+visible = false
+scale = Vector2(0.52407414, 0.5188679)
 texture = ExtResource("1_ysex3")
+
+[node name="Label" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -66.5
+offset_right = 45.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+text = "Event"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardContainer" type="Node2D" parent="."]
+position = Vector2(-60, -74)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-2.000002, -3.552395)
 scale = Vector2(1, 1.0000011)
 shape = SubResource("RectangleShape2D_rql5e")
-
-[node name="CardContainer" type="Node2D" parent="."]
-
-[node name="Label" type="RichTextLabel" parent="."]
-offset_left = -44.240738
-offset_top = -19.61972
-offset_right = 143.97313
-offset_bottom = 220.25842
-scale = Vector2(0.48216546, 0.47186735)
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "Event"
-metadata/_edit_use_anchors_ = true
