@@ -11,7 +11,7 @@ font_size = 11
 font_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1guq"]
-size = Vector2(94, 132)
+size = Vector2(94, 126)
 
 [node name="card_view" type="Control"]
 custom_minimum_size = Vector2(120, 152)
@@ -24,12 +24,10 @@ script = ExtResource("1_p1guq")
 
 [node name="Card" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 1.0000153
-offset_top = 1.0
-offset_right = 498.29724
-offset_bottom = 681.4878
-scale = Vector2(0.23125, 0.22777778)
+offset_right = 120.0
+offset_bottom = 152.0
 texture = ExtResource("2_p1guq")
+expand_mode = 1
 
 [node name="Content2" type="Sprite2D" parent="."]
 
@@ -58,5 +56,5 @@ vertical_alignment = 1
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(59, 77)
+position = Vector2(60, 74)
 shape = SubResource("RectangleShape2D_p1guq")
