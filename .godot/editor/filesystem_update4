@@ -1,5 +1,6 @@
-res://Dialogues/Detective.json
-res://Dialogues/Nurse.json
 res://Dialogues/Cultist.json
+res://Scenes/main.tscn
 res://Scripts/cultist.gd
-res://Dialogues/Endings.json
+res://Scripts/base_visitor.gd
+res://Dialogues/Detective.json
+res://Scripts/visitor_manager.gd

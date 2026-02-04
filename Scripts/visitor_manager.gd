@@ -40,6 +40,7 @@ func send_next_visitor():
 func step_time():
 	time += 1
 	print("The time is: ", time)
+	print("queue: ", visitor_queue)
 	var is_day = (time % 2 == 1)
 	if is_day:
 		print("It's day now!")
