@@ -23,8 +23,9 @@ script = ExtResource("1_p1guq")
 
 [node name="Card" type="TextureRect" parent="."]
 layout_mode = 0
+offset_top = -9.0
 offset_right = 120.0
-offset_bottom = 152.0
+offset_bottom = 160.0
 expand_mode = 1
 
 [node name="Content2" type="Sprite2D" parent="."]

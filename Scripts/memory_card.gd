@@ -78,7 +78,17 @@ func setup(data:MemoryData):
 				print("Loading art for: ", display_name)
 				
 				# Clean up the display name for filename
-				var clean_name = display_name.to_lower()
+				var clean_name : String
+				match display_name:
+					"Nurse":
+						clean_name = "nurse"
+					"Father Neal":
+						clean_name = "cultist"
+					"Detective Raede":
+						clean_name = "detective"
+					"Shadowy Figure":
+						clean_name = "demon"
+				
 				var art_texture = load("res://Assets/" + clean_name + "_card.png")
 				
 				if art_texture:
