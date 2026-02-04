@@ -24,7 +24,7 @@ var original_position: Vector2 = Vector2.ZERO
 var original_parent: Control
 var original_z_index: int = 0
 var original_scale: Vector2 = Vector2.ONE
-var drag_threshold: float = 10.0 
+var drag_threshold: float = 1.0 
 var stuck_to_box: Node = null
 
 var is_over_submission_area: bool = false
@@ -146,6 +146,7 @@ func stop_drag():
 		var swapping = false
 		for area in $Hitbox.get_overlapping_areas():
 			if area.get_parent() is MemoryCard:
+				MemoryManager.swap_cards(self, area.get_parent())
 				swapping = true
 				break
 		if !swapping:
@@ -161,6 +162,9 @@ func stop_drag():
 	current_submission_area = null
 	
 	card_drag_ended.emit(self)
+
+
+
 
 # In memory_card.gd, modify check_submission_areas():
 func check_submission_areas():

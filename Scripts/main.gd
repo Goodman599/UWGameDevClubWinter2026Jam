@@ -85,69 +85,7 @@ func _start_card_drag(card_node):
 
 func _end_card_drag(card_node):
 	print("DRAG ENDED - Card: ", card_node.memory_key)
-	
-	if not dragged_card:
-		return
-	
-	var mouse_pos = get_global_mouse_position()
-	print("Mouse position: ", mouse_pos)
-	
-	var drop_card = _get_card_at_position()
-	
-	if drop_card and drop_card != dragged_card:
-		print("Found drop card: ", drop_card.memory_key)
-		
-		# Get current indices
-		var cards = card_container.get_children()
-		var drag_index = cards.find(dragged_card)   # Current position of dragged card
-		var drop_index = cards.find(drop_card)      # Current position of drop card
-		
-		print("Swapping:")
-		print("  Card at index ", drag_index, " (", dragged_card.memory_key, ")")
-		print("  with Card at index ", drop_index, " (", drop_card.memory_key, ")")
-		
-		if drag_index < drop_index:
-			# Dragged card is LEFT of drop card
-			# Example: swapping [A, B] → [B, A]
-			# 1. Move RIGHT card (B) to LEFT position first
-			card_container.move_child(drop_card, drag_index)
-			# Now: [B, A]
-			# 2. Move LEFT card (A) to RIGHT position
-			card_container.move_child(dragged_card, drop_index)
-			# Final: [B, A] ✓
-		else:
-			# Dragged card is RIGHT of drop card
-			# Example: swapping [B, A] → [A, B]
-			# 1. Move LEFT card (A) to RIGHT position first
-			card_container.move_child(dragged_card, drop_index)
-			# 2. Move RIGHT card (B) to LEFT position
-			card_container.move_child(drop_card, drag_index)
-		
-		print("Swap complete!")
-		
-		# DEBUG: Check final positions
-		var final_cards = card_container.get_children()
-		print("Final order:")
-		for i in range(final_cards.size()):
-			print("  [", i, "] ", final_cards[i].memory_key)
-	
-	dragged_card = null
-	drag_start_index = -1
 
-func _get_card_at_position() -> Control:
-	var local_pos = card_container.get_local_mouse_position()
-	var CARD_WIDTH = 100
-	
-	var card_index = int(local_pos.x / CARD_WIDTH)
-	var card_count = card_container.get_child_count()
-	
-	card_index = clampi(card_index, 0, card_count - 1)
-	
-	if card_count > 0:
-		var detected_card = card_container.get_child(card_index)
-		return detected_card
-	
-	return null
 
 func _on_card_drag_started(card_node):
 	print("Card drag started: ", card_node.content_label.text)
