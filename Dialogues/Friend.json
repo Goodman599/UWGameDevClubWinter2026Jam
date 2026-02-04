@@ -50,7 +50,7 @@
       ],
       "lines": [
         "<It is late in the afternoon when {your friend}[Person, Best Friend] dashes into the room.>",
-        "How are you feeling today, buddy? I hope it isn’t too painful… Well, I’m sure it doesn’t feel good when you aren’t able to do anything, what am I saying. Anyway, I came here right after my job was done, and look what I got for you: a {Get-well-soon card}[Item, Friend’s Card] with googly eyes on it!",
+        "How are you feeling today, buddy? I hope it isn’t too painful… Well, I’m sure it doesn’t feel good when you aren’t able to do anything, what am I saying. Anyway, I came here right after my job was done, and look what I got for you: a {Get-well-soon card}[Item, Friend's Card] with googly eyes on it!",
         "<He holds up the card in front of your eyes and shakes it, allowing you to see the swirling little eyes.>\nDoesn’t it look funny? I hope that card can make your day a little less boring. Remember, me and your family are all eager for you to get better! Don’t lose {hope}[Feeling, Hope], okay?"
       ],
       "cases": {
@@ -70,7 +70,7 @@
     },
     "dialogue1": {
       "lines": [
-        "I know you are strong enough to pull through this. I’ll leave {the card}[Item, Friend’s Card] here. ",
+        "I know you are strong enough to pull through this. I’ll leave {the card}[Item, Friend's Card] here. ",
         "The card reminded you of all the ups and downs that you overcame with the support of your friend. A symbol of love and trust, you felt much more hopeful by just knowing the card is still there."
       ]
     },

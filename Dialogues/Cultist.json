@@ -163,12 +163,21 @@
         "Now, what part of yourself can you offer?"
 	  ],
 	  "cases": {
+		"finished": {
+		  "submissions": [
+            "ANY"
+		  ],
+		  "stateChecks": {
+			"Last_Submission": "true"
+		  },
+		  "result": "exit_dialogue"
+		},
 		"case0": {
 		  "submissions": [
             "Nurse's Writing"
 		  ],
 		  "stateChecks": {
-			"Nurses_Writing_Submitted": "false"
+			"Nurse's_Writing_Submitted": "false"
 		  },
 		  "result": "dialogue1"
 		},
@@ -213,7 +222,7 @@
             "Friend's Card"
 		  ],
 		  "stateChecks": {
-			"Friends_Card_Submitted": "false"
+			"Friend's_Card_Submitted": "false"
 		  },
 		  "result": "dialogue6"
 		},
@@ -250,7 +259,7 @@
         "<Father Neal rips the paper from the wall and carefully rolls it up before leaving.>"
 	  ],
 	  "setState": {
-		"Nurses_Writing_Submitted": "true"
+		"Nurse's_Writing_Submitted": "true"
 	  },
 	  "nextVisit": {
 		"id": "AskForItem",
@@ -315,7 +324,7 @@
         "This brand new letter, you say? How could… But of course! It must be from somebody of great importance to you. This person will serve us well."
 	  ],
 	  "setState": {
-		"Friends_Card_Submitted": "true"
+		"Friend's_Card_Submitted": "true"
 	  },
 	  "nextVisit": {
 		"id": "AskForItem",
@@ -357,6 +366,43 @@
 		"id": "AskForItem",
 		"delay": "4"
 	  }
+	},
+	"exit_dialogue": {
+	  "lines": [
+		"Greetings, child. The day of the ritual is soon approaching, and we have done everything we can to prepare. Now, we must pay for the success of the ascension.", "May the lord reward his faithful servants."
+	  ]
+	}
+  },
+  "success": {
+	"dialogue0": {
+	  "lines": [
+        "My- My Lord! <Father Neal prostrates himself on the ground.> There is no greater honor than this!"
+	  ],
+	  "ending" : "cultist"
+	}
+  },
+  "neutral": {
+	"dialogue0": {
+	  "lines": [
+		"Greetings, child, for the last time. <Father Neal has an unusually stern look on his face.>", "I regret to inform you that the ritual was a failure. The teacher between body and soul was simply too weak, and it severed at the Lord's touch.", "Now, your soul and body will drift further away, until your body festers and rots. The congregation did its best, but in the end, you couldn't save yourself."
+	  ],
+	"ending" : "neutral"
+	}
+  },
+  "failure": {
+	"dialogue0": {
+	  "lines": [
+		"Greetings, child, for the last time. <Father Neal has an unusually stern look on his face.>", "The ritual was a failure, but I believe you already know why. That pesky detective had mingled with our business in the past, but we are certain he would not be enough to stop the ritual on his own. The Lord warned me of your Treachery, but now he is no longer with us!","Enjoy your borrowed time. My successor will not be as sympathetic as I."
+	  ],
+	"ending" : "detective"
+	}
+  },
+  "tie": {
+	"dialogue0": {
+	  "lines": [
+		"Greetings, child, for the last time. <Father Neal has an unusually stern look on his face.>", "The ritual faces complications, and you already know why. The pesky detective you sent after us brings heavy firepower from the police, forcing us to use our last resort.", "Make no mistake, the congregation will defend the future of our Lord to our deaths. The lord will not forgive your role in this disappointment of an attempt to summon him."
+	  ],
+	  "ending" : "neutral"
 	}
   }
 }

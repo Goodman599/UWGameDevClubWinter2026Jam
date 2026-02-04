@@ -107,7 +107,7 @@
 	},
 	"dialogue1": {
 	  "lines": [
-		"<You do your best to look towards the nurse’s writing on the wall behind you. It is just barely out of sight.>",
+		"<You do your best to look towards the nurse's writing on the wall behind you. It is just barely out of sight.>",
 		"Oh, is this what you’re looking for? It’s a progress report of your condition, and it looks… alarming, to say the least. The doctors are stumped, their normal treatment for nervous system injury is not working. This just confirms my suspicions. There is something deeply unusual with your injury.",
         "There’s not much else we can do now, but do not lose {hope}[feeling, Hope].  I will be visiting again very soon. Goodbye."
 	  ],

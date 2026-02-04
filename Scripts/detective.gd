@@ -2,6 +2,10 @@ extends BaseVisitor
 
 # The Detective.
 
+var good_submissions := 0
+var total_submissions := 0
+var success := false
+
 func _init():	
 	visitor_states = {
 		"Investigated_Cultist" = false,

@@ -158,8 +158,7 @@
 	"dialogue1": {
 	  "lines": [
         "Excellent, we’ll be going ahead with the surgery then! Get a good night's rest!"
-	  ],
-	  "ending": "neutral"
+	  ]
 	},
 	"dialogue2": {
 	  "lines": [
@@ -167,8 +166,7 @@
 		"You see, this waiver you are signing, really makes no difference. Some very, very powerful people have noticed you. I can assure you, you are never going to leave this hospital. I don’t know the details, but I’m guessing they won’t try to cure you. You are more valuable as a cadaver than a healthy living being.",
 		"I admit, this seems like a cold hearted thing to do, but some sacrifices are necessary for the greater good.",
         "Oh, and also, they paid me enough for me to retire on the spot. So yeah. Thank you for your sacrifice. Goodbye."
-	  ],
-	  "ending": "neutral"
+	  ]
 	}
   }
 }
