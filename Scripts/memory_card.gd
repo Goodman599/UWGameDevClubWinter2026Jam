@@ -142,8 +142,15 @@ func stop_drag():
 	
 	if is_over_submission_area and current_submission_area:
 		drop_into_area(current_submission_area)
+	elif $Hitbox.get_overlapping_areas().size() > 0:
+		var swapping = false
+		for area in $Hitbox.get_overlapping_areas():
+			if area.get_parent() is MemoryCard:
+				swapping = true
+				break
+		if !swapping:
+			return_to_original()
 	else:
-		print($Hitbox.get_overlapping_areas())
 		return_to_original()
 	
 	scale = original_scale

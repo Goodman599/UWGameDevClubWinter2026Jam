@@ -41,8 +41,6 @@ func _on_keyword_received(key: String):
 	card_container.add_child(new_card)
 	new_card.setup(data)
 	
-	# 1. Selection toggle
-	new_card.selection_toggled.connect(_on_card_toggle)
 	
 	# 2. Drag signals (ONCE!)
 	if new_card.has_signal("card_drag_started"):
