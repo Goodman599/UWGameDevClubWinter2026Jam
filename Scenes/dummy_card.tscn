@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce51ao8lqeg1d"]
+
+[ext_resource type="PackedScene" uid="uid://blahtm4hjo1cf" path="res://Scenes/card_view.tscn" id="1_i1x0b"]
+
+[node name="card_view" instance=ExtResource("1_i1x0b")]
+is_dummy = true
+
+[node name="Type" parent="." index="1"]
+mouse_filter = 1
+
+[node name="Content" parent="." index="2"]
+mouse_filter = 1
+
+[node name="Hitbox" parent="." index="3"]
+input_pickable = false
+monitoring = false
