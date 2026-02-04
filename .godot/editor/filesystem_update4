@@ -1,4 +1,2 @@
 res://Scenes/main.tscn
-res://Scripts/cultist.gd
-res://Scripts/base_visitor.gd
-res://Dialogues/Cultist.json
+res://Scenes/card_view.tscn
