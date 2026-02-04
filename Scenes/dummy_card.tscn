@@ -1,16 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce51ao8lqeg1d"]
+[gd_scene load_steps=5 format=3 uid="uid://ce51ao8lqeg1d"]
 
 [ext_resource type="PackedScene" uid="uid://blahtm4hjo1cf" path="res://Scenes/card_view.tscn" id="1_i1x0b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sljx0"]
+font_size = 11
+
+[sub_resource type="LabelSettings" id="LabelSettings_p1guq"]
+font_size = 11
+font_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1guq"]
+size = Vector2(94, 126)
 
 [node name="card_view" instance=ExtResource("1_i1x0b")]
 is_dummy = true
 
-[node name="Type" parent="." index="1"]
-mouse_filter = 1
+[node name="Content2" type="Sprite2D" parent="." index="1"]
 
-[node name="Content" parent="." index="2"]
+[node name="Type" parent="." index="2"]
 mouse_filter = 1
+label_settings = SubResource("LabelSettings_sljx0")
 
-[node name="Hitbox" parent="." index="3"]
+[node name="Content" parent="." index="3"]
+mouse_filter = 1
+label_settings = SubResource("LabelSettings_p1guq")
+
+[node name="Hitbox" parent="." index="4"]
 input_pickable = false
 monitoring = false
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_p1guq")

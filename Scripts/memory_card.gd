@@ -43,6 +43,8 @@ var default_pos_bg: Vector2
 var original: MemoryCard
 var is_copy_of_forgotten: bool = false
 
+var card_view_texture = preload("res://Assets/card_view.png")
+
 @export var is_dummy: bool = false
 @export var can_swap: bool = true
 
@@ -108,28 +110,28 @@ func setup(data:MemoryData):
 			type_label.text = "Event"
 			target_color = COLOR_EVENT
 			if bg:
-				bg.texture = load("res://Assets/card_view.png")  # Ensure no custom art
+				bg.texture = card_view_texture  # Ensure no custom art
 				bg.modulate = BG_COLOR_EVENT
 			
 		MemoryData.MemoryType.Feeling:
 			type_label.text = "Feeling"
 			target_color = COLOR_FEELING
 			if bg:
-				bg.texture = load("res://Assets/card_view.png")
+				bg.texture = card_view_texture
 				bg.modulate = BG_COLOR_FEELING
 			
 		MemoryData.MemoryType.Item:
 			type_label.text = "Item"
 			target_color = COLOR_ITEM
 			if bg:
-				bg.texture = load("res://Assets/card_view.png")
+				bg.texture = card_view_texture
 				bg.modulate = BG_COLOR_ITEM
 			
 		MemoryData.MemoryType.Action:
 			type_label.text = "Action"
 			target_color = COLOR_ACTION
 			if bg:
-				bg.texture = load("res://Assets/card_view.png")
+				bg.texture = card_view_texture
 				bg.modulate = BG_COLOR_ACTION
 			
 	type_label.modulate = target_color

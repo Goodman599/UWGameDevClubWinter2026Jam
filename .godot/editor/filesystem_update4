@@ -7,3 +7,5 @@ res://Scenes/submission_box.tscn
 res://Scripts/memory_manager.gd
 res://Scripts/visitor_manager.gd
 res://Scenes/ui.tscn
+res://Scenes/main.tscn
+res://Scripts/main.gd

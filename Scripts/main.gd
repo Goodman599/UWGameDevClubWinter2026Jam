@@ -1,4 +1,5 @@
 extends Node2D
+class_name Main
 
 @onready var dialogue_box = %DialogueBox
 @onready var card_container = $UI/Control/CardPanel/CardContainer
@@ -8,9 +9,8 @@ extends Node2D
 @onready var player_sprite = $player_ui
 
 var card_scene = preload("res://Scenes/card_view.tscn")
-var cards_to_forget: Array = []
+var dummy_card_scene = preload("res://Scenes/dummy_card.tscn")
 var current_submission_cards: Array = []
-var max_memories = 6
 
 #preload arts for changes
 var bg_texture_day = preload("res://Assets/day_background.png")
@@ -26,21 +26,35 @@ func _ready():
 	if forget_button:
 		forget_button.pressed.connect(func(): get_node("ForgetScreen").appear())
 		
+		
 	VisitorManager.time_changed.connect(_update_background)
+	
+	
+	for i in range(MemoryManager.max_memories):
+		card_container.add_child(dummy_card_scene.instantiate())
+		MemoryManager.collected_memories.append(null)
 
 func _on_keyword_received(key: String):
 	if not MemoryManager.add_memory(key):
 		return
 		
-	var data = MemoryDB.get_memory(key)
+	var data : MemoryData = MemoryDB.get_memory(key)
 	
 	if data == null: 
 		return
 	
+	var next_free_index : int
+	for memory_card_index in card_container.get_child_count():
+		if card_container.get_child(memory_card_index).is_dummy:
+			next_free_index = memory_card_index
+			card_container.get_child(memory_card_index).queue_free()
+			break
+	
+	
 	var new_card = card_scene.instantiate()
 	card_container.add_child(new_card)
 	new_card.setup(data)
-	
+	card_container.move_child(new_card, next_free_index)
 	
 	# 2. Drag signals (ONCE!)
 	if new_card.has_signal("card_drag_started"):
@@ -63,19 +77,15 @@ func _update_background(is_day : bool):
 		background_sprite.texture = bg_texture_night
 		player_sprite.texture = player_night
 
-func _on_card_toggle(card_node, is_selected):
-	if is_selected:
-		if not card_node in cards_to_forget:
-			cards_to_forget.append(card_node)
-	else:
-		if card_node in cards_to_forget:
-			cards_to_forget.erase(card_node)
+
 
 func _on_forget_pressed():
-	if cards_to_forget.is_empty():
-		print("I have to forget something")
-		return
-	
+	for card in MemoryManager.cards_to_forget:
+		var index = card_container.get_children().find(card)
+		
+		var dummy_card = dummy_card_scene.instantiate()
+		card_container.add_child(dummy_card)
+		card_container.move_child(dummy_card, index)
 	
 
 func _start_card_drag(card_node):

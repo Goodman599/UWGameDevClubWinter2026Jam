@@ -10,7 +10,9 @@ const max_memories = 7
 @onready var forget_screen = get_tree().root.get_node("Main/ForgetScreen")
 var in_forget_mode := false
 
-
+func _ready():
+	for i in range(max_memories):
+		collected_memories.append("")
 
 func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
 	var card_container = get_tree().root.get_node("Main/UI/Control/CardPanel/CardContainer")
@@ -42,18 +44,26 @@ func swap_cards(card1 : MemoryCard, card2 : MemoryCard):
 	var temp = collected_memories[drag_index]
 	collected_memories[drag_index] = collected_memories[drop_index]
 	collected_memories[drop_index] = temp
-	
+
+
+
 func add_memory(key: String) -> bool:
 	if key in collected_memories:
 		print("You've already memorized \"", key, "\".")
 		return false
 	
-	if collected_memories.size() >= max_memories:
+	var next_free_index = -1
+	for i in range(max_memories):
+		if collected_memories[i] == "":
+			next_free_index = i
+			break
+	
+	if next_free_index == -1:
 		print("Your brain is overwhelmed. Can't memorize more.")
 		forget_screen.appear()
 		return false
 	
-	collected_memories.append(key)
+	collected_memories[next_free_index] = key
 	
 	memory_added.emit(key)
 	return true
@@ -66,7 +76,7 @@ func add_card_to_forget(card: MemoryCard):
 
 func remove_memory(key: String):
 	if key in collected_memories:
-		collected_memories.erase(key)
+		collected_memories[collected_memories.find(key)] = ""
 		print("Something about \"", key, "\"is forgot")
 		memory_removed.emit(key)
 
@@ -74,6 +84,7 @@ func get_count() -> int:
 	return collected_memories.size()
 
 func forget_cards():
+	get_node("../Main")._on_forget_pressed()
 	for card in cards_to_forget:
 		remove_memory(card.memory_key)
 		card.queue_free()
