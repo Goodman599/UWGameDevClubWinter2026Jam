@@ -12,3 +12,4 @@ res://Scripts/submission_box.gd
 res://Scripts/visitor_manager.gd
 res://Scenes/ui.tscn
 res://Scenes/dialogue_box.tscn
+res://Scenes/submission_box.tscn

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://blahtm4hjo1cf"]
+[gd_scene load_steps=6 format=3 uid="uid://blahtm4hjo1cf"]
 
 [ext_resource type="Script" uid="uid://dxd3sxfj3hai0" path="res://Scripts/memory_card.gd" id="1_p1guq"]
 [ext_resource type="Texture2D" uid="uid://b3lvuvwwmxwmr" path="res://Assets/card_view.png" id="2_p1guq"]
@@ -9,6 +9,9 @@ font_size = 11
 [sub_resource type="LabelSettings" id="LabelSettings_p1guq"]
 font_size = 11
 font_color = Color(0.12955844, 0.12955847, 0.12955844, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1guq"]
+size = Vector2(94, 132)
 
 [node name="card_view" type="Control"]
 custom_minimum_size = Vector2(120, 152)
@@ -51,3 +54,9 @@ text = "Jimmy Jones"
 label_settings = SubResource("LabelSettings_p1guq")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(59, 77)
+shape = SubResource("RectangleShape2D_p1guq")
