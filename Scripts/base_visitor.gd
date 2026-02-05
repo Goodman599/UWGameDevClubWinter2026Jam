@@ -208,6 +208,7 @@ func set_dialogue_branch(branch_name : String):
 			create_submission_box(requirement)
 	# The new dialogue is a redirect dialogue line
 	elif dialogues[current_visit_branch][current_dialogue_branch].has("nextVisit"):
+		
 		if dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"].has("priority"):
 			queue_visit(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["id"], str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["delay"]), str_to_var(dialogues[current_visit_branch][current_dialogue_branch]["nextVisit"]["priority"]))
 		else:
@@ -265,6 +266,10 @@ func load_json_as_dict(path: String) -> Dictionary:
 
 
 func queue_visit(visit_name : String, delay : int, priority : int = 0):
+	if (visitor_name == "Detective" && VisitorManager.time + delay > 27): #prevents stops detective's infinite loop
+		print("preventing new detective investigations")
+		return
+	
 	var next_visit = VisitorInstance.new()
 	next_visit.person = self
 	next_visit.visit_branch = visit_name
@@ -300,8 +305,9 @@ func dialogue_concluded():
 	if visitor_name == "Cultist" && current_visit_branch == "AskForItem" && current_dialogue_branch == "dialogue0":
 		check_condition(1) # checks if the number of cultist loops is enough
 		
-	#if visitor_name == "Cultist" && current_dialogue_branch == "exit_dialogue":
-		#check_condition(0) # checks which ending the cultist branch should lead to
+	if visitor_name == "Detective": #Check detective conditions
+		if current_dialogue_branch == "fallback" or current_dialogue_branch.substr(0, 3) == "inv":
+			check_condition(0)
 	
 	
 	if current_dialogue_takes_cards:

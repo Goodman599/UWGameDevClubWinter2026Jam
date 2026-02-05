@@ -343,6 +343,7 @@
 		"All evidence leads to the {Scorned Sigillum}[Item] being the key to this process. Nobody knows who it originally belonged to, probably because it didn’t belong to anyone from our world. Throughout history, there have been many civilisations who have attempted a ritual to summon such an outer being into our world, and in exchange, they hoped to gain its favor. The ritual is apparently quite easy, with the hardest part being establishing contact with the higher being in the first place. If the ritual succeeds, the host’s body would be piloted by the outer being.",
 		"This means you are safe, at least for a little while longer.",
 		"Now, who else do you think is suspicious?"
+        "Now, who else do you think is suspicious?"
 	  ],
 	  "cases": {
 		"case0": {
@@ -409,6 +410,7 @@
 	  },
 	  "lines": [
 		"So last two days were a giant waste of time. You got any more suspects?"
+        "So last two days were a giant waste of time. You got any more suspects?"
 	  ],
 	  "cases": {
 		"case0": {

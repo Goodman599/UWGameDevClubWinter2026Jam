@@ -33,12 +33,11 @@ func add_final_visit(ending: String):
 	var next_visit = VisitorInstance.new()
 	next_visit.person = self
 	next_visit.visit_branch = ending
-	next_visit.visit_time = 33 # night 17
+	next_visit.visit_time = 34 # night 17
 	print("adding ending " , ending)
 	VisitorManager.add_visitor_to_queue(next_visit)
 	
 func check_condition(flag: int):
-	print("checking cultist condition")
 	total_submissions += 1
 	if total_submissions >= 3:		
 	
@@ -47,11 +46,9 @@ func check_condition(flag: int):
 		
 		good_submissions = 0
 		for item in visitor_states.keys():
-			print("item: ", item)
 			if item ==  "Anime_Poster_Submitted" or item == "Blanket_Submitted" or item == "Signed_Baseball_Submitted" or item == "Friend's_Card_Submitted":
 				
 				if visitor_states[item] == true:
-					print(visitor_states[item])
 					good_submissions += 1
 					
 		if good_submissions < 2:
@@ -69,9 +66,3 @@ func check_condition(flag: int):
 				add_final_visit("tie")
 			else:
 				add_final_visit("success")
-				
-	
-	print(flag)
-	print(good_submissions)
-	print(total_submissions)
-	print(success)
