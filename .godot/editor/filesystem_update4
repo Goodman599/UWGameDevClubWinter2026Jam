@@ -1,2 +1,2 @@
-res://Scenes/main.tscn
-res://Scenes/card_view.tscn
+res://Scenes/ui.tscn
+res://Scripts/main.gd

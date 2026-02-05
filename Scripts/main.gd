@@ -7,6 +7,7 @@ class_name Main
 @onready var forget_button = $UI/Control/Button
 @onready var background_sprite = $background
 @onready var player_sprite = $player_ui
+@onready var time_indicator = $UI/TimeIndicator
 
 var card_scene = preload("res://Scenes/card_view.tscn")
 var dummy_card_scene = preload("res://Scenes/dummy_card.tscn")
@@ -37,6 +38,20 @@ func _ready():
 	
 	for i in range(MemoryManager.max_memories):
 		card_container.add_child(dummy_card_scene.instantiate())
+		
+	VisitorManager.time_changed.connect(_update_time_indicator)
+	# Initialize time indicator
+	_update_time_indicator(VisitorManager.time % 2 == 1)
+
+func _update_time_indicator(is_day: bool):
+	if time_indicator:
+		var day_number = int((VisitorManager.time + 1) / 2)
+		if is_day:
+			time_indicator.text = "Day %d" % day_number
+			time_indicator.modulate = Color(1, 1, 0.8, 0.9)
+		else:
+			time_indicator.text = "Night %d" % day_number
+			time_indicator.modulate = Color(0.8, 0.8, 1, 0.9)
 
 func _on_forget_button_pressed():
 	# Play button click sound

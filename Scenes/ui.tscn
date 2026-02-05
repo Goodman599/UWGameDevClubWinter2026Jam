@@ -44,3 +44,8 @@ offset_right = 1021.0
 offset_bottom = 105.0
 focus_mode = 0
 flat = true
+
+[node name="TimeIndicator" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 20.0
+scale = Vector2(3.0323942, 2.1428618)
