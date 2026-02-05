@@ -2,18 +2,19 @@
 	"cultist": [
 		"The demon overwrites your mind.",
 		"Your consciousness fades.",
-		"You soul is dead."
+		"Your soul is cast to the void."
 	],
 	"detective": [
 		"The ritual was thwarted.",
 		"The demon is banished." ,
-		"Your body is your own once more."
+		"Your body is your own."
 	],
 	"neutral": [
-		"The ritual was a failure..",
+		"The ritual collapsed.",
+		"You refused to surrender.",
 		"The doctor’s medicines failed.",
-		"The surgery wrecks your body.",
-		"The demon’s soul shrivels within you.",
+		"Surgery wrecks your body.",
+		"A demon’s soul shrivels within you.",
 		"You are locked within a decaying shell."
 	]
 }
