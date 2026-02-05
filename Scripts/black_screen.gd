@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var current_dialogue_index = 0
 var endings := {}
@@ -6,7 +6,7 @@ var endingID := ""
 var in_text_transition := true
 
 func _ready():
-	modulate = Color(1, 1, 1, 0)
+	$Background.modulate = Color(1, 1, 1, 0)
 	$Text.self_modulate = Color(1, 1, 1, 0) 
 	endings = load_json_as_dict("res://Dialogues/Endings.json")
 
@@ -17,7 +17,7 @@ func load_ending(newEndingID : String):
 func appear(newEndingID : String):
 	show()
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 2)
+	tween.tween_property($Background, "modulate", Color(1, 1, 1, 1), 2)
 	await tween.finished
 	
 	load_ending(newEndingID)
