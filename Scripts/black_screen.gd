@@ -9,8 +9,6 @@ func _ready():
 	$Background.modulate = Color(1, 1, 1, 0)
 	$Text.self_modulate = Color(1, 1, 1, 0) 
 	endings = load_json_as_dict("res://Dialogues/Endings.json")
-	
-	appear("detective")
 
 func load_ending(newEndingID : String):
 	endingID = newEndingID
