@@ -1,4 +1,6 @@
+RichTextLabel
 Label
+TextureRect
 AudioStreamPlayer
 Node2D
 TextureButton

@@ -44,14 +44,16 @@ func _ready():
 	_update_time_indicator(VisitorManager.time % 2 == 1)
 
 func _update_time_indicator(is_day: bool):
+	
 	if time_indicator:
 		var day_number = int((VisitorManager.time + 1) / 2)
+		var timeTextNode : RichTextLabel = time_indicator.get_node("Text")
 		if is_day:
-			time_indicator.text = "Day %d" % day_number
-			time_indicator.modulate = Color(1, 1, 0.8, 0.9)
+			timeTextNode.text = "Day %d" % day_number
+			timeTextNode.self_modulate = Color(1, 1, 0.8, 0.9)
 		else:
-			time_indicator.text = "Night %d" % day_number
-			time_indicator.modulate = Color(0.8, 0.8, 1, 0.9)
+			timeTextNode.text = "Night %d" % day_number
+			timeTextNode.self_modulate = Color(0.8, 0.8, 1, 0.9)
 
 func _on_forget_button_pressed():
 	# Play button click sound
