@@ -13,6 +13,9 @@ signal scroll_finished
 var texture_normal = preload("res://Assets/dialogue_box.png")
 var texture_demon = preload("res://Assets/demon_dialogue_box.png")
 
+var tween : Tween
+var scrolling := false
+
 func _ready():
 	# Hide confirm button initially
 	if confirm_button:
@@ -25,6 +28,15 @@ func _ready():
 	$Next.mouse_entered.connect(_on_button_hovered)
 	$Back.mouse_entered.connect(_on_button_hovered)
 	$Confirm.mouse_entered.connect(_on_button_hovered)
+
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			if scrolling:
+				tween.kill()
+				scrolling = false
+				$Text.visible_ratio = 1
+				emit_signal("scroll_finished")
 
 func _on_next_pressed():
 	var audio_manager = get_node("/root/Main/AudioManager") as AudioManager
@@ -62,12 +74,13 @@ func set_text(text : String):
 
 
 func set_text_scroll(text : String):
+	scrolling = true
 	check_for_tutorials(text)
 	
 	$Text.visible_characters = 0
 	$Text.text = text
 	
-	var tween = get_tree().create_tween()
+	tween = get_tree().create_tween()
 	
 	# Save some time if text is super long. Scrolling will never take more than 3 seconds
 	if text.length() <= 120:
@@ -92,10 +105,12 @@ func set_text_scroll(text : String):
 		audio_manager.play_dialogue_sound("Demon")
 	
 	await tween.finished
+	
+	scrolling = false
 	emit_signal("scroll_finished")
 
 func play_blips(blip_count : int, blip_interval : float, visitor_name : String):
-	if blip_count == 0:
+	if blip_count == 0 or !scrolling:
 		return
 	await get_tree().create_timer(blip_interval).timeout
 	get_node("/root/Main/AudioManager").play_dialogue_sound(visitor_name)
