@@ -7,14 +7,20 @@ class_name AudioManager
 @onready var sfx_player: AudioStreamPlayer = $SFXPlayer
 
 var current_music_track: String = ""
+var random_pitch : RandomNumberGenerator
 
 func _ready():
-	# Start main theme and hospital ambience
-	play_music("Sigillum (Demon Version)")
-	play_ambience("Heartbeat - Looping")
+	random_pitch = RandomNumberGenerator.new()
+	
+	if get_parent() is StartMenu:
+		play_music("Eerie.mp3")
+	else:
+		# Start main theme and hospital ambience
+		play_music("Sigillum (Demon Version).wav")
+		play_ambience("Heartbeat - Looping.wav")
 
-	# Connect to visitor changes
-	connect_to_visitor_manager()
+		# Connect to visitor changes
+		connect_to_visitor_manager()
 
 func _process(delta):
 	self.global_position = get_global_mouse_position()
@@ -24,8 +30,6 @@ func _process(delta):
 		
 	if $AmbiencePlayer.playing == false:
 		$AmbiencePlayer.play()
-	
-	pass
 	
 func connect_to_visitor_manager():
 	# Try different ways to find VisitorManager
@@ -48,16 +52,17 @@ func play_music(track_name: String):
 	if current_music_track == track_name:
 		return  # Already playing this track
 	
-	var path = "res://Musics/" + track_name + ".wav"
+	var path = "res://Musics/" + track_name
 	var stream = load(path)
 	
 	if stream:
+		var current_timestamp = music_player.get_playback_position()
 		current_music_track = track_name
 		music_player.stream = stream
-		music_player.play()
+		music_player.play(current_timestamp)
 
 func play_ambience(ambience_name: String):
-	var path = "res://Musics/Looping Ambiences/" + ambience_name + ".wav"
+	var path = "res://Musics/Looping Ambiences/" + ambience_name
 	var stream = load(path)
 	if stream:
 		ambience_player.stream = stream
@@ -72,6 +77,7 @@ func play_dialogue_sound(visitor_name: String):
 	
 	var stream = load(path)
 	if stream:
+		dialogue_player.pitch_scale = random_pitch.randf_range(0.97, 1.03)
 		dialogue_player.stream = stream
 		dialogue_player.play()
 
@@ -118,9 +124,9 @@ func play_put_down_card():
 func _on_time_changed(is_day: bool):
 	if is_day:
 		# Switch to day theme
-		play_music("Sigillum (Main Theme)")
-		play_ambience("Heart Monitor Ambience - Looping")
+		play_music("Sigillum (Main Theme).wav")
+		play_ambience("Heart Monitor Ambience - Looping.wav")
 	else:
 		# Switch to demon/night theme
-		play_music("Sigillum (Demon Version)")
-		play_ambience("Heartbeat - Looping")
+		play_music("Sigillum (Demon Version).wav")
+		play_ambience("Heartbeat - Looping.wav")

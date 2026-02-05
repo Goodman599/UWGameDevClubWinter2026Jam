@@ -11,3 +11,4 @@ res://Scenes/blink_transition.tscn
 res://Scripts/blink_transition.gd
 res://Scenes/start_menu.tscn
 res://Scripts/visitor_manager.gd
+res://Scenes/main.tscn

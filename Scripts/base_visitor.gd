@@ -45,7 +45,7 @@ const CHAR_POSITION_X = 900.0
 const CHAR_POSITION_Y = 300.0
 
 
-const SCROLL_ENABLED := false
+const SCROLL_ENABLED := true
 
 
 
