@@ -89,7 +89,7 @@ unique_name_in_owner = true
 
 [node name="UI" parent="." instance=ExtResource("3_8gbba")]
 
-[node name="BlackScreen" parent="." instance=ExtResource("12_6iyac")]
+[node name="BlackScreen" parent="UI" instance=ExtResource("12_6iyac")]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0)
