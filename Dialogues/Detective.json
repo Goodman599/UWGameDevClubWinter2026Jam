@@ -342,7 +342,6 @@
 		"They do have one weakness: they technically do not exist in our material world. As beings outside the sandbox game, they must take control of a character within the game, if they want to influence it. We might be able to close the game, or so to speak, rendering the higher being powerless to affect us.",
 		"All evidence leads to the {Scorned Sigillum}[Item] being the key to this process. Nobody knows who it originally belonged to, probably because it didn’t belong to anyone from our world. Throughout history, there have been many civilisations who have attempted a ritual to summon such an outer being into our world, and in exchange, they hoped to gain its favor. The ritual is apparently quite easy, with the hardest part being establishing contact with the higher being in the first place. If the ritual succeeds, the host’s body would be piloted by the outer being.",
 		"This means you are safe, at least for a little while longer.",
-		"Now, who else do you think is suspicious?"
         "Now, who else do you think is suspicious?"
 	  ],
 	  "cases": {
@@ -409,7 +408,6 @@
 		"Investigated_Demon": "true"
 	  },
 	  "lines": [
-		"So last two days were a giant waste of time. You got any more suspects?"
         "So last two days were a giant waste of time. You got any more suspects?"
 	  ],
 	  "cases": {
@@ -465,6 +463,22 @@
 		"id": "wastingTime",
 		"delay": "4"
 	  }
+	}
+  },
+  "Day16Success": {
+	"dialogue0": {
+	  "lines": [
+		"<The Detective bursts through the door, clearly out of breath.>\n\nI think we got them! All the evidence points toward the church! They are preparing some kind of huge ritual, and they know I've been snooping around. I think I have a solution, but I need to hurry.",
+        "<Before leaving, he turns to you one last time.>\n\nThank you, for your trust and assistance. I could not have done this without you."
+	  ]
+	}
+  },
+  "Day16Failure": {
+	"dialogue0": {
+	  "lines": [
+		"<The detective bursts through the door, frantic and out of breath.>\n\nNo! No! How can this be? We were chasing shadows! They were two steps ahead. They were ALWAYS two steps ahead!",
+        "<He slumps down on the floor with a thud.> It's over now. It's all over. There is nothing left I can do."
+	  ]
 	}
   }
 }

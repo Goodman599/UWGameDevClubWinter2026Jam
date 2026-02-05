@@ -378,6 +378,7 @@
   "failure": {
 	"dialogue0": {
 	  "lines": [
+		"Greetings, child, for the last time. <Father Neal has an unusually stern look on his face.>", "The ritual was a failure, but I believe you already know why. That pesky detective had mingled with our business in the past, but we are certain he would not be enough to stop the ritual on his own. The Lord warned me of your treachery, but now he is no longer with us!","Enjoy your borrowed time. My successor will not be as sympathetic as I."
 	  ],
 	"ending" : "detective"
 	}
