@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbqc4y0el8cgt"]
+[gd_scene load_steps=3 format=3 uid="uid://cbqc4y0el8cgt"]
+
+[ext_resource type="Texture2D" uid="uid://cls0djb5tk211" path="res://Assets/box.png" id="1_qdvrb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wviqb"]
 
@@ -44,3 +46,23 @@ offset_right = 1021.0
 offset_bottom = 105.0
 focus_mode = 0
 flat = true
+
+[node name="TimeIndicator" type="TextureRect" parent="."]
+offset_left = 13.0
+offset_top = 17.0
+offset_right = 172.0
+offset_bottom = 101.0
+texture = ExtResource("1_qdvrb")
+expand_mode = 1
+
+[node name="Text" type="RichTextLabel" parent="TimeIndicator"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 153.0
+offset_bottom = 81.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 35
+text = "Night 0"
+horizontal_alignment = 1
+vertical_alignment = 1
