@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="UWGameDevClubWinter2026Jam"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="uid://cokt0ly301hkp"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MemoryDB="*res://Scripts/memory_database.gd"
 MemoryManager="*res://Scripts/memory_manager.gd"
 VisitorManager="*res://Scripts/visitor_manager.gd"
+BlinkTransition="*res://Scenes/blink_transition.tscn"
 
 [display]
 

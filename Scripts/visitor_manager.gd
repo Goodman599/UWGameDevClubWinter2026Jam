@@ -20,6 +20,8 @@ func compare(a, b):
 
 func send_next_visitor():
 	await get_tree().process_frame
+	
+	
 	#print("time: ", time)
 	#print("queue: ")
 	#for visitor in visitor_queue:
@@ -46,5 +48,9 @@ func step_time():
 		print("It's day now!")
 	else:
 		print("It's night now!")
+		
+	BlinkTransition.blink()
+	await BlinkTransition.eyes_closed
 	time_changed.emit(is_day)
+	await BlinkTransition.eyes_opened
 	send_next_visitor()
