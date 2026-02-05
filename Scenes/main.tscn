@@ -89,14 +89,6 @@ unique_name_in_owner = true
 
 [node name="UI" parent="." instance=ExtResource("3_8gbba")]
 
-[node name="BlackScreen" parent="UI" instance=ExtResource("12_6iyac")]
-unique_name_in_owner = true
-visible = false
-modulate = Color(1, 1, 1, 0)
-offset_right = 1152.0
-offset_bottom = 648.0
-metadata/_edit_lock_ = true
-
 [node name="ForgetScreen" parent="." instance=ExtResource("13_fdnlq")]
 visible = false
 
@@ -152,6 +144,17 @@ theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 
 [node name="AudioManager" parent="." instance=ExtResource("19_fevyy")]
+
+[node name="EndScreen" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="BlackScreen" parent="EndScreen" instance=ExtResource("12_6iyac")]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+metadata/_edit_lock_ = true
 
 [editable path="Tutorials/TutorialBox"]
 [editable path="Tutorials/TutorialBox2"]
