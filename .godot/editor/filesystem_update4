@@ -1,3 +1,2 @@
-res://Scripts/dialogue_box.gd
-res://Scripts/main.gd
-res://Dialogues/Endings.json
+res://Scenes/main.tscn
+res://Scripts/base_visitor.gd

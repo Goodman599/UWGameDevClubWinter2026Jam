@@ -404,8 +404,9 @@ func delete_submission_boxes():
 func load_character_sprite():
 	var sprite_path = "res://Assets/" + visitor_name + ".png"
 	
-	if FileAccess.file_exists(sprite_path):
-		var texture = load(sprite_path)
+	
+	var texture = load(sprite_path)
+	if texture != null:
 		$CharacterSprite.texture = texture
 		
 		var tex_h = texture.get_height()
