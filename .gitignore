@@ -1,2 +1,9 @@
 *.cache
 *.cache
+/Exports
+export_presets.cfg
+Exports/.DS_Store
+Exports/v0.2.zip
+export_presets.cfg
+Exports/.DS_Store
+Exports/v0.2.zip

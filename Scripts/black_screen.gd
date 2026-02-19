@@ -43,6 +43,7 @@ func show_next():
 		tween.tween_property($Text, "self_modulate", Color(1, 1, 1, 1), 1)
 		in_text_transition = false
 	elif current_dialogue_index == endings[endingID].size() - 1:
+		VisitorManager.time = 0
 		get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
 
 func _input(event):

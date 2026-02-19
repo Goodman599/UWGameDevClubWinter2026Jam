@@ -1,2 +1,4 @@
 res://Scenes/main.tscn
 res://Scripts/base_visitor.gd
+res://Scenes/black_screen.tscn
+res://Scripts/black_screen.gd

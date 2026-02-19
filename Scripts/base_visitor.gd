@@ -418,7 +418,7 @@ func load_character_sprite():
 		$CharacterSprite.visible = false 
 		
 	else:
-		push_warning("BaseVisitor: Can't find arts -> " + sprite_path)
+		push_warning("BaseVisitor: Can't find sprite -> " + sprite_path)
 		
 
 #allows visitors to manually check conditions
